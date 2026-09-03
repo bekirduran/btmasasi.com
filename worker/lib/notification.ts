@@ -1,5 +1,5 @@
 import type { LeadInput } from './validation';
-import { createMimeMessage } from 'mimetext';
+import { createMimeMessage, Mailbox } from 'mimetext';
 import { EmailMessage } from 'cloudflare:email';
 
 /**
@@ -54,12 +54,18 @@ export async function sendCloudflareEmailNotification(
     const { subject, text } = formatLeadEmailContent(lead);
 
     const msg = createMimeMessage();
-    msg.setSender({ name: 'BT Masası Sistem', addr: fromEmail });
+    msg.setSender({ name: 'BT Masası', addr: fromEmail });
     msg.setRecipient(toEmail);
     msg.setSubject(subject);
+
     if (lead.email) {
-      msg.setHeader('Reply-To', lead.email);
+      try {
+        msg.setHeader('Reply-To', new Mailbox(lead.email));
+      } catch {
+        // Geçersiz veya format dışı e-posta olsa dahi bildirimin gitmesini engelleme
+      }
     }
+
     msg.addMessage({
       contentType: 'text/plain',
       data: text,
