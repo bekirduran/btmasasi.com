@@ -35,7 +35,7 @@ export const siteConfig: SiteConfig = {
   founderName: "Bekir Duran",
   founderTitle: "Bilgisayar Mühendisi",
   domain: "https://btmasasi.com",
-  email: "iletisim@btmasasi.com", // E-posta kutusu veya yönlendirme aktif olduğunda yayına hazır
+  email: "info@btmasasi.com",
   phoneDisplay: "0 (530) 112 54 68",
   phoneE164: "+905301125468",
   whatsappE164: "+905301125468",
