@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+
+const pageTitle = "Hangi İşletmeler İçin Uygundur?";
+const pageDescription = "BT Masası, teknolojinin iş için gerekli olduğu fakat ayrı bir BT departmanı kurmanın henüz verimli olmadığı 8-60 kullanıcılı işletmelere yöneliktir.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: "Kimler İçin" }]} />
+      <div class="mt-4">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight">
+          {pageTitle}
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-600 mt-4 leading-relaxed font-normal">
+          {pageDescription}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <!-- Uygunluk İşaretleri -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-6">
+        İşletmeniz İçin Uygunluk Belirtileri
+      </h2>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-700">
+        <li class="p-4 rounded-xl border border-slate-200 bg-white flex items-start gap-3">
+          <span class="text-brandBlue-600 font-bold text-base">✓</span>
+          <span>Sekiz veya daha fazla aktif bilgisayar/kullanıcı bulunması</span>
+        </li>
+        <li class="p-4 rounded-xl border border-slate-200 bg-white flex items-start gap-3">
+          <span class="text-brandBlue-600 font-bold text-base">✓</span>
+          <span>Sorunların şirket içindeki teknik bilgisi olan tek çalışanın üzerine kalması</span>
+        </li>
+        <li class="p-4 rounded-xl border border-slate-200 bg-white flex items-start gap-3">
+          <span class="text-brandBlue-600 font-bold text-base">✓</span>
+          <span>Yedekleme yapıldığının düşünülmesi fakat geri yüklemenin hiç test edilmemiş olması</span>
+        </li>
+        <li class="p-4 rounded-xl border border-slate-200 bg-white flex items-start gap-3">
+          <span class="text-brandBlue-600 font-bold text-base">✓</span>
+          <span>Çalışan hesaplarının standart bir süreçle açılıp kapatılmaması</span>
+        </li>
+        <li class="p-4 rounded-xl border border-slate-200 bg-white flex items-start gap-3">
+          <span class="text-brandBlue-600 font-bold text-base">✓</span>
+          <span>Birden fazla şube, depo veya çalışma noktasının bulunması</span>
+        </li>
+        <li class="p-4 rounded-xl border border-slate-200 bg-white flex items-start gap-3">
+          <span class="text-brandBlue-600 font-bold text-base">✓</span>
+          <span>E-posta, internet, dosya paylaşımı veya ERP kesintisinin doğrudan ciro kaybı yaratması</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Sektör Çözümleri -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-6">
+        Öncelikli Hizmet Verdiğimiz Sektörler
+      </h2>
+      <div class="space-y-6">
+        
+        <!-- Üretim ve OSB -->
+        <Card>
+          <h3 class="text-xl font-bold text-navy-900 mb-2">1. Üretim ve Organize Sanayi İşletmeleri</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm mt-3 pt-3 border-t border-slate-100">
+            <div>
+              <span class="font-bold text-rose-700 block">Temel Sorun:</span>
+              <p class="text-slate-600 mt-1">Fabrika ve ofis ağının iç içe geçmesi, tozlu ortamlarda donanım arızaları ve sevkiyat yazılımı kesintileri.</p>
+            </div>
+            <div>
+              <span class="font-bold text-navy-900 block">Yaklaşımımız:</span>
+              <p class="text-slate-600 mt-1">Üretim ağı ile ofis ağını izole etmek, yedekli internet kurgusu ve hızlı yerinde müdahale.</p>
+            </div>
+            <div>
+              <span class="font-bold text-brandTeal-700 block">Operasyonel Çıktı:</span>
+              <p class="text-slate-600 mt-1">Kesintisiz irsaliye/etiketleme, güvenli veri akışı ve belgeli cihaz envanteri.</p>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Muhasebe & Mali Müşavir -->
+        <Card>
+          <h3 class="text-xl font-bold text-navy-900 mb-2">2. Muhasebe ve Mali Müşavirlik Büroları</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm mt-3 pt-3 border-t border-slate-100">
+            <div>
+              <span class="font-bold text-rose-700 block">Temel Sorun:</span>
+              <p class="text-slate-600 mt-1">Beyanname dönemlerinde e-imza, java ve veritabanı çökmeleri; fidye yazılımı tehdidi.</p>
+            </div>
+            <div>
+              <span class="font-bold text-navy-900 block">Yaklaşımımız:</span>
+              <p class="text-slate-600 mt-1">Mali veritabanlarının saatlik izole yedeği, e-imza uyumluluk kontrolleri ve kullanıcı erişim kısıtlamaları.</p>
+            </div>
+            <div>
+              <span class="font-bold text-brandTeal-700 block">Operasyonel Çıktı:</span>
+              <p class="text-slate-600 mt-1">Son gün stresinden uzak, güvenle saklanan mükellef arşivleri ve kesintisiz çalışma.</p>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Lojistik & Toptan -->
+        <Card>
+          <h3 class="text-xl font-bold text-navy-900 mb-2">3. Lojistik, Toptan Satış ve Distribütörler</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm mt-3 pt-3 border-t border-slate-100">
+            <div>
+              <span class="font-bold text-rose-700 block">Temel Sorun:</span>
+              <p class="text-slate-600 mt-1">Depo el terminalleri, barkod yazıcılar ve şubeler arası VPN bağlantı kopmaları.</p>
+            </div>
+            <div>
+              <span class="font-bold text-navy-900 block">Yaklaşımımız:</span>
+              <p class="text-slate-600 mt-1">Depo Wi-Fi kapsama optimizasyonu, kritik yazıcı önceliği ve kararlı VPN yönetimi.</p>
+            </div>
+            <div>
+              <span class="font-bold text-brandTeal-700 block">Operasyonel Çıktı:</span>
+              <p class="text-slate-600 mt-1">Zamanında çıkan araçlar, hatasız depo çıkışları ve şube senkronizasyonu.</p>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Özel Eğitim -->
+        <Card>
+          <h3 class="text-xl font-bold text-navy-900 mb-2">4. Özel Eğitim Kurumları</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm mt-3 pt-3 border-t border-slate-100">
+            <div>
+              <span class="font-bold text-rose-700 block">Temel Sorun:</span>
+              <p class="text-slate-600 mt-1">Öğrenci/misafir Wi-Fi kullanımının idari ağı yavaşlatması, akıllı tahta ve ortak cihaz arızaları.</p>
+            </div>
+            <div>
+              <span class="font-bold text-navy-900 block">Yaklaşımımız:</span>
+              <p class="text-slate-600 mt-1">Ağ bant genişliği kısıtlamaları, misafir ağ izolasyonu ve standart personel bilgisayarı profilleri.</p>
+            </div>
+            <div>
+              <span class="font-bold text-brandTeal-700 block">Operasyonel Çıktı:</span>
+              <p class="text-slate-600 mt-1">Güvenli internet erişimi, ders akışını bölmeyen teknolojik altyapı.</p>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Otel & Konaklama -->
+        <Card>
+          <h3 class="text-xl font-bold text-navy-900 mb-2">5. Otel ve Konaklama İşletmeleri</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm mt-3 pt-3 border-t border-slate-100">
+            <div>
+              <span class="font-bold text-rose-700 block">Temel Sorun:</span>
+              <p class="text-slate-600 mt-1">Resepsiyon yazılımı kesintileri, misafir internet şikayetleri ve 5651 loglama zorunlulukları.</p>
+            </div>
+            <div>
+              <span class="font-bold text-navy-900 block">Yaklaşımımız:</span>
+              <p class="text-slate-600 mt-1">Resepsiyon ve muhasebe cihazlarının önceliklendirilmesi, hotspot ve kanuni log koordinasyonu.</p>
+            </div>
+            <div>
+              <span class="font-bold text-brandTeal-700 block">Operasyonel Çıktı:</span>
+              <p class="text-slate-600 mt-1">Hızlı check-in/out işlemleri, mevzuata uygun misafir internet kaydı.</p>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Profesyonel Ofisler -->
+        <Card>
+          <h3 class="text-xl font-bold text-navy-900 mb-2">6. Profesyonel Hizmet Ofisleri (Mühendislik, Hukuk, Mimarlık)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm mt-3 pt-3 border-t border-slate-100">
+            <div>
+              <span class="font-bold text-rose-700 block">Temel Sorun:</span>
+              <p class="text-slate-600 mt-1">Büyük CAD/proje dosyalarının güvenli paylaşımı, veri kaybı endişesi ve dağınık cihazlar.</p>
+            </div>
+            <div>
+              <span class="font-bold text-navy-900 block">Yaklaşımımız:</span>
+              <p class="text-slate-600 mt-1">Microsoft 365 bulut entegrasyonu, yerel NAS senkronizasyonu ve dizüstü bilgisayar şifreleme.</p>
+            </div>
+            <div>
+              <span class="font-bold text-brandTeal-700 block">Operasyonel Çıktı:</span>
+              <p class="text-slate-600 mt-1">Ofis dışındayken de dosyalara güvenli erişim ve kayıpsız proje arşivi.</p>
+            </div>
+          </div>
+        </Card>
+
+      </div>
+    </section>
+
+    <!-- Kimler İçin Uygun Olmayabilir? -->
+    <section class="p-6 sm:p-8 rounded-2xl bg-slate-50 border border-slate-200 text-sm text-slate-600 leading-relaxed">
+      <h2 class="text-xl font-bold text-navy-900 mb-2">
+        Kimler İçin Uygun Olmayabilir?
+      </h2>
+      <p>
+        Yalnızca tek seferlik, en düşük fiyatlı bilgisayar tamiri arayan ev kullanıcıları; sözleşme veya kapsam tanımlamadan sınırsız ve belirsiz hizmet bekleyen işletmeler ya da tek kişilik ekiple 7/24 kesintisiz yerinde müdahale gerektiren kritik büyük tesisler için bu hizmet modeli uygun olmayabilir.
+      </p>
+    </section>
+
+    <!-- Alt CTA -->
+    <div class="text-center pt-8 border-t border-slate-200">
+      <h2 class="text-2xl font-bold text-navy-900 mb-3">
+        İşletmenizin İhtiyaçlarını Birlikte Konuşalım
+      </h2>
+      <p class="text-slate-600 text-sm mb-6 max-w-xl mx-auto">
+        Sektörünüze ve çalışan sayınıza en uygun hizmet modelini belirlemek için ön değerlendirme talebinde bulunun.
+      </p>
+      <Button href="/ucretsiz-bt-kontrolu" size="lg" variant="primary">
+        Ön Değerlendirme Talep Edin
+      </Button>
+    </div>
+
+  </div>
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { siteConfig } from '../config/site';
+
+const pageTitle = "Çerez Politikası";
+const pageDescription = "BT Masası web sitesinde kullanılan teknik ve güvenlik amaçlı çerezler hakkında bilgilendirme.";
+const lastUpdated = "2025-02-24";
+---
+
+<LegalLayout title={pageTitle} description={pageDescription} lastUpdated={lastUpdated}>
+  <p>
+    Bu Çerez Politikası, <strong>BT Masası</strong> ({siteConfig.domain}) web sitesini ziyaretiniz sırasında kullanılan çerezler ve benzeri teknolojiler hakkında sizleri bilgilendirmek amacıyla hazırlanmıştır.
+  </p>
+
+  <h2>1. Çerez (Cookie) Nedir?</h2>
+  <p>
+    Çerezler, bir web sitesini ziyaret ettiğinizde tarayıcınız aracılığıyla cihazınıza kaydedilen küçük metin dosyalarıdır.
+  </p>
+
+  <h2>2. Sitemizde Hangi Çerezler Kullanılmaktadır?</h2>
+  <p>
+    Sitemiz, gizlilik odaklı ve minimalist bir mimariyle tasarlanmıştır. Bu doğrultuda sitemizde <strong>reklam, pazarlama, profiling veya üçüncü taraf kullanıcı takip çerezleri KULLANILMAMAKTADIR.</strong>
+  </p>
+  <p>
+    Yalnızca web sitesinin güvenli şekilde çalışabilmesi için zorunlu olan teknik çerezler kullanılmaktadır:
+  </p>
+
+  <div class="overflow-x-auto my-6">
+    <table class="w-full text-left border-collapse text-sm border border-slate-200">
+      <thead>
+        <tr class="bg-slate-50 border-b border-slate-200">
+          <th class="p-3 font-semibold text-navy-900">Çerez / Sağlayıcı</th>
+          <th class="p-3 font-semibold text-navy-900">Tür</th>
+          <th class="p-3 font-semibold text-navy-900">Kullanım Amacı</th>
+          <th class="p-3 font-semibold text-navy-900">Süre</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+        <tr>
+          <td class="p-3 font-medium text-navy-900">Cloudflare Turnstile</td>
+          <td class="p-3 text-slate-600">Zorunlu Güvenlik</td>
+          <td class="p-3 text-slate-600">Form gönderimlerinde bot saldırılarını ve spam isteklerini ayırt etmek</td>
+          <td class="p-3 text-slate-600">Oturum Süresince</td>
+        </tr>
+        <tr>
+          <td class="p-3 font-medium text-navy-900">Cloudflare CDN (__cf_bm vb.)</td>
+          <td class="p-3 text-slate-600">Zorunlu Altyapı</td>
+          <td class="p-3 text-slate-600">Ağ güvenliğini sağlamak ve DDoS koruması yürütmek</td>
+          <td class="p-3 text-slate-600">En fazla 30 dakika</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3. Çerez Tercihlerinin Yönetimi</h2>
+  <p>
+    Tarayıcınızın ayarlarından çerezleri dilediğiniz zaman silebilir veya engelleyebilirsiniz. Ancak zorunlu güvenlik çerezlerinin engellenmesi durumunda iletişim ve ön değerlendirme formlarının bot koruması çalışmayabilir.
+  </p>
+</LegalLayout>

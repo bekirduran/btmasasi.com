@@ -1,0 +1,19 @@
+---
+export interface Props {
+  variant?: 'blue' | 'teal' | 'navy' | 'slate';
+  class?: string;
+}
+
+const { variant = 'blue', class: className = '' } = Astro.props;
+
+const variantStyles = {
+  blue: 'bg-brandBlue-50 text-brandBlue-700 border-brandBlue-200',
+  teal: 'bg-brandTeal-50 text-brandTeal-700 border-brandTeal-200',
+  navy: 'bg-navy-50 text-navy-900 border-navy-200',
+  slate: 'bg-slate-100 text-slate-700 border-slate-200',
+};
+---
+
+<span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${variantStyles[variant]} ${className}`}>
+  <slot />
+</span>

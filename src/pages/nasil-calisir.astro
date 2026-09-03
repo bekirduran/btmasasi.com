@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+
+const pageTitle = "BT Masası Nasıl Çalışır?";
+const pageDescription = "Sağlıklı bir dış kaynak BT hizmeti, uzaktan bağlantı programı kurmakla başlamaz. 6 aşamalı şeffaf ve ölçülebilir çalışma sürecimizi inceleyin.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: "Nasıl Çalışır?" }]} />
+      <div class="mt-4">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight">
+          {pageTitle}
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-600 mt-4 leading-relaxed font-normal">
+          {pageDescription}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <!-- 6 Aşamalı Süreç -->
+    <div class="space-y-8">
+      
+      <!-- Aşama 1 -->
+      <div class="flex flex-col sm:flex-row gap-6 items-start">
+        <div class="w-12 h-12 rounded-2xl bg-brandBlue-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+          1
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-navy-900 mb-2">Aşama 1 — Ön Görüşme</h2>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Çalışan, kullanıcı, cihaz, lokasyon, kullanılan yazılımlar ve en sık yaşanan sorunlar hakkında temel bilgileri toplarız. Bu aşamada asla sistem erişim parolası istemeyiz ve izinsiz hiçbir teknik tarama yapmayız.
+          </p>
+        </div>
+      </div>
+
+      <!-- Aşama 2 -->
+      <div class="flex flex-col sm:flex-row gap-6 items-start">
+        <div class="w-12 h-12 rounded-2xl bg-brandBlue-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+          2
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-navy-900 mb-2">Aşama 2 — Envanter ve Risk Değerlendirmesi</h2>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Karşılıklı yetkilendirme sonrasında bilgisayarları, ağ bileşenlerini, kullanıcı hesaplarını, lisansları, yedekleme yöntemini ve kritik tedarikçileri inceleriz. Bulguları aciliyet ve etki düzeyine göre sınıflandırırız.
+          </p>
+        </div>
+      </div>
+
+      <!-- Aşama 3 -->
+      <div class="flex flex-col sm:flex-row gap-6 items-start">
+        <div class="w-12 h-12 rounded-2xl bg-brandBlue-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+          3
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-navy-900 mb-2">Aşama 3 — Teklif, Kapsam ve SLA Belirleme</h2>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Dahil edilen kullanıcı, cihaz, lokasyon, ziyaret sıklığı, destek zamanı ve yönetilecek sistemleri yazılı hale getiririz. Donanım, lisans, proje ve mesai dışı hizmet gibi ayrı ücretlendirilecek konuları sözleşmede açıkça belirtiriz.
+          </p>
+        </div>
+      </div>
+
+      <!-- Aşama 4 -->
+      <div class="flex flex-col sm:flex-row gap-6 items-start">
+        <div class="w-12 h-12 rounded-2xl bg-brandBlue-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+          4
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-navy-900 mb-2">Aşama 4 — Onboarding (Devralma ve Düzenleme)</h2>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Yönetim hesaplarını güvenli hale getirir, varlıkları belgeler, çalışanlar için destek kanallarını tanımlar ve kritik eksikler için bir geçiş planı oluştururuz. Varsa önceki tedarikçilerden teknik bilgilerin kontrollü devrini koordine ederiz.
+          </p>
+        </div>
+      </div>
+
+      <!-- Aşama 5 -->
+      <div class="flex flex-col sm:flex-row gap-6 items-start">
+        <div class="w-12 h-12 rounded-2xl bg-brandBlue-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+          5
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-navy-900 mb-2">Aşama 5 — Düzenli Operasyon</h2>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Destek talepleri kayıt altına alınır; güncellemeler, yedekleme sonuçları ve kritik güvenlik uyarıları sürekli takip edilir. Tekrar eden sorunlar yalnızca geçici olarak kapatılmaz, kök nedenleri araştırılarak kalıcı çözümler üretilir.
+          </p>
+        </div>
+      </div>
+
+      <!-- Aşama 6 -->
+      <div class="flex flex-col sm:flex-row gap-6 items-start">
+        <div class="w-12 h-12 rounded-2xl bg-brandBlue-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+          6
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-navy-900 mb-2">Aşama 6 — Raporlama ve İyileştirme</h2>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Her ay hazırlanan özet raporda çözülen biletler, dikkat gerektiren cihazlar, yedekleme başarı durumu, açık kalan riskler ve gelecek dönem için önerilen teknoloji yatırımları işletme yönetimiyle paylaşılır.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Örnek Aylık Rapor Önizleme Kartı -->
+    <section class="border-t border-slate-200 pt-12">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <h2 class="text-2xl font-bold text-navy-900">
+          Örnek Aylık Hizmet Raporu Formatı
+        </h2>
+        <p class="text-sm text-slate-600 mt-2">
+          Hizmet alan müşterilerimize her ay düzenli olarak sunulan teknik ve operasyonel rapor içeriği.
+        </p>
+      </div>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8">
+        <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
+          <div>
+            <span class="text-xs font-bold text-brandBlue-600 uppercase tracking-wider">Aylık Rapor Özeti</span>
+            <h3 class="text-lg font-bold text-navy-900 mt-0.5">BT Masası — Aylık Servis Değerlendirmesi</h3>
+          </div>
+          <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded font-medium">Örnek Şablon</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <span class="text-xs text-slate-500">Destek Talepleri</span>
+            <div class="text-xl font-extrabold text-navy-900 mt-1">18 Çözüldü</div>
+            <span class="text-xs text-teal-600 font-medium">Ort. Yanıt: 14 dk</span>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <span class="text-xs text-slate-500">Yedekleme Durumu</span>
+            <div class="text-xl font-extrabold text-teal-700 mt-1">%100 Başarılı</div>
+            <span class="text-xs text-slate-500">Son Restore Testi: Yapıldı</span>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <span class="text-xs text-slate-500">Yamalar & Güncelleme</span>
+            <div class="text-xl font-extrabold text-navy-900 mt-1">24 Cihaz</div>
+            <span class="text-xs text-teal-600 font-medium">Kritik yamalar tam</span>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <span class="text-xs text-slate-500">Açık Riskler</span>
+            <div class="text-xl font-extrabold text-amber-600 mt-1">1 Öneri</div>
+            <span class="text-xs text-slate-500">1 Eski disk yenileme</span>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-500 bg-white p-3 rounded-lg border border-slate-200">
+          <strong>Rapor Notu:</strong> Gerçek raporlar, işletmenizin sözleşme kapsamındaki cihaz envanterini, bilet listesini ve yedekleme denetim kayıtlarını ayrıntılı PDF formatında içerir.
+        </div>
+      </div>
+    </section>
+
+    <!-- Alt CTA -->
+    <div class="text-center pt-8 border-t border-slate-200">
+      <h2 class="text-2xl font-bold text-navy-900 mb-3">
+        Süreci Birlikte Başlatalım
+      </h2>
+      <p class="text-slate-600 text-sm mb-6 max-w-xl mx-auto">
+        İlk adım olan ücretsiz ön görüşme için formu doldurun, işletmenizin mevcut durumunu birlikte değerlendirelim.
+      </p>
+      <Button href="/ucretsiz-bt-kontrolu" size="lg" variant="primary">
+        Ön Görüşme Talep Edin
+      </Button>
+    </div>
+
+  </div>
+</BaseLayout>

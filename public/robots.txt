@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://btmasasi.com/sitemap-index.xml

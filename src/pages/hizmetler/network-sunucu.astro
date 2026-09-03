@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+
+const pageTitle = "Network ve Sunucu Yönetimi";
+const pageDescription = "Kablolu ve kablosuz ağınızı, internet erişiminizi, firewall, NAS ve sunucu bileşenlerinizi belgeli ve yönetilebilir hale getirin.";
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: pageTitle,
+  serviceType: 'Network and Server Administration',
+  provider: {
+    '@type': 'Organization',
+    name: 'BT Masası',
+    url: 'https://btmasasi.com',
+  },
+  description: pageDescription,
+  areaServed: ['Aksaray', 'Türkiye'],
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} customSchema={serviceSchema}>
+  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs
+        items={[
+          { label: "Hizmetler", href: "/hizmetler" },
+          { label: pageTitle },
+        ]}
+      />
+      <div class="mt-4">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight">
+          {pageTitle}
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-600 mt-4 leading-relaxed font-normal">
+          {pageDescription}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <!-- Genel Giriş -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-4">
+        Kararlı Bir Ağ, Kesintisiz İş Demektir
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+        Bir işletmede internetin veya ortak dosya sunucusunun 1 saat kesilmesi; sevkiyatın, faturaların ve satışın durması anlamına gelir. BT Masası olarak ağınızı belgelenmiş, güvenliği ayrıştırılmış ve sağlık durumu düzenli izlenen bir yapıya kavuşturuyoruz.
+      </p>
+    </section>
+
+    <!-- Kapsam -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-6">
+        Ağ ve Sunucu Kapsamımız
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">Mevcut Ağ Yapısının İncelenmesi</h3>
+          <p class="text-xs text-slate-600 mt-1">Kablolama, switch yerleşimi ve darboğaz noktalarının analizi.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">Cihaz Envanteri ve IP Planı</h3>
+          <p class="text-xs text-slate-600 mt-1">Modem, router, switch ve access point'lerin standart IP bloklarıyla düzenlenmesi.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">Kurumsal Wi-Fi & Misafir Ağı Ayrımı</h3>
+          <p class="text-xs text-slate-600 mt-1">Ziyaretçilerin şirket sunucularına veya yazıcılara erişmesini engelleyen VLAN/izolasyon.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">Firewall Kural ve Erişim Yönetimi</h3>
+          <p class="text-xs text-slate-600 mt-1">Dışarıdan gelebilecek port taramalarına karşı kurallar ve güvenli VPN yapılandırması.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">NAS ve Ortak Dosya Paylaşımı</h3>
+          <p class="text-xs text-slate-600 mt-1">Departman bazlı klasör yetkilendirmesi, kota takibi ve disk sağlık alarmları.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">Sunucu Sağlık ve Disk Takibi</h3>
+          <p class="text-xs text-slate-600 mt-1">Windows Server / Linux işletim sistemi güncellemeleri ve disk doluluk uyarıları.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sorumluluk Sınırı -->
+    <section class="p-6 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-600">
+      <h3 class="font-bold text-navy-900 mb-2">Sorumluluk ve Altyapı Sınırları</h3>
+      <p>
+        İnternet servis sağlayıcısının (Türk Telekom, Superonline vb.) bölgesel altyapı kesintilerinden, şebeke elektrik dalgalanmalarından veya garanti dışı donanım arızalarından kaynaklanan süreler BT Masası tarafından garanti edilemez. Ancak kesinti anında doğru arıza tespiti ve ilgili tedarikçinin teknik servis ekipleriyle koordinasyon hizmet kapsamımızdadır.
+      </p>
+    </section>
+
+    <!-- Alt CTA -->
+    <div class="text-center pt-8 border-t border-slate-200">
+      <h2 class="text-2xl font-bold text-navy-900 mb-3">
+        Ağ Altyapınızı Güvenle Yönetelim
+      </h2>
+      <p class="text-slate-600 text-sm mb-6 max-w-xl mx-auto">
+        Kopmalar yaşayan veya düzenlenmeye ihtiyaç duyan ağ yapınızı birlikte değerlendirelim.
+      </p>
+      <Button href="/ucretsiz-bt-kontrolu" size="lg" variant="primary">
+        Ağ Değerlendirmesi İsteyin
+      </Button>
+    </div>
+
+  </div>
+</BaseLayout>

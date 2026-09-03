@@ -1,0 +1,25 @@
+# BT Masası
+
+> BT Masası, Aksaray'daki işletmelere yerinde ve Türkiye genelinde uzaktan yönetilen bilgi teknolojileri hizmetleri sunan bir kurumsal BT destek markasıdır.
+
+## Core services
+- Yönetilen BT hizmetleri
+- Kurumsal IT destek
+- Network ve sunucu yönetimi
+- Siber güvenlik ve yedekleme
+- Microsoft 365 ve bulut yönetimi
+
+## Primary service area
+- Aksaray Merkez
+- Aksaray Organize Sanayi Bölgesi
+- Türkiye genelinde uzaktan destek
+
+## Important pages
+- https://btmasasi.com/hizmetler
+- https://btmasasi.com/aksaray-kurumsal-it-destek
+- https://btmasasi.com/nasil-calisir
+- https://btmasasi.com/ucretsiz-bt-kontrolu
+- https://btmasasi.com/iletisim
+
+## Contact
+- https://btmasasi.com/iletisim

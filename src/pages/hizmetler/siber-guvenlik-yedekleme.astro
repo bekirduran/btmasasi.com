@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+
+const pageTitle = "Siber Güvenlik ve Yedekleme";
+const pageDescription = "Tek bir ürüne güvenmek yerine hesap, cihaz, ağ ve yedekleme katmanlarında uygulanabilir güvenlik kontrolleri oluşturun.";
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: pageTitle,
+  serviceType: 'Cybersecurity and Backup Solutions',
+  provider: {
+    '@type': 'Organization',
+    name: 'BT Masası',
+    url: 'https://btmasasi.com',
+  },
+  description: pageDescription,
+  areaServed: ['Aksaray', 'Türkiye'],
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} customSchema={serviceSchema}>
+  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs
+        items={[
+          { label: "Hizmetler", href: "/hizmetler" },
+          { label: pageTitle },
+        ]}
+      />
+      <div class="mt-4">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight">
+          {pageTitle}
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-600 mt-4 leading-relaxed font-normal">
+          {pageDescription}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <!-- Dürüstlük Metni (GitHub Alert / Callout) -->
+    <div class="p-6 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-sm leading-relaxed">
+      <h2 class="font-bold text-base mb-1 text-amber-950">Önemli Dürüstlük İlkesi</h2>
+      <p>
+        Hiçbir hizmet veya güvenlik ürünü %100 sıfır risk ve mutlak güvenlik sağlayamaz. Amacımız; saldırı olasılığını ve olası zararları en aza indirmek, güvenlik olaylarını erken fark etmek ve bir felaket durumunda verileri eksiksiz geri yükleme kabiliyetini canlı tutmaktır.
+      </p>
+    </div>
+
+    <!-- Yedekleme Yaklaşımı -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-4">
+        Yedekleme Yalnızca Dosya Kopyalamak Değildir
+      </h2>
+      <p class="text-base text-slate-600 leading-relaxed">
+        Hangi verinin, ne sıklıkla, kaç sürüm ve ne kadar süre saklanacağı; kopyalardan birinin üretim ortamından ayrıştırılması ve gerektiğinde geri yükleme yapılabildiğinin test edilmesi gerekir. Senkronizasyon araçları (OneDrive, Google Drive vb.) bir fidye yazılımı karşısında gerçek bir yedeklemenin yerini tutamaz.
+      </p>
+    </section>
+
+    <!-- Kapsam -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-6">
+        Uyguladığımız Temel Güvenlik Kontrolleri
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">Çok Faktörlü Doğrulama (MFA)</h3>
+          <p class="text-xs text-slate-600 mt-1">E-posta ve kurumsal hesaplara yetkisiz erişimi önlemek için telefon doğrulaması.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">Yönetici Hesaplarının Ayrıştırılması</h3>
+          <p class="text-xs text-slate-600 mt-1">Günlük işlerde yönetici yetkisi kullanılmasının kısıtlanması, zararlı yazılım yayılımının engellenmesi.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">Uç Nokta (Antivirüs) Durum Takibi</h3>
+          <p class="text-xs text-slate-600 mt-1">Tüm bilgisayarlarda koruma yazılımlarının güncel ve devrede olduğunun kontrolü.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">İşletim Sistemi Güvenlik Yamaları</h3>
+          <p class="text-xs text-slate-600 mt-1">Windows ve kritik yazılımların bilinen açıklarının planlı şekilde kapatılması.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">Yedekleme Kapsamı ve Saklama Planı</h3>
+          <p class="text-xs text-slate-600 mt-1">Muhasebe ve operasyonel verilerin 3-2-1 kuralına uygun çoklu kopyalanması.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">Planlı Geri Yükleme (Restore) Testi</h3>
+          <p class="text-xs text-slate-600 mt-1">Yedeklerin gerçekten sağlam açıldığının periyodik olarak doğrulanması.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alt CTA -->
+    <div class="text-center pt-8 border-t border-slate-200">
+      <h2 class="text-2xl font-bold text-navy-900 mb-3">
+        İşletmenizin Güvenlik ve Yedekleme Durumunu İnceleyelim
+      </h2>
+      <p class="text-slate-600 text-sm mb-6 max-w-xl mx-auto">
+        Kritik verilerinizin güvende olduğundan emin olmak için ücretsiz bir ön değerlendirme planlayın.
+      </p>
+      <Button href="/ucretsiz-bt-kontrolu" size="lg" variant="primary">
+        Ön Değerlendirme İsteyin
+      </Button>
+    </div>
+
+  </div>
+</BaseLayout>

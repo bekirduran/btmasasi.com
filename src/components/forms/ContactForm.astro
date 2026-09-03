@@ -1,0 +1,214 @@
+---
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
+---
+
+<form id="contact-form" class="space-y-6 max-w-xl mx-auto" novalidate>
+  <!-- Honeypot (Spam koruması için gizli alan) -->
+  <div style="display:none !important;" aria-hidden="true">
+    <label for="contact-hp">Lütfen bu alanı boş bırakın</label>
+    <input type="text" id="contact-hp" name="website_url_hp" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <input type="hidden" name="formType" value="contact" />
+
+  <!-- Ad Soyad -->
+  <div>
+    <label for="contact-name" class="block text-sm font-semibold text-navy-900 mb-1">
+      Ad Soyad <span class="text-rose-600">*</span>
+    </label>
+    <input
+      type="text"
+      id="contact-name"
+      name="name"
+      required
+      minlength="2"
+      maxlength="80"
+      placeholder="Örn: Ahmet Yılmaz"
+      class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+      aria-describedby="contact-name-error"
+    />
+    <p id="contact-name-error" class="text-xs text-rose-600 mt-1 hidden" role="alert"></p>
+  </div>
+
+  <!-- Firma Adı -->
+  <div>
+    <label for="contact-company" class="block text-sm font-semibold text-navy-900 mb-1">
+      Firma Adı <span class="text-rose-600">*</span>
+    </label>
+    <input
+      type="text"
+      id="contact-company"
+      name="company"
+      required
+      minlength="2"
+      maxlength="120"
+      placeholder="Örn: Yılmaz Ticaret"
+      class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+      aria-describedby="contact-company-error"
+    />
+    <p id="contact-company-error" class="text-xs text-rose-600 mt-1 hidden" role="alert"></p>
+  </div>
+
+  <!-- Telefon & E-posta -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label for="contact-phone" class="block text-sm font-semibold text-navy-900 mb-1">
+        Telefon Numarası <span class="text-rose-600">*</span>
+      </label>
+      <input
+        type="tel"
+        id="contact-phone"
+        name="phone"
+        required
+        placeholder="05XX XXX XX XX"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+        aria-describedby="contact-phone-error"
+      />
+      <p id="contact-phone-error" class="text-xs text-rose-600 mt-1 hidden" role="alert"></p>
+    </div>
+
+    <div>
+      <label for="contact-email" class="block text-sm font-semibold text-navy-900 mb-1">
+        Kurumsal E-posta
+      </label>
+      <input
+        type="email"
+        id="contact-email"
+        name="email"
+        placeholder="ad@sirket.com"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+        aria-describedby="contact-email-error"
+      />
+      <p id="contact-email-error" class="text-xs text-rose-600 mt-1 hidden" role="alert"></p>
+    </div>
+  </div>
+
+  <!-- Mesaj / Talep -->
+  <div>
+    <label for="contact-message" class="block text-sm font-semibold text-navy-900 mb-1">
+      İhtiyacınız veya Mesajınız <span class="text-rose-600">*</span>
+    </label>
+    <textarea
+      id="contact-message"
+      name="message"
+      rows="4"
+      required
+      minlength="10"
+      maxlength="1500"
+      placeholder="Kullanıcı sayısı, yaşadığınız BT sorunları veya talebiniz..."
+      class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+      aria-describedby="contact-message-error"
+    ></textarea>
+    <p id="contact-message-error" class="text-xs text-rose-600 mt-1 hidden" role="alert"></p>
+  </div>
+
+  <!-- KVKK Onayı -->
+  <div class="flex items-start gap-3">
+    <input
+      type="checkbox"
+      id="contact-consent"
+      name="consent"
+      required
+      class="mt-1 h-4 w-4 rounded border-slate-300 text-brandBlue-600 focus:ring-brandBlue-500"
+      aria-describedby="contact-consent-error"
+    />
+    <label for="contact-consent" class="text-xs text-slate-600 leading-relaxed">
+      <a href="/kvkk-aydinlatma-metni" target="_blank" class="text-brandBlue-600 underline hover:text-brandBlue-800">
+        KVKK Aydınlatma Metni
+      </a>'ni okudum. Talebimin yanıtlanması ve iletişim kurulması amacıyla verilerimin işlenmesini onaylıyorum. <span class="text-rose-600">*</span>
+    </label>
+  </div>
+  <p id="contact-consent-error" class="text-xs text-rose-600 hidden" role="alert"></p>
+
+  <!-- Cloudflare Turnstile -->
+  <div class="pt-2">
+    <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light"></div>
+    <p id="contact-turnstile-error" class="text-xs text-rose-600 mt-1 hidden" role="alert"></p>
+  </div>
+
+  <!-- Durum ve Bildirim Alanı (Screen Reader Canlı Duyuru) -->
+  <div id="contact-status-region" class="p-4 rounded-xl text-sm hidden" aria-live="polite"></div>
+
+  <!-- Gönder Butonu -->
+  <button
+    type="submit"
+    id="contact-submit-btn"
+    class="w-full py-3.5 px-6 rounded-xl font-semibold text-white bg-brandBlue-600 hover:bg-brandBlue-700 active:bg-brandBlue-800 shadow-sm transition-all focus-visible:outline-brandBlue-600 disabled:opacity-50"
+  >
+    Mesajı Gönder
+  </button>
+</form>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const statusRegion = document.getElementById('contact-status-region');
+  const submitBtn = document.getElementById('contact-submit-btn') as HTMLButtonElement | null;
+
+  if (form && statusRegion && submitBtn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusRegion.className = 'p-4 rounded-xl text-sm hidden';
+      statusRegion.textContent = '';
+
+      const formData = new FormData(form);
+      const consent = form.querySelector<HTMLInputElement>('#contact-consent')?.checked;
+      const turnstileToken = formData.get('cf-turnstile-response') || formData.get('token');
+
+      if (!consent) {
+        statusRegion.className = 'p-4 rounded-xl text-sm bg-rose-50 text-rose-800 block';
+        statusRegion.textContent = 'Lütfen KVKK aydınlatma metnini onaylayın.';
+        return;
+      }
+
+      if (!turnstileToken) {
+        statusRegion.className = 'p-4 rounded-xl text-sm bg-rose-50 text-rose-800 block';
+        statusRegion.textContent = 'Lütfen güvenlik doğrulamasını tamamlayın.';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Gönderiliyor...';
+
+      const payload = {
+        formType: 'contact',
+        name: String(formData.get('name') || '').trim(),
+        company: String(formData.get('company') || '').trim(),
+        email: String(formData.get('email') || '').trim() || undefined,
+        phone: String(formData.get('phone') || '').trim(),
+        message: String(formData.get('message') || '').trim(),
+        consent: true,
+        website_url_hp: String(formData.get('website_url_hp') || ''),
+        token: String(turnstileToken),
+      };
+
+      try {
+        const response = await fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          form.reset();
+          statusRegion.className = 'p-4 rounded-xl text-sm bg-teal-50 text-teal-800 border border-teal-200 block';
+          statusRegion.textContent = result.message || 'Mesajınız alındı. Paylaştığınız iletişim bilgisi üzerinden dönüş yapılacaktır.';
+          submitBtn.textContent = 'Gönderildi';
+        } else {
+          statusRegion.className = 'p-4 rounded-xl text-sm bg-rose-50 text-rose-800 border border-rose-200 block';
+          statusRegion.textContent = result.message || 'Gönderim sırasında bir sorun oluştu. Lütfen bilgilerinizi kontrol edin.';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Tekrar Dene';
+        }
+      } catch {
+        statusRegion.className = 'p-4 rounded-xl text-sm bg-rose-50 text-rose-800 border border-rose-200 block';
+        statusRegion.textContent = 'Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Mesajı Gönder';
+      }
+    });
+  }
+</script>

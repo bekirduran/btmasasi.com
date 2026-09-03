@@ -1,0 +1,51 @@
+/**
+ * Merkezi İşletme Yapılandırması (Single Source of Truth)
+ * 
+ * Bu dosya, tüm sitede (sayfalar, şemalar, footer, iletişim kanalları)
+ * kullanılan NAP (Name, Address, Phone) ve kurumsal bilgileri içerir.
+ * Doğrulanmamış veya henüz atanmamış bilgiler null olarak tanımlanır.
+ */
+
+export interface SiteConfig {
+  readonly brandName: string;
+  readonly descriptor: string;
+  readonly legalCompanyName: string | null;
+  readonly founderName: string;
+  readonly founderTitle: string;
+  readonly domain: string;
+  readonly email: string | null;
+  readonly phoneDisplay: string | null;
+  readonly phoneE164: string | null;
+  readonly whatsappE164: string | null;
+  readonly city: string;
+  readonly country: string;
+  readonly address: string | null;
+  readonly primaryServiceArea: readonly string[];
+  readonly remoteServiceArea: string;
+  readonly businessHours: string;
+  readonly socialLinks: Readonly<Record<string, string>>;
+  readonly googleBusinessProfileUrl: string | null;
+  readonly showPrices: boolean;
+}
+
+export const siteConfig: SiteConfig = {
+  brandName: "BT Masası",
+  descriptor: "Bilgi Teknolojileri ve Danışmanlık",
+  legalCompanyName: null, // Resmi şirket unvanı tescil edildiğinde girilecek
+  founderName: "Bekir Duran",
+  founderTitle: "Bilgisayar Mühendisi",
+  domain: "https://btmasasi.com",
+  email: "iletisim@btmasasi.com", // E-posta kutusu veya yönlendirme aktif olduğunda yayına hazır
+  phoneDisplay: null, // Örn: "+90 (382) 000 00 00" - Doğrulanmış hat bağlanınca doldurulacak
+  phoneE164: null,    // Örn: "+903820000000"
+  whatsappE164: null, // Örn: "+905000000000"
+  city: "Aksaray",
+  country: "Türkiye",
+  address: null,      // Doğrulanmış müşteri kabul ofis adresi atanana kadar null
+  primaryServiceArea: ["Aksaray Merkez", "Aksaray Organize Sanayi Bölgesi"],
+  remoteServiceArea: "Türkiye geneli",
+  businessHours: "Hafta içi 09:00 - 18:00",
+  socialLinks: {},    // Doğrulanmış sosyal medya hesapları eklenebilir
+  googleBusinessProfileUrl: null, // GBP onayı sonrası eklenebilir
+  showPrices: false,  // Sabit fiyatlar belirlendiğinde true yapılabilir
+} as const;

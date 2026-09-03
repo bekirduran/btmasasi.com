@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import Badge from '../components/ui/Badge.astro';
+
+const pageTitle = "İhtiyacınıza Uygun BT Hizmet Modeli";
+const pageDescription = "Aylık hizmet bedeli yalnızca bilgisayar sayısına göre değil; kullanıcı, altyapı karmaşıklığı ve müdahale seviyesine göre şeffaf şekilde belirlenir.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: "Paketler" }]} />
+      <div class="mt-4">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight">
+          {pageTitle}
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-600 mt-4 leading-relaxed font-normal">
+          {pageDescription}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <!-- 3 Hizmet Paketi Kartları -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Paket 1: Temel BT -->
+      <Card class="flex flex-col justify-between border-slate-200">
+        <div>
+          <div class="mb-4">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Küçük Ekipler İçin</span>
+            <h2 class="text-2xl font-bold text-navy-900 mt-1">Temel BT</h2>
+          </div>
+          <p class="text-sm text-slate-600 mb-6">
+            5-10 kullanıcılı, temel kullanıcı desteği ve düzenli cihaz takibi isteyen küçük ofisler için uygundur.
+          </p>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 mb-6">
+            <span class="text-xs text-slate-500 block">Fiyatlandırma Yaklaşımı:</span>
+            <span class="text-lg font-bold text-navy-900">Kapsama Göre Teklif</span>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-700 mb-8">
+            <li class="flex items-center gap-2">
+              <span class="text-teal-600 font-bold">✓</span>
+              <span>Mesai saatlerinde uzaktan destek</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-teal-600 font-bold">✓</span>
+              <span>Kullanıcı ve cihaz envanteri</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-teal-600 font-bold">✓</span>
+              <span>Temel güncelleme ve yama takibi</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-teal-600 font-bold">✓</span>
+              <span>Kayıtlı destek biletleri</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-teal-600 font-bold">✓</span>
+              <span>Periyodik sistem durum özeti</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-teal-600 font-bold">✓</span>
+              <span>İhtiyaca göre planlı yerinde ziyaret</span>
+            </li>
+          </ul>
+        </div>
+        <Button href="/ucretsiz-bt-kontrolu" variant="outline" class="w-full">
+          Temel BT İçin Teklif Alın
+        </Button>
+      </Card>
+
+      <!-- Paket 2: Yönetilen BT (Büyüyen İşletmeler) -->
+      <Card class="flex flex-col justify-between border-brandBlue-300 relative shadow-md">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+          <Badge variant="blue" class="px-3 py-0.5 text-xs font-bold">Büyüyen İşletmeler İçin</Badge>
+        </div>
+        <div>
+          <div class="mb-4 mt-2">
+            <span class="text-xs font-bold text-brandBlue-600 uppercase tracking-wider">Kapsamlı Yönetim</span>
+            <h2 class="text-2xl font-bold text-navy-900 mt-1">Yönetilen BT</h2>
+          </div>
+          <p class="text-sm text-slate-600 mb-6">
+            10-25 kullanıcılı, kullanıcı desteğinin yanında hesap, yedekleme, bulut ve tedarikçi süreçlerini tek noktadan yönetmek isteyen işletmeler.
+          </p>
+          <div class="p-4 rounded-xl bg-brandBlue-50/50 border border-brandBlue-100 mb-6">
+            <span class="text-xs text-slate-500 block">Fiyatlandırma Yaklaşımı:</span>
+            <span class="text-lg font-bold text-brandBlue-700">Kapsama Göre Teklif</span>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-700 mb-8">
+            <li class="flex items-center gap-2">
+              <span class="text-brandBlue-600 font-bold">✓</span>
+              <span>Uzaktan ve kapsam dahilinde yerinde destek</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-brandBlue-600 font-bold">✓</span>
+              <span>Cihaz, kullanıcı ve lisans envanteri</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-brandBlue-600 font-bold">✓</span>
+              <span>Güncelleme ve uç nokta durumu takibi</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-brandBlue-600 font-bold">✓</span>
+              <span>Microsoft 365 temel yönetimi & MFA</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-brandBlue-600 font-bold">✓</span>
+              <span>Yedekleme işi izleme ve denetimi</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-brandBlue-600 font-bold">✓</span>
+              <span>Tedarikçi (ERP/ISP/Fotokopi) koordinasyonu</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-brandBlue-600 font-bold">✓</span>
+              <span>Aylık ayrıntılı raporlama</span>
+            </li>
+          </ul>
+        </div>
+        <Button href="/ucretsiz-bt-kontrolu" variant="primary" class="w-full shadow">
+          Yönetilen BT Kapsamını Görüşün
+        </Button>
+      </Card>
+
+      <!-- Paket 3: Kurumsal BT -->
+      <Card class="flex flex-col justify-between border-slate-200">
+        <div>
+          <div class="mb-4">
+            <span class="text-xs font-bold text-navy-800 uppercase tracking-wider">İleri Düzey Altyapı</span>
+            <h2 class="text-2xl font-bold text-navy-900 mt-1">Kurumsal BT</h2>
+          </div>
+          <p class="text-sm text-slate-600 mb-6">
+            25 ve üzeri kullanıcıya, fiziksel/sanal sunucuya, firewall'a veya birden fazla lokasyona sahip işletmeler için.
+          </p>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 mb-6">
+            <span class="text-xs text-slate-500 block">Fiyatlandırma Yaklaşımı:</span>
+            <span class="text-lg font-bold text-navy-900">Kapsama Göre Teklif</span>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-700 mb-8">
+            <li class="flex items-center gap-2">
+              <span class="text-navy-900 font-bold">✓</span>
+              <span>Önceliklendirilmiş destek ve hızlı SLA modeli</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-navy-900 font-bold">✓</span>
+              <span>Sunucu ve kurumsal network yönetimi</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-navy-900 font-bold">✓</span>
+              <span>Çok lokasyonlu varlık envanteri</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-navy-900 font-bold">✓</span>
+              <span>Gelişmiş yedekleme ve felaket kurtarma planı</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-navy-900 font-bold">✓</span>
+              <span>Periyodik yönetim değerlendirme toplantıları</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-navy-900 font-bold">✓</span>
+              <span>Yıllık teknoloji bütçesi ve yol haritası</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-navy-900 font-bold">✓</span>
+              <span>İhtiyaca göre mevcut iç ekiple ortak çalışma</span>
+            </li>
+          </ul>
+        </div>
+        <Button href="/ucretsiz-bt-kontrolu" variant="outline" class="w-full">
+          Kurumsal Kapsam Oluşturun
+        </Button>
+      </Card>
+
+    </div>
+
+    <!-- Fiyatlandırma Prensipleri ve Açıklama -->
+    <div class="bg-slate-50 rounded-2xl border border-slate-200 p-8 text-sm text-slate-600 leading-relaxed max-w-4xl mx-auto">
+      <h2 class="text-lg font-bold text-navy-900 mb-3">
+        Fiyatlandırma ve Hizmet Sınırları Hakkında Önemli Notlar
+      </h2>
+      <p class="mb-4">
+        Donanım, yedek parça, üçüncü taraf yazılım lisansları (Microsoft 365, antivirüs vb.), bulut depolama abonelikleri, fiziksel kablolama, yeni ofis taşınmaları ve fiziksel veri kurtarma çalışmaları aksi sözleşmede belirtilmedikçe aylık hizmet bedeline dahil değildir.
+      </p>
+      <p>
+        İlk başlangıçta mevcut dağınık altyapının toparlanması, şifrelerin kasaya alınması ve standartların oturtulması için tek seferlik bir <strong>onboarding (devralma/kurulum) bedeli</strong> uygulanabilir.
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>

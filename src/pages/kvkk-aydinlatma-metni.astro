@@ -1,0 +1,64 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { siteConfig } from '../config/site';
+
+const pageTitle = "Kişisel Verilerin İşlenmesine İlişkin Aydınlatma Metni";
+const pageDescription = "6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) uyarınca web sitemiz üzerinden toplanan verilere ilişkin aydınlatma metni.";
+const lastUpdated = "2025-02-24";
+---
+
+<LegalLayout title={pageTitle} description={pageDescription} lastUpdated={lastUpdated}>
+  <p>
+    Bu Aydınlatma Metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, veri sorumlusu sıfatıyla <strong>{siteConfig.legalCompanyName || siteConfig.brandName}</strong> ("BT Masası") tarafından, web sitemiz ({siteConfig.domain}) üzerinden bizimle paylaştığınız kişisel verilerin işlenmesine ilişkin usul ve esaslar hakkında sizleri bilgilendirmek amacıyla hazırlanmıştır.
+  </p>
+
+  <h2>1. Veri Sorumlusunun Kimliği</h2>
+  <p>
+    Veri Sorumlusu: <strong>{siteConfig.founderName} ({siteConfig.brandName})</strong><br />
+    Adres: {siteConfig.address || `${siteConfig.city}, ${siteConfig.country}`}<br />
+    İletişim E-posta: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+  </p>
+
+  <h2>2. İşlenen Kişisel Verileriniz</h2>
+  <p>
+    Web sitemizde yer alan iletişim veya ön değerlendirme formlarını doldurmanız halinde aşağıdaki kişisel verileriniz işlenmektedir:
+  </p>
+  <ul>
+    <li><strong>Kimlik Bilgileri:</strong> Adınız, soyadınız.</li>
+    <li><strong>İletişim Bilgileri:</strong> Telefon numaranız, kurumsal e-posta adresiniz.</li>
+    <li><strong>Çalışma/İş Yeri Bilgileri:</strong> Temsil ettiğiniz firma adı, çalışan sayısı aralığı, bilgisayar sayısı aralığı, lokasyon sayısı.</li>
+    <li><strong>Talep/İşlem Bilgileri:</strong> Form mesajınızda paylaştığınız teknik ihtiyaç veya sorun tanımları, form gönderim tarihi ve saati.</li>
+    <li><strong>İşlem Güvenliği Verileri:</strong> Cloudflare Turnstile bot doğrulama belirteci. (Ham IP adresi veritabanımıza kaydedilmez).</li>
+  </ul>
+
+  <h2>3. Kişisel Verilerin İşlenme Amaçları</h2>
+  <p>
+    Kişisel verileriniz;
+  </p>
+  <ul>
+    <li>İlettiğiniz bilgi, destek veya teklif taleplerinin incelenmesi ve tarafınıza dönüş yapılması,</li>
+    <li>İşletmenizin ihtiyaçlarına uygun BT hizmet kapsamının belirlenmesi,</li>
+    <li>İletişim süreçlerinin yönetilmesi ve form güvenliğinin (spam/kötüye kullanım önleme) sağlanması,</li>
+  </ul>
+  <p>
+    amaçlarıyla KVKK'nın 5. ve 6. maddelerinde belirtilen şartlara uygun olarak işlenmektedir.
+  </p>
+
+  <h2>4. Kişisel Veri Toplamanın Hukuki Sebepleri</h2>
+  <p>
+    Kişisel verileriniz, KVKK'nın 5/2-c maddesi gereğince <em>"bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması kaydıyla sözleşmenin taraflarına ait kişisel verilerin işlenmesinin gerekli olması"</em> ve 5/2-f maddesi gereğince <em>"ilgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla, veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması"</em> hukuki sebeplerine dayalı olarak otomatik yollarla toplanmaktadır.
+  </p>
+
+  <h2>5. Kişisel Verilerin Aktarılması</h2>
+  <p>
+    Toplanan kişisel verileriniz, form verilerinin güvenle saklanması ve sunucu altyapısının sağlanması amacıyla bulut altyapı sağlayıcımız (Cloudflare Workers ve D1 veri tabanı) sistemlerinde barındırılmaktadır. Verileriniz, yasal zorunluluklar haricinde üçüncü taraflarla reklam veya pazarlama amacıyla kesinlikle paylaşılmaz.
+  </p>
+
+  <h2>6. İlgili Kişinin Hakları (KVKK Madde 11)</h2>
+  <p>
+    KVKK'nın 11. maddesi uyarınca veri sahipleri; kişisel verilerinin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme, işlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme, verilerin silinmesini veya yok edilmesini talep etme haklarına sahiptir.
+  </p>
+  <p>
+    Haklarınıza ilişkin başvurularınızı <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> e-posta adresimiz üzerinden bize iletebilirsiniz.
+  </p>
+</LegalLayout>

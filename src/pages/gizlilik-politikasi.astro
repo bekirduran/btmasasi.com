@@ -1,0 +1,47 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { siteConfig } from '../config/site';
+
+const pageTitle = "Gizlilik Politikası";
+const pageDescription = "BT Masası web sitesini ziyaret eden kullanıcıların gizliliği ve verilerin korunmasına ilişkin politikamız.";
+const lastUpdated = "2025-02-24";
+---
+
+<LegalLayout title={pageTitle} description={pageDescription} lastUpdated={lastUpdated}>
+  <p>
+    Bu Gizlilik Politikası, <strong>BT Masası</strong> ("biz", "tarafımız") olarak {siteConfig.domain} adresli web sitemizi ziyaret eden ve hizmetlerimiz hakkında bilgi almak isteyen kullanıcılarımızın gizliliğini nasıl koruduğumuzu açıklamaktadır.
+  </p>
+
+  <h2>1. Toplanan Bilgiler ve Kaynakları</h2>
+  <p>
+    Web sitemiz yalnızca iki ana yöntemle bilgi toplamaktadır:
+  </p>
+  <ul>
+    <li>
+      <strong>Sizin Doğrudan Sağladığınız Bilgiler:</strong> İletişim veya ücretsiz BT değerlendirmesi formlarımız aracılığıyla ilettiğiniz ad soyad, kurumsal e-posta, telefon numarası, firma adı ve mesaj içerikleri.
+    </li>
+    <li>
+      <strong>Teknik Sunucu Logları:</strong> Güvenlik ve sunucu performansı amacıyla Cloudflare ağında tutulan standart istek logları (erişilen sayfa, istek zamanı ve tarayıcı kullanıcı ajanı). Ham IP adresleri veritabanımızda saklanmamaktadır.
+    </li>
+  </ul>
+
+  <h2>2. Form Güvenliği ve Turnstile Koruması</h2>
+  <p>
+    Formlarımız, otomatik bot saldırılarını ve spam gönderimlerini engellemek için Cloudflare Turnstile teknolojisiyle korunmaktadır. Turnstile, kullanıcıları gereksiz bulmaca veya görsel testlerle zorlamadan arka planda güvenli insan doğrulaması yapar ve gizlilik dostu bir yaklaşım sunar.
+  </p>
+
+  <h2>3. Verilerin Saklanması ve Güvenliği</h2>
+  <p>
+    Form kayıtları Cloudflare D1 veritabanı altyapısında, hazırlanmış güvenli sorgular (prepared statements) ve erişim kısıtlamalarıyla korunur. Verileriniz, talep edilen ön değerlendirme ve teklif süreci tamamlanana ve yasal yükümlülükler gerektirene kadar saklanır.
+  </p>
+
+  <h2>4. Üçüncü Taraf Paylaşımı ve İletişim İzni</h2>
+  <p>
+    Bilgileriniz hiçbir koşulda ticari reklam, liste satışı veya izinsiz pazarlama amacıyla üçüncü şahıslara verilmez. Sadece form talebinizin yanıtlanması için kullanılır. İsteğe bağlı e-posta bildirimleri güvenli kurumsal kanallarımız üzerinden işletilmektedir.
+  </p>
+
+  <h2>5. İletişim</h2>
+  <p>
+    Gizlilik politikamız veya verilerinizle ilgili her türlü soru için <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> adresi üzerinden bizimle iletişime geçebilirsiniz.
+  </p>
+</LegalLayout>

@@ -1,0 +1,135 @@
+---
+import { siteConfig } from '../../config/site';
+import { footerNavigation } from '../../config/navigation';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-navy-950 text-slate-400 pt-16 pb-12 border-t border-navy-900" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Alt Bilgi (Footer)</h2>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-navy-800">
+      
+      <!-- Bölüm 1: Marka ve Tanım -->
+      <div class="space-y-4">
+        <a href="/" class="inline-block focus-visible:outline-white" aria-label="BT Masası">
+          <img
+            src="/brand/logo.png"
+            alt="BT Masası"
+            class="h-9 w-auto brightness-0 invert opacity-95"
+            width="180"
+            height="36"
+            loading="lazy"
+          />
+        </a>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          BT Masası, işletmelerin bilgisayar, kullanıcı, ağ, bulut, yedekleme ve güvenlik süreçlerini düzenli olarak yönetmesine yardımcı olan dış kaynak bilgi teknolojileri hizmetidir.
+        </p>
+        <p class="text-xs text-brandTeal-400 font-medium">
+          Aksaray'da yerinde · Türkiye genelinde uzaktan hizmet.
+        </p>
+      </div>
+
+      <!-- Bölüm 2: Hizmetler -->
+      <div>
+        <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Hizmetlerimiz</h3>
+        <ul class="space-y-2.5 text-sm">
+          {
+            footerNavigation.services.map((item) => (
+              <li>
+                <a href={item.href} class="hover:text-white transition-colors">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Bölüm 3: Kurumsal & Yasal -->
+      <div>
+        <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Kurumsal & Yasal</h3>
+        <ul class="space-y-2.5 text-sm">
+          {
+            footerNavigation.company.map((item) => (
+              <li>
+                <a href={item.href} class="hover:text-white transition-colors">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-4 pt-3 border-t border-navy-800 space-y-2 text-xs">
+          {
+            footerNavigation.legal.map((item) => (
+              <div>
+                <a href={item.href} class="text-slate-400 hover:text-slate-200 transition-colors">
+                  {item.label}
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Bölüm 4: İletişim ve Hizmet Bölgesi -->
+      <div class="space-y-4 text-sm">
+        <h3 class="text-sm font-semibold text-white tracking-wider uppercase">Hizmet Bölgesi & İletişim</h3>
+        
+        <div>
+          <span class="text-xs font-semibold text-slate-300 uppercase block">Yerinde Destek:</span>
+          <p class="text-slate-300 text-sm mt-0.5">Aksaray Merkez, Aksaray OSB</p>
+        </div>
+
+        <div>
+          <span class="text-xs font-semibold text-slate-300 uppercase block">Uzaktan Destek:</span>
+          <p class="text-slate-300 text-sm mt-0.5">{siteConfig.remoteServiceArea}</p>
+        </div>
+
+        <div>
+          <span class="text-xs font-semibold text-slate-300 uppercase block">Çalışma Saatleri:</span>
+          <p class="text-slate-300 text-sm mt-0.5">{siteConfig.businessHours}</p>
+        </div>
+
+        {siteConfig.email && (
+          <div>
+            <span class="text-xs font-semibold text-slate-300 uppercase block">E-posta:</span>
+            <a href={`mailto:${siteConfig.email}`} class="text-brandBlue-300 hover:underline">
+              {siteConfig.email}
+            </a>
+          </div>
+        )}
+
+        {siteConfig.phoneDisplay && (
+          <div>
+            <span class="text-xs font-semibold text-slate-300 uppercase block">Telefon:</span>
+            <a href={`tel:${siteConfig.phoneE164}`} class="text-brandBlue-300 hover:underline">
+              {siteConfig.phoneDisplay}
+            </a>
+          </div>
+        )}
+
+        <div class="pt-2">
+          <a
+            href="/ucretsiz-bt-kontrolu"
+            class="inline-block text-xs font-semibold px-3 py-2 bg-navy-800 hover:bg-navy-700 text-slate-200 rounded-lg transition-colors border border-navy-700"
+          >
+            Ücretsiz BT Kontrolü İsteyin →
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Alt Telif & Yasal Not -->
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+      <p>
+        © {currentYear} {siteConfig.legalCompanyName || siteConfig.brandName}. Tüm hakları saklıdır.
+      </p>
+      <p class="text-center md:text-right">
+        Bilgisayar Mühendisi Bekir Duran tarafından yönetilmektedir.
+      </p>
+    </div>
+  </div>
+</footer>

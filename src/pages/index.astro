@@ -1,0 +1,498 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Badge from '../components/ui/Badge.astro';
+import Card from '../components/ui/Card.astro';
+import Button from '../components/ui/Button.astro';
+import Accordion from '../components/ui/Accordion.astro';
+
+const faqs = [
+  {
+    q: "BT Masası tam olarak ne yapar?",
+    a: "BT Masası, işletmelerin kullanıcı desteği, bilgisayarları, ağı, e-posta ve bulut hesapları, yedekleme ve temel güvenlik süreçleri için dış kaynak BT hizmeti sunar. Kesin kapsam, işletmenin altyapısı incelendikten sonra sözleşmede belirlenir.",
+  },
+  {
+    q: "Tam zamanlı bilgi işlem personeli yerine geçebilir mi?",
+    a: "Küçük ve orta ölçekli birçok işletmede günlük kullanıcı desteği ve temel sistem yönetimini üstlenebilir. Büyük, karmaşık veya 7/24 çalışan yapılarda ise mevcut BT ekibini destekleyen ortak çalışma modeli (co-managed IT) daha doğru olabilir.",
+  },
+  {
+    q: "Destek yalnızca uzaktan mı veriliyor?",
+    a: "Hayır. Aksaray'daki sözleşmeli müşterilere ihtiyaç ve hizmet kapsamına göre yerinde destek sağlanabilir. Türkiye genelindeki müşterilere uzaktan hizmet verilebilir.",
+  },
+  {
+    q: "Donanım ve lisanslar aylık hizmete dahil mi?",
+    a: "Aksi yazılı olarak belirtilmedikçe donanım, yedek parça, lisans ve üçüncü taraf hizmet bedelleri aylık hizmetten ayrıdır.",
+  },
+  {
+    q: "7/24 destek veriliyor mu?",
+    a: "İlk hizmet modeli mesai saatleri içinde çalışır. Mesai dışı veya kritik sistem desteği, kaynak ve kapsam uygun olduğunda ayrıca sözleşmelendirilir. Genel ve mesnetsiz bir 7/24 vaadimiz yoktur.",
+  },
+  {
+    q: "Mevcut bilgisayarcımız veya yazılım firmamızla çalışmaya devam edebilir miyiz?",
+    a: "Evet. Gerektiğinde mevcut donanım, internet, yazıcı, ERP ve diğer yazılım tedarikçileriyle koordineli çalışılabilir.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+---
+
+<BaseLayout customSchema={faqSchema}>
+  
+  <!-- 1. HERO BÖLÜMÜ -->
+  <section class="relative bg-gradient-to-b from-slate-50 via-white to-white pt-12 sm:pt-20 pb-16 sm:pb-24 overflow-hidden border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-4xl mx-auto">
+        
+        <!-- Üst Etiket -->
+        <div class="inline-flex items-center gap-2 mb-6">
+          <Badge variant="blue" class="px-3.5 py-1 text-xs sm:text-sm font-medium">
+            <span class="w-2 h-2 rounded-full bg-brandTeal-500 inline-block animate-pulse"></span>
+            Aksaray'da yerinde · Türkiye genelinde uzaktan BT desteği
+          </Badge>
+        </div>
+
+        <!-- H1 -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy-900 tracking-tight leading-tight">
+          İşletmenizin BT departmanı.
+        </h1>
+
+        <!-- Açıklama -->
+        <p class="mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          Bilgisayarlarınızı, kullanıcılarınızı, ağ altyapınızı, bulut servislerinizi, yedekleme ve güvenlik süreçlerinizi tek noktadan yönetiyoruz. Tam zamanlı bir BT personeli istihdam etmeden, planlı ve ölçülebilir teknik destek alın.
+        </p>
+
+        <!-- CTA Butonları -->
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Button href="/ucretsiz-bt-kontrolu" size="lg" variant="primary" class="w-full sm:w-auto shadow-md">
+            Ücretsiz BT Ön Değerlendirmesi
+          </Button>
+          <Button href="/hizmetler" size="lg" variant="outline" class="w-full sm:w-auto">
+            Hizmetleri İncele →
+          </Button>
+        </div>
+
+        <!-- Güven Satırı (Sade Üçlü Bilgi Satırı) -->
+        <div class="mt-14 pt-8 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm text-slate-600">
+          <div class="flex items-center justify-center gap-2.5">
+            <svg class="w-5 h-5 text-brandTeal-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="font-medium text-navy-900">Aylık öngörülebilir hizmet modeli</span>
+          </div>
+          <div class="flex items-center justify-center gap-2.5">
+            <svg class="w-5 h-5 text-brandTeal-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="font-medium text-navy-900">Uzaktan ve yerinde destek</span>
+          </div>
+          <div class="flex items-center justify-center gap-2.5">
+            <svg class="w-5 h-5 text-brandTeal-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="font-medium text-navy-900">Kayıtlı, raporlanabilir süreç</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PROBLEM BÖLÜMÜ -->
+  <section class="py-16 sm:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          BT sorunları yalnızca bilgisayar bozulduğunda başlamaz.
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+          Güncellenmeyen cihazlar, kontrol edilmeyen yedekler, açık kalan kullanıcı hesapları ve belgesiz ağ yapıları çoğu zaman arıza oluşana kadar fark edilmez. BT Masası, günlük desteğin yanında bu risklerin düzenli biçimde takip edilmesini sağlar.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold mb-4">
+            1
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-2">Sorun çıkınca müdahale</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Sistemler yalnızca bir çalışan işini yapamaz hale geldiğinde kontrol ediliyorsa kesinti süresi uzar ve operasyon durur.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold mb-4">
+            2
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-2">Test edilmemiş yedekler</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            "Yedek alınıyor" bilgisi tek başına yeterli değildir. Geri yükleme yapılabildiği düzenli olarak doğrulanmalıdır.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center font-bold mb-4">
+            3
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-2">Dağınık kullanıcı erişimleri</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            İşe giriş, görev değişikliği ve işten ayrılma süreçleri yönetilmezse eski çalışan erişimleri açık kalabilir.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center font-bold mb-4">
+            4
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-2">Belirsiz cihaz ve lisans envanteri</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Hangi cihazın, lisansın ve garanti süresinin kime ait olduğu bilinmediğinde satın alma ve yenileme kararları zorlaşır.
+          </p>
+        </Card>
+
+        <Card class="md:col-span-2 lg:col-span-2">
+          <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+            5
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-2">Çok sayıda farklı muhatap</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            İnternet sağlayıcısı, yazıcı servisi, e-posta barındırma, yerel ağ ve muhasebe yazılımı sorunları farklı firmalar arasında pinpon topu gibi kalabilir. BT Masası tüm bu teknik koordinasyonu tek elden yürütür.
+          </p>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. HİZMET ÖZETİ -->
+  <section class="py-16 sm:py-24 bg-slate-50 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          Günlük destekten altyapı yönetimine kadar tek muhatap
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600">
+          İşletmenizin ihtiyaç duyduğu temel teknoloji katmanlarını şeffaf ve ölçülebilir bir hizmet modeliyle yönetiyoruz.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Kart 1 -->
+        <Card class="flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Yönetilen BT Hizmetleri</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-6">
+              Cihaz, kullanıcı, lisans, güncelleme ve destek süreçlerinin düzenli takibi ve periyodik raporlanması.
+            </p>
+          </div>
+          <a href="/hizmetler/yonetilen-bt-hizmetleri" class="text-sm font-semibold text-brandBlue-600 hover:text-brandBlue-700">
+            Ayrıntıları İncele →
+          </a>
+        </Card>
+
+        <!-- Kart 2 -->
+        <Card class="flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Kurumsal IT Destek</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-6">
+              Çalışanların bilgisayar, e-posta, yazıcı ve uygulama sorunlarına uzaktan veya yerinde hızlı müdahale.
+            </p>
+          </div>
+          <a href="/hizmetler/kurumsal-it-destek" class="text-sm font-semibold text-brandBlue-600 hover:text-brandBlue-700">
+            Ayrıntıları İncele →
+          </a>
+        </Card>
+
+        <!-- Kart 3 -->
+        <Card class="flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Network ve Sunucu</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-6">
+              Kablolu/kablosuz ağ, firewall, NAS ve sunucu altyapısının kurulumu, belgelenmesi ve sağlık takibi.
+            </p>
+          </div>
+          <a href="/hizmetler/network-sunucu" class="text-sm font-semibold text-brandBlue-600 hover:text-brandBlue-700">
+            Ayrıntıları İncele →
+          </a>
+        </Card>
+
+        <!-- Kart 4 -->
+        <Card class="flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Siber Güvenlik</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-6">
+              Çok faktörlü doğrulama (MFA), uç nokta güvenliği, erişim kontrolleri ve çalışan güvenlik önerileri.
+            </p>
+          </div>
+          <a href="/hizmetler/siber-guvenlik-yedekleme" class="text-sm font-semibold text-brandBlue-600 hover:text-brandBlue-700">
+            Ayrıntıları İncele →
+          </a>
+        </Card>
+
+        <!-- Kart 5 -->
+        <Card class="flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Yedekleme & İş Sürekliliği</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-6">
+              Yedekleme işlerinin izlenmesi, hata alarmları ve planlı geri yükleme (restore) testleri.
+            </p>
+          </div>
+          <a href="/hizmetler/siber-guvenlik-yedekleme" class="text-sm font-semibold text-brandBlue-600 hover:text-brandBlue-700">
+            Ayrıntıları İncele →
+          </a>
+        </Card>
+
+        <!-- Kart 6 -->
+        <Card class="flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Microsoft 365 ve Bulut</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-6">
+              Kullanıcı, lisans, kurumsal e-posta, dosya paylaşımı ve temel bulut yapılandırmalarının yönetimi.
+            </p>
+          </div>
+          <a href="/hizmetler/microsoft-365-bulut" class="text-sm font-semibold text-brandBlue-600 hover:text-brandBlue-700">
+            Ayrıntıları İncele →
+          </a>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. KARŞILAŞTIRMA BÖLÜMÜ -->
+  <section class="py-16 sm:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          Arıza servisi değil, yönetilen BT yaklaşımı
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600">
+          İki çalışma modelinin işletmenize operasyonel etkisini karşılaştırın.
+        </p>
+      </div>
+
+      <!-- Masaüstü Tablo / Mobil Kart Tasarımı -->
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200">
+              <th class="p-4 font-bold text-navy-900 w-1/4">Konu</th>
+              <th class="p-4 font-bold text-slate-500 w-3/8">Arıza Çıktığında Servis</th>
+              <th class="p-4 font-bold text-brandBlue-700 bg-brandBlue-50/50 w-3/8">BT Masası Yaklaşımı</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr>
+              <td class="p-4 font-semibold text-navy-900">Çalışma Şekli</td>
+              <td class="p-4 text-slate-600">Sorun oluştuktan sonra müdahale</td>
+              <td class="p-4 text-navy-900 font-medium bg-brandBlue-50/20">Düzenli takip ve önleyici bakım</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold text-navy-900">Müdahale Hızı</td>
+              <td class="p-4 text-slate-600">Teknik servisin o anki müsaitliğine bağlı</td>
+              <td class="p-4 text-navy-900 font-medium bg-brandBlue-50/20">Sözleşmede tanımlı öncelik ve SLA süreleri</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold text-navy-900">Sistem Bilgisi</td>
+              <td class="p-4 text-slate-600">Her işlemde sistem yeniden keşfedilir</td>
+              <td class="p-4 text-navy-900 font-medium bg-brandBlue-50/20">Envanter ve teknik dokümantasyon tutulur</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold text-navy-900">Güncellemeler</td>
+              <td class="p-4 text-slate-600">Genellikle yalnızca arıza çıkınca bakılır</td>
+              <td class="p-4 text-navy-900 font-medium bg-brandBlue-50/20">Planlı şekilde düzenli uygulanır</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold text-navy-900">Yedekleme</td>
+              <td class="p-4 text-slate-600">Yedek alındığı varsayılır, test edilmez</td>
+              <td class="p-4 text-navy-900 font-medium bg-brandBlue-50/20">Sonuçlar ve geri yükleme kabiliyeti denetlenir</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold text-navy-900">Raporlama</td>
+              <td class="p-4 text-slate-600">Çoğu zaman rapor verilmez</td>
+              <td class="p-4 text-navy-900 font-medium bg-brandBlue-50/20">Yapılan işler ve açık riskler düzenli raporlanır</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. NASIL ÇALIŞIR ÖZETİ -->
+  <section class="py-16 sm:py-24 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          Beş adımda kontrol altına alınmış BT operasyonu
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 sm:gap-6">
+        <div class="p-5 bg-white rounded-xl border border-slate-200">
+          <span class="text-xs font-bold text-brandBlue-600 uppercase">Adım 1</span>
+          <h3 class="text-base font-bold text-navy-900 mt-1 mb-2">Tanışma ve Analiz</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Kullanıcı, cihaz, lokasyon ve kritik iş süreçlerinizi öğreniriz.
+          </p>
+        </div>
+
+        <div class="p-5 bg-white rounded-xl border border-slate-200">
+          <span class="text-xs font-bold text-brandBlue-600 uppercase">Adım 2</span>
+          <h3 class="text-base font-bold text-navy-900 mt-1 mb-2">Envanter ve Risk</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Mevcut cihaz, ağ, hesap ve yedekleme yapısını inceleriz.
+          </p>
+        </div>
+
+        <div class="p-5 bg-white rounded-xl border border-slate-200">
+          <span class="text-xs font-bold text-brandBlue-600 uppercase">Adım 3</span>
+          <h3 class="text-base font-bold text-navy-900 mt-1 mb-2">Hizmet Planı</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Sorumlulukları, istisnaları ve yanıt önceliklerini yazılı hale getiririz.
+          </p>
+        </div>
+
+        <div class="p-5 bg-white rounded-xl border border-slate-200">
+          <span class="text-xs font-bold text-brandBlue-600 uppercase">Adım 4</span>
+          <h3 class="text-base font-bold text-navy-900 mt-1 mb-2">Geçiş ve Yönetim</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            İzleme, dokümantasyon, güncelleme ve destek kanallarını devreye alırız.
+          </p>
+        </div>
+
+        <div class="p-5 bg-white rounded-xl border border-slate-200">
+          <span class="text-xs font-bold text-brandBlue-600 uppercase">Adım 5</span>
+          <h3 class="text-base font-bold text-navy-900 mt-1 mb-2">Raporlama</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Yapılan işlemleri, tekrar eden sorunları ve sonraki önerileri paylaşırız.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center sm:text-left">
+        <a href="/nasil-calisir" class="inline-flex items-center text-sm font-semibold text-brandBlue-600 hover:text-brandBlue-700">
+          Sürecin tüm detaylarını inceleyin →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. KİMLER İÇİN BÖLÜMÜ -->
+  <section class="py-16 sm:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          Özellikle BT personeli bulunmayan büyüyen işletmeler için
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600">
+          BT Masası; teknik sorunların çalışanların üzerine kaldığı, sistem bilgisinin tek kişide toplandığı veya farklı tedarikçiler arasında sorumluluğun belirsiz olduğu işletmeler için tasarlanmıştır.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+        <div class="p-4 rounded-xl border border-slate-200 hover:border-brandBlue-300 transition-colors">
+          <span class="text-xs font-semibold text-slate-800">Üretim & OSB</span>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 hover:border-brandBlue-300 transition-colors">
+          <span class="text-xs font-semibold text-slate-800">Muhasebe & Mali Müşavir</span>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 hover:border-brandBlue-300 transition-colors">
+          <span class="text-xs font-semibold text-slate-800">Lojistik & Toptan</span>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 hover:border-brandBlue-300 transition-colors">
+          <span class="text-xs font-semibold text-slate-800">Özel Eğitim Kurumları</span>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 hover:border-brandBlue-300 transition-colors">
+          <span class="text-xs font-semibold text-slate-800">Otel & Konaklama</span>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 hover:border-brandBlue-300 transition-colors">
+          <span class="text-xs font-semibold text-slate-800">Profesyonel Ofisler</span>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center sm:text-left">
+        <a href="/kimler-icin" class="text-sm font-semibold text-brandBlue-600 hover:underline">
+          Sektör bazlı çözümlerimizi keşfedin →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. SSS BÖLÜMÜ -->
+  <section class="py-16 sm:py-24 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900">
+          Sıkça Sorulan Sorular
+        </h2>
+        <p class="mt-3 text-slate-600">
+          Hizmet modeli, kapsam ve çalışma biçimi hakkında merak edilenler.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {
+          faqs.map((f, i) => (
+            <Accordion question={f.q} id={`faq-${i}`}>
+              <p>{f.a}</p>
+            </Accordion>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. SON CTA -->
+  <section class="py-16 sm:py-20 bg-navy-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+        BT sorunlarını kişilere değil, tanımlı bir sürece bağlayın.
+      </h2>
+      <p class="text-slate-300 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+        İşletmenizin kullanıcı, cihaz ve altyapı yapısını öğrenelim; ihtiyacınıza uygun hizmet kapsamını birlikte belirleyelim.
+      </p>
+      <Button href="/ucretsiz-bt-kontrolu" size="lg" variant="primary" class="shadow-lg">
+        Ön Değerlendirme Talebi Oluştur
+      </Button>
+    </div>
+  </section>
+
+</BaseLayout>

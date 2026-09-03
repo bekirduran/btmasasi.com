@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+
+const pageTitle = "Yönetilen BT Hizmetleri";
+const pageDescription = "BT altyapınızı yalnızca arıza oluştuğunda değil, düzenli olarak izlenen, belgelenen ve raporlanan bir iş süreci olarak yönetin.";
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: pageTitle,
+  serviceType: 'Managed IT Services',
+  provider: {
+    '@type': 'Organization',
+    name: 'BT Masası',
+    url: 'https://btmasasi.com',
+  },
+  description: pageDescription,
+  areaServed: ['Aksaray', 'Türkiye'],
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} customSchema={serviceSchema}>
+  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs
+        items={[
+          { label: "Hizmetler", href: "/hizmetler" },
+          { label: pageTitle },
+        ]}
+      />
+      <div class="mt-4">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight">
+          {pageTitle}
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-600 mt-4 leading-relaxed font-normal">
+          {pageDescription}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <!-- Problem & Yaklaşım -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-4">
+        Neden Yönetilen BT Modeli?
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+        Bir işletmenin BT bilgisi tek bir çalışanın hafızasında veya farklı servislerin mesaj geçmişinde kaldığında, her yeni sorun yeniden keşif gerektirir. Yönetilen BT hizmeti; envanter, destek, güncelleme, hesap, yedekleme ve tedarikçi süreçlerini tek çatı altında toplar.
+      </p>
+    </section>
+
+    <!-- Hizmet Kapsamı -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-6">
+        Hizmet Kapsamı Neleri İçerir?
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+          <h3 class="font-semibold text-navy-900 text-sm">Bilgisayar ve Kullanıcı Envanteri</h3>
+          <p class="text-xs text-slate-600 mt-1">Cihazların özellikleri, kimin kullandığı ve garanti durumlarının kaydı.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+          <h3 class="font-semibold text-navy-900 text-sm">İşletim Sistemi & Güncelleme Takibi</h3>
+          <p class="text-xs text-slate-600 mt-1">Kritik güvenlik yamalarının planlı şekilde cihazlara uygulanması.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+          <h3 class="font-semibold text-navy-900 text-sm">Uzak Destek & Ticket Yönetimi</h3>
+          <p class="text-xs text-slate-600 mt-1">Gelen taleplerin kayıt altına alınması ve önceliklerine göre çözülmesi.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+          <h3 class="font-semibold text-navy-900 text-sm">İşe Giriş / Çıkış Süreçleri</h3>
+          <p class="text-xs text-slate-600 mt-1">Ayrılan personelin erişimlerinin kapatılması, yeni çalışana standart kurulum.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+          <h3 class="font-semibold text-navy-900 text-sm">Lisans & Garanti Tarihleri</h3>
+          <p class="text-xs text-slate-600 mt-1">Microsoft 365, antivirüs ve ticari lisans yenilemelerinin önceden planlanması.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+          <h3 class="font-semibold text-navy-900 text-sm">Ağ & Kritik Cihaz Dokümantasyonu</h3>
+          <p class="text-xs text-slate-600 mt-1">Modem, switch, firewall ve NAS cihazlarının konfigürasyon belgeleri.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+          <h3 class="font-semibold text-navy-900 text-sm">Yedekleme Sonuçlarının İzlenmesi</h3>
+          <p class="text-xs text-slate-600 mt-1">Yedek işlerinin başarıyla tamamlandığının günlük kontrolü ve alarm takibi.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+          <h3 class="font-semibold text-navy-900 text-sm">Aylık Servis ve Risk Raporu</h3>
+          <p class="text-xs text-slate-600 mt-1">Ay boyunca çözülen talepler, açık riskler ve tavsiye edilen aksiyonlar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teslim Edilen Çıktılar -->
+    <section>
+      <Card class="bg-navy-900 text-white border-navy-800">
+        <h2 class="text-xl sm:text-2xl font-bold text-white mb-4">
+          Hizmet Sürecinde Düzenli Teslim Edilen Çıktılar
+        </h2>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-300">
+          <li class="flex items-center gap-2">
+            <span class="text-brandTeal-400 font-bold">✓</span>
+            <span>Güncel varlık ve donanım envanteri</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-brandTeal-400 font-bold">✓</span>
+            <span>Yetkili kullanıcı ve yönetici hesap listesi</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-brandTeal-400 font-bold">✓</span>
+            <span>Temel ağ topolojisi ve IP şeması</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-brandTeal-400 font-bold">✓</span>
+            <span>Açık riskler ve önerilen iyileştirme adımları</span>
+          </li>
+          <li class="flex items-center gap-2 sm:col-span-2">
+            <span class="text-brandTeal-400 font-bold">✓</span>
+            <span>Aylık destek kayıtları ve sistem sağlık özeti</span>
+          </li>
+        </ul>
+      </Card>
+    </section>
+
+    <!-- Hariç Tutma Sınırları -->
+    <section class="p-6 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-600">
+      <h3 class="font-bold text-navy-900 mb-2">Hizmet Bedeli ve Sorumluluk Sınırları</h3>
+      <p>
+        Donanım, lisans, yedek parça, üçüncü taraf bulut abonelikleri ve kapsamlı kablolama projeleri aksi yazılı olarak belirtilmedikçe aylık hizmet bedeline dahil değildir. Teklif aşamasında nelerin dahil olduğu açıkça sözleşmeye yazılır.
+      </p>
+    </section>
+
+    <!-- Alt CTA -->
+    <div class="text-center pt-8 border-t border-slate-200">
+      <h2 class="text-2xl font-bold text-navy-900 mb-3">
+        İşletmeniz İçin Yönetilen BT Kapsamını Belirleyelim
+      </h2>
+      <p class="text-slate-600 text-sm mb-6 max-w-xl mx-auto">
+        Kullanıcı ve cihaz yapınızı inceleyelim, gereksiz maliyetleri eleyerek ihtiyacınıza tam uyan bir hizmet planı sunalım.
+      </p>
+      <Button href="/ucretsiz-bt-kontrolu" size="lg" variant="primary">
+        Ön Değerlendirme Talebi Gönder
+      </Button>
+    </div>
+
+  </div>
+</BaseLayout>

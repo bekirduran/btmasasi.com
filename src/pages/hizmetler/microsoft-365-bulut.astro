@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+
+const pageTitle = "Microsoft 365 ve Bulut Yönetimi";
+const pageDescription = "Kullanıcı, lisans, e-posta, dosya paylaşımı ve temel güvenlik ayarlarını işletmenizin çalışma düzenine göre yönetin.";
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: pageTitle,
+  serviceType: 'Cloud and Microsoft 365 Administration',
+  provider: {
+    '@type': 'Organization',
+    name: 'BT Masası',
+    url: 'https://btmasasi.com',
+  },
+  description: pageDescription,
+  areaServed: ['Aksaray', 'Türkiye'],
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} customSchema={serviceSchema}>
+  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs
+        items={[
+          { label: "Hizmetler", href: "/hizmetler" },
+          { label: pageTitle },
+        ]}
+      />
+      <div class="mt-4">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight">
+          {pageTitle}
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-600 mt-4 leading-relaxed font-normal">
+          {pageDescription}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <!-- Giriş -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-4">
+        Bulut Çözümlerinizi Güvenli ve Düzenli Yönetin
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+        Microsoft 365 lisansı satın almak tek başına yeterli değildir. Kullanıcı yetkilerinin doğru ayarlanması, ayrılan personelin erişimlerinin derhal kapatılması, e-postaların spam kutusuna düşmemesi için DNS kayıtlarının (SPF, DKIM, DMARC) yapılması ve iki adımlı doğrulamanın devreye alınması gerekir.
+      </p>
+    </section>
+
+    <!-- Kapsam -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-6">
+        Microsoft 365 Yönetim Kapsamımız
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">Kullanıcı ve Lisans Yönetimi</h3>
+          <p class="text-xs text-slate-600 mt-1">İhtiyaca uygun lisans atamaları (Business Basic, Standard vb.) ve maliyet optimizasyonu.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">E-posta ve Dağıtım Grupları</h3>
+          <p class="text-xs text-slate-600 mt-1">Ortak posta kutuları (muhasebe@, satis@) ve departman dağıtım listeleri kurulumu.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">OneDrive ve SharePoint Düzeni</h3>
+          <p class="text-xs text-slate-600 mt-1">Şirket ortak arşiv yapısı, departman klasör izinleri ve harici paylaşım kısıtlamaları.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">SPF, DKIM ve DMARC Güvenliği</h3>
+          <p class="text-xs text-slate-600 mt-1">Şirket alan adınız adına sahte e-posta gönderilmesini engelleyen ve teslim edilebilirliği artıran DNS ayarları.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">Çok Faktörlü Doğrulama (MFA)</h3>
+          <p class="text-xs text-slate-600 mt-1">Microsoft Authenticator üzerinden hesapların çalınmasını önleyen zorunlu güvenlik politikaları.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-semibold text-navy-900 text-sm">İşe Giriş / İşten Ayrılma Kontrolü</h3>
+          <p class="text-xs text-slate-600 mt-1">Ayrılan personelin posta kutusunun yedeklenmesi ve erişimlerinin eşzamanlı sonlandırılması.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lisans Ücretlendirme Notu -->
+    <section class="p-6 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-600">
+      <h3 class="font-bold text-navy-900 mb-2">Lisans Bedelleri Hakkında Bilgilendirme</h3>
+      <p>
+        Microsoft 365 kullanıcı lisans bedelleri Microsoft veya yetkili lisans iş ortağı tarafından doğrudan kullanıcıya faturalandırılır. BT Masası bu aboneliklerin teknik kurulum, yönetim, güvenlik ve destek süreçlerini yürütür.
+      </p>
+    </section>
+
+    <!-- Alt CTA -->
+    <div class="text-center pt-8 border-t border-slate-200">
+      <h2 class="text-2xl font-bold text-navy-900 mb-3">
+        Bulut E-posta ve Ofis Süreçlerinizi Düzenleyelim
+      </h2>
+      <p class="text-slate-600 text-sm mb-6 max-w-xl mx-auto">
+        Kullanıcı sayınızı paylaşın, lisans maliyetlerinizi optimize edip güvenli bulut yapısını kuralım.
+      </p>
+      <Button href="/ucretsiz-bt-kontrolu" size="lg" variant="primary">
+        Ön Değerlendirme İsteyin
+      </Button>
+    </div>
+
+  </div>
+</BaseLayout>

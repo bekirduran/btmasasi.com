@@ -1,0 +1,325 @@
+---
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
+---
+
+<form id="risk-form" class="space-y-6 max-w-2xl mx-auto" novalidate>
+  <!-- Honeypot -->
+  <div style="display:none !important;" aria-hidden="true">
+    <label for="risk-hp">Lütfen bu alanı boş bırakın</label>
+    <input type="text" id="risk-hp" name="website_url_hp" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <input type="hidden" name="formType" value="risk_assessment" />
+  <input type="hidden" id="risk-source" name="source" value="" />
+
+  <!-- Ad Soyad & Firma -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label for="risk-name" class="block text-sm font-semibold text-navy-900 mb-1">
+        Ad Soyad <span class="text-rose-600">*</span>
+      </label>
+      <input
+        type="text"
+        id="risk-name"
+        name="name"
+        required
+        minlength="2"
+        maxlength="80"
+        placeholder="Adınız Soyadınız"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+      />
+    </div>
+
+    <div>
+      <label for="risk-company" class="block text-sm font-semibold text-navy-900 mb-1">
+        Firma Adı <span class="text-rose-600">*</span>
+      </label>
+      <input
+        type="text"
+        id="risk-company"
+        name="company"
+        required
+        minlength="2"
+        maxlength="120"
+        placeholder="İşletmenizin Unvanı"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+      />
+    </div>
+  </div>
+
+  <!-- Telefon & E-posta -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label for="risk-phone" class="block text-sm font-semibold text-navy-900 mb-1">
+        Telefon Numarası <span class="text-rose-600">*</span>
+      </label>
+      <input
+        type="tel"
+        id="risk-phone"
+        name="phone"
+        required
+        placeholder="05XX XXX XX XX"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+      />
+    </div>
+
+    <div>
+      <label for="risk-email" class="block text-sm font-semibold text-navy-900 mb-1">
+        Kurumsal E-posta
+      </label>
+      <input
+        type="email"
+        id="risk-email"
+        name="email"
+        placeholder="ad@sirketiniz.com"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+      />
+    </div>
+  </div>
+
+  <!-- Çalışan & Bilgisayar Sayısı Aralıkları -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div>
+      <label for="risk-employee" class="block text-sm font-semibold text-navy-900 mb-1">
+        Çalışan Sayısı
+      </label>
+      <select
+        id="risk-employee"
+        name="employeeRange"
+        class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 bg-white"
+      >
+        <option value="">Seçiniz</option>
+        <option value="1-5">1 - 5 Çalışan</option>
+        <option value="6-15">6 - 15 Çalışan</option>
+        <option value="16-30">16 - 30 Çalışan</option>
+        <option value="31-60">31 - 60 Çalışan</option>
+        <option value="60+">60+ Çalışan</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="risk-device" class="block text-sm font-semibold text-navy-900 mb-1">
+        Aktif Bilgisayar Sayısı
+      </label>
+      <select
+        id="risk-device"
+        name="deviceRange"
+        class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 bg-white"
+      >
+        <option value="">Seçiniz</option>
+        <option value="1-5">1 - 5 Bilgisayar</option>
+        <option value="6-15">6 - 15 Bilgisayar</option>
+        <option value="16-30">16 - 30 Bilgisayar</option>
+        <option value="31-60">31 - 60 Bilgisayar</option>
+        <option value="60+">60+ Bilgisayar</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="risk-location" class="block text-sm font-semibold text-navy-900 mb-1">
+        Şube / Lokasyon
+      </label>
+      <select
+        id="risk-location"
+        name="locationCount"
+        class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 bg-white"
+      >
+        <option value="Tek Lokasyon">Tek Lokasyon / Ofis</option>
+        <option value="2-3 Şube">2 - 3 Şube / Fabrika</option>
+        <option value="4+ Şube">4+ Lokasyon</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- İlgilenilen Hizmetler -->
+  <div>
+    <span class="block text-sm font-semibold text-navy-900 mb-2">
+      Öncelikli İhtiyaç Duyulan Hizmetler (İsteğe bağlı seçim)
+    </span>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-700">
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="services" value="Kurumsal IT Destek" class="rounded text-brandBlue-600" />
+        <span>Kullanıcı & Bilgisayar Desteği</span>
+      </label>
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="services" value="Network ve Sunucu" class="rounded text-brandBlue-600" />
+        <span>Ağ, Wi-Fi & Sunucu Yönetimi</span>
+      </label>
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="services" value="Yedekleme ve Güvenlik" class="rounded text-brandBlue-600" />
+        <span>Yedekleme & Temel Siber Güvenlik</span>
+      </label>
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="services" value="Microsoft 365 ve Bulut" class="rounded text-brandBlue-600" />
+        <span>Microsoft 365 & Bulut E-posta</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- En Sık Yaşanan Sorun -->
+  <div>
+    <label for="risk-message" class="block text-sm font-semibold text-navy-900 mb-1">
+      En Sık Yaşadığınız Teknik Sorun veya Öncelikli Riskleriniz <span class="text-rose-600">*</span>
+    </label>
+    <textarea
+      id="risk-message"
+      name="message"
+      rows="4"
+      required
+      minlength="10"
+      maxlength="1500"
+      placeholder="Örn: Yedeklerimizin düzenli çalışıp çalışmadığından emin değiliz, internet kopmalarında işler aksıyor..."
+      class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+    ></textarea>
+  </div>
+
+  <!-- Tercih Edilen İletişim Yolu -->
+  <div>
+    <label for="risk-contact-pref" class="block text-sm font-semibold text-navy-900 mb-1">
+      Görüşme İçin Tercih Ettiğiniz İletişim Kanalı
+    </label>
+    <select
+      id="risk-contact-pref"
+      name="preferredContact"
+      class="w-full sm:w-64 px-3 py-2 rounded-xl border border-slate-300 focus:border-brandBlue-600 text-sm bg-white"
+    >
+      <option value="phone">Telefon Görüşmesi</option>
+      <option value="email">Kurumsal E-posta</option>
+      <option value="whatsapp">WhatsApp Mesajı</option>
+    </select>
+  </div>
+
+  <!-- KVKK Onayı -->
+  <div class="flex items-start gap-3">
+    <input
+      type="checkbox"
+      id="risk-consent"
+      name="consent"
+      required
+      class="mt-1 h-4 w-4 rounded border-slate-300 text-brandBlue-600 focus:ring-brandBlue-500"
+    />
+    <label for="risk-consent" class="text-xs text-slate-600 leading-relaxed">
+      <a href="/kvkk-aydinlatma-metni" target="_blank" class="text-brandBlue-600 underline hover:text-brandBlue-800">
+        KVKK Aydınlatma Metni
+      </a>'ni okudum. Ön değerlendirme ve teklif çalışması kapsamında bilgilerimin işlenmesini kabul ediyorum. <span class="text-rose-600">*</span>
+    </label>
+  </div>
+
+  <!-- Cloudflare Turnstile -->
+  <div class="pt-2">
+    <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light"></div>
+  </div>
+
+  <!-- Durum ve Canlı Bildirim -->
+  <div id="risk-status-region" class="p-4 rounded-xl text-sm hidden" aria-live="polite"></div>
+
+  <!-- Buton -->
+  <button
+    type="submit"
+    id="risk-submit-btn"
+    class="w-full py-4 px-6 rounded-xl font-bold text-white bg-brandBlue-600 hover:bg-brandBlue-700 active:bg-brandBlue-800 shadow transition-all focus-visible:outline-brandBlue-600 disabled:opacity-50 text-base"
+  >
+    Ön Değerlendirme Talebi Gönder
+  </button>
+</form>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+  // Kartvizit QR ve UTM parametre yakalama
+  const urlParams = new URLSearchParams(window.location.search);
+  const utmSource = urlParams.get('utm_source');
+  const utmMedium = urlParams.get('utm_medium');
+  const utmCampaign = urlParams.get('utm_campaign');
+
+  const sourceInput = document.getElementById('risk-source') as HTMLInputElement | null;
+  if (sourceInput && (utmSource || utmMedium || utmCampaign)) {
+    const rawSource = [
+      utmSource ? `source=${utmSource}` : '',
+      utmMedium ? `medium=${utmMedium}` : '',
+      utmCampaign ? `campaign=${utmCampaign}` : '',
+    ].filter(Boolean).join('&');
+    sourceInput.value = rawSource.slice(0, 120);
+  }
+
+  const form = document.getElementById('risk-form') as HTMLFormElement | null;
+  const statusRegion = document.getElementById('risk-status-region');
+  const submitBtn = document.getElementById('risk-submit-btn') as HTMLButtonElement | null;
+
+  if (form && statusRegion && submitBtn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusRegion.className = 'p-4 rounded-xl text-sm hidden';
+      statusRegion.textContent = '';
+
+      const formData = new FormData(form);
+      const consent = form.querySelector<HTMLInputElement>('#risk-consent')?.checked;
+      const turnstileToken = formData.get('cf-turnstile-response') || formData.get('token');
+
+      if (!consent) {
+        statusRegion.className = 'p-4 rounded-xl text-sm bg-rose-50 text-rose-800 block';
+        statusRegion.textContent = 'Lütfen KVKK aydınlatma metnini onaylayın.';
+        return;
+      }
+
+      if (!turnstileToken) {
+        statusRegion.className = 'p-4 rounded-xl text-sm bg-rose-50 text-rose-800 block';
+        statusRegion.textContent = 'Lütfen güvenlik doğrulamasını tamamlayın.';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'İletiliyor...';
+
+      const selectedServices: string[] = [];
+      form.querySelectorAll<HTMLInputElement>('input[name="services"]:checked').forEach((cb) => {
+        selectedServices.push(cb.value);
+      });
+
+      const payload = {
+        formType: 'risk_assessment',
+        name: String(formData.get('name') || '').trim(),
+        company: String(formData.get('company') || '').trim(),
+        email: String(formData.get('email') || '').trim() || undefined,
+        phone: String(formData.get('phone') || '').trim(),
+        employeeRange: String(formData.get('employeeRange') || '') || undefined,
+        deviceRange: String(formData.get('deviceRange') || '') || undefined,
+        locationCount: String(formData.get('locationCount') || '') || undefined,
+        services: selectedServices.length > 0 ? selectedServices : undefined,
+        preferredContact: formData.get('preferredContact') || undefined,
+        message: String(formData.get('message') || '').trim(),
+        consent: true,
+        website_url_hp: String(formData.get('website_url_hp') || ''),
+        token: String(turnstileToken),
+        source: sourceInput?.value || undefined,
+      };
+
+      try {
+        const response = await fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          form.reset();
+          statusRegion.className = 'p-4 rounded-xl text-sm bg-teal-50 text-teal-800 border border-teal-200 block';
+          statusRegion.textContent = result.message || 'Talebiniz alındı. Paylaştığınız iletişim bilgisi üzerinden size dönüş yapılacaktır.';
+          submitBtn.textContent = 'Talebiniz Alındı';
+        } else {
+          statusRegion.className = 'p-4 rounded-xl text-sm bg-rose-50 text-rose-800 border border-rose-200 block';
+          statusRegion.textContent = result.message || 'Gönderim sırasında hata oluştu. Lütfen bilgilerinizi kontrol edin.';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Tekrar Deneyin';
+        }
+      } catch {
+        statusRegion.className = 'p-4 rounded-xl text-sm bg-rose-50 text-rose-800 border border-rose-200 block';
+        statusRegion.textContent = 'Bağlantı hatası oluştu. Lütfen bağlantınızı kontrol edip tekrar deneyin.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Ön Değerlendirme Talebi Gönder';
+      }
+    });
+  }
+</script>

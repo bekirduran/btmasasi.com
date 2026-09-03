@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import Badge from '../components/ui/Badge.astro';
+
+const pageTitle = "Aksaray Kurumsal IT Destek ve Bilgi İşlem Hizmetleri";
+const pageDescription = "BT Masası, Aksaray'daki işletmelere kurumsal IT destek, network, sunucu, Microsoft 365, yedekleme ve yönetilen BT hizmetleri sunar.";
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'BT Masası — Aksaray Kurumsal IT Destek',
+  url: 'https://btmasasi.com/aksaray-kurumsal-it-destek',
+  description: pageDescription,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Aksaray',
+    addressCountry: 'Türkiye',
+  },
+  areaServed: ['Aksaray Merkez', 'Aksaray Organize Sanayi Bölgesi'],
+  priceRange: '$$',
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} customSchema={localBusinessSchema}>
+  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: pageTitle }]} />
+      <div class="mt-4">
+        <Badge variant="blue" class="mb-3">Aksaray Merkez & OSB Yerinde Hizmet</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight leading-tight">
+          Aksaray kurumsal IT destek ve dış kaynak bilgi işlem hizmetleri
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-600 mt-6 leading-relaxed font-normal">
+          BT Masası, Aksaray'da tam zamanlı bilgi işlem personeli bulunmayan veya mevcut ekibine dışarıdan destek almak isteyen işletmeler için uzaktan ve yerinde BT hizmetleri sunar. Kullanıcı desteğini, cihaz envanterini, ağ altyapısını, bulut hesaplarını, yedekleme ve temel güvenlik süreçlerini tek bir hizmet planında toplar.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <!-- Yerel Saha Kapsamı -->
+    <div class="p-6 rounded-2xl bg-blue-50 border border-brandBlue-200 text-brandBlue-950 text-sm leading-relaxed">
+      <h2 class="font-bold text-base mb-1 text-navy-900">Yerel Hizmet Bölgemiz</h2>
+      <p>
+        Birincil saha hizmetimiz <strong>Aksaray Merkez</strong> ve <strong>Aksaray Organize Sanayi Bölgesi'ne (OSB)</strong> yöneliktir. Diğer ilçe ve lokasyonlar için yerinde destek; mesafe, aciliyet ve sözleşme kapsamına göre planlanır.
+      </p>
+    </div>
+
+    <!-- Neden Dış Kaynak Desteği Alınır? -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-6">
+        Aksaray'daki işletmeler neden dış kaynak BT desteği alır?
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-5 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-bold text-navy-900 text-base mb-1">Çoklu Disiplin Yetkinliği</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Tam zamanlı tek bir personel istihdam etmeden; ağ, sunucu, siber güvenlik, bulut ve son kullanıcı desteği uzmanlığına tek sözleşmeyle erişirler.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-bold text-navy-900 text-base mb-1">Belirlenmiş Tek Muhatap</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Arıza anında rastgele dükkân veya usta aramak yerine, sisteminizi tanıyan ve sorumluluğu tanımlı kurumsal bir muhataba ulaşırlar.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-bold text-navy-900 text-base mb-1">Güncel Envanter & Dokümantasyon</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Hangi çalışanınızda hangi bilgisayarın olduğu, lisansların ne zaman biteceği ve ağ şeması belgelenir.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-bold text-navy-900 text-base mb-1">Düzenli Yedek & Güncelleme Kontrolü</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Kritik muhasebe (Logo, Mikro vb.) ve operasyon verilerinin yedeklenmesi günlük iş yoğunluğunun dışına çıkarılarak sistemli takip edilir.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-bold text-navy-900 text-base mb-1">Tedarikçi Koordinasyonu</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            İnternet sağlayıcıları, fotokopi kiralama ve ticari yazılım firmalarıyla yaşanan teknik koordinasyonu tek elden yürütürler.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-bold text-navy-900 text-base mb-1">Öngörülebilir Teknoloji Bütçesi</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Sürpriz tamir faturaları yerine, aylık sabit ve planlı bütçeyle teknoloji yatırımlarını yönetirler.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Klasik Bakım Anlaşmasından Farkımız -->
+    <section class="p-8 rounded-2xl bg-slate-50 border border-slate-200">
+      <h2 class="text-2xl font-bold text-navy-900 mb-4">
+        Kurumsal Bakım Anlaşmasından Farkımız
+      </h2>
+      <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+        Klasik bilgisayar bakım anlaşmaları çoğu zaman sadece arıza çıktığında gelmekle ve periyodik kasa tozu temizliğiyle sınırlı kalabilir. BT Masası'nın yönetilen hizmet yaklaşımı; destek kayıtlarını, envanteri, kullanıcı hesaplarını, güvenlik yamalarını, yedekleme sonuçlarını, teknik dokümantasyonu ve düzenli aylık raporlamayı aynı süreçte ele alır. Kesin kapsam, işletmenizin ihtiyacına göre sözleşmede tanımlanır.
+      </p>
+    </section>
+
+    <!-- Yerel CTA -->
+    <div class="text-center pt-8 border-t border-slate-200">
+      <h2 class="text-2xl font-bold text-navy-900 mb-3">
+        Aksaray'daki İşletmeniz İçin Yerinde BT Ön Değerlendirmesi Planlayın
+      </h2>
+      <p class="text-slate-600 text-sm mb-6 max-w-xl mx-auto">
+        Tesisinizi ziyaret edelim, kullanıcı ve cihaz yapınızı yerinde inceleyerek uygun çalışma modelini birlikte belirleyelim.
+      </p>
+      <Button href="/ucretsiz-bt-kontrolu" size="lg" variant="primary">
+        Aksaray Ön Değerlendirmesi Talep Edin
+      </Button>
+    </div>
+
+  </div>
+</BaseLayout>

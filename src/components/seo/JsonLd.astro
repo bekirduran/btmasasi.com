@@ -1,0 +1,76 @@
+---
+import { siteConfig } from '../../config/site';
+
+export interface Props {
+  schemaType?: 'Organization' | 'WebSite' | 'Service' | 'Article' | 'FAQPage' | 'BreadcrumbList';
+  customSchema?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const { schemaType = 'Organization', customSchema } = Astro.props;
+
+let generatedSchema: Record<string, unknown> | Array<Record<string, unknown>>;
+
+if (customSchema) {
+  generatedSchema = customSchema;
+} else if (schemaType === 'Organization') {
+  const orgSchema: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteConfig.brandName,
+    alternateName: siteConfig.descriptor,
+    url: siteConfig.domain,
+    logo: `${siteConfig.domain}/brand/logo.png`,
+    description: 'İşletmeler için yönetilen BT hizmetleri, kullanıcı desteği, network, bulut, yedekleme ve güvenlik çözümleri.',
+    founder: {
+      '@type': 'Person',
+      name: siteConfig.founderName,
+      jobTitle: siteConfig.founderTitle,
+    },
+    areaServed: [
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Aksaray',
+      },
+      {
+        '@type': 'Country',
+        name: 'Türkiye',
+      },
+    ],
+  };
+
+  if (siteConfig.email) {
+    orgSchema.email = siteConfig.email;
+  }
+  if (siteConfig.phoneE164) {
+    orgSchema.telephone = siteConfig.phoneE164;
+  }
+  if (siteConfig.address) {
+    orgSchema.address = {
+      '@type': 'PostalAddress',
+      addressLocality: siteConfig.city,
+      addressCountry: siteConfig.country,
+      streetAddress: siteConfig.address,
+    };
+  }
+
+  generatedSchema = orgSchema;
+} else if (schemaType === 'WebSite') {
+  generatedSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteConfig.brandName,
+    url: siteConfig.domain,
+    description: 'İşletmenizin BT departmanı. Yönetilen bilgi teknolojileri ve kurumsal IT destek.',
+    inLanguage: 'tr-TR',
+  };
+} else {
+  generatedSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: siteConfig.brandName,
+    url: siteConfig.domain,
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(generatedSchema)} />

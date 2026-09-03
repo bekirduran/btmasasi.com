@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import { siteConfig } from '../config/site';
+
+const pageTitle = "BT Masası Hakkında";
+const pageDescription = "Küçük ve orta ölçekli işletmelerin BT süreçlerini düzenli, güvenli ve ölçülebilir bir hizmet modeline dönüştürüyoruz.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: "Hakkımızda" }]} />
+      <div class="mt-4">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight">
+          {pageTitle}
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-600 mt-4 leading-relaxed font-normal">
+          {pageDescription}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <!-- Giriş ve Yaklaşım -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-4">
+        İşletmeler İçin Güvenilir ve Düzenli Bir BT Yaklaşımı
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+        BT Masası, küçük ve orta ölçekli işletmelerin bilgi teknolojileri süreçlerini daha düzenli, güvenli ve ölçülebilir hale getirmek amacıyla Aksaray'da kurulmaktadır. Yaklaşımımız; yalnızca arızaya müdahale etmek değil, kullanıcı, cihaz, ağ, hesap ve yedekleme süreçlerini işletmenin günlük operasyonunun bir parçası olarak yönetmektir.
+      </p>
+    </section>
+
+    <!-- Kurucu Bölümü -->
+    <section class="bg-slate-50 border border-slate-200 rounded-2xl p-8 sm:p-10">
+      <div class="flex flex-col sm:flex-row gap-6 items-start">
+        <div class="w-16 h-16 rounded-2xl bg-brandBlue-600 text-white flex items-center justify-center font-bold text-2xl flex-shrink-0">
+          BD
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-navy-900">
+            {siteConfig.founderName}
+          </h2>
+          <p class="text-sm font-semibold text-brandBlue-600 mt-0.5 mb-4">
+            {siteConfig.founderTitle} — Kurucu
+          </p>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Yazılım geliştirme, bulut sistemleri ve teknik altyapı tecrübesini KOBİ'lerin günlük ihtiyaçlarına uygulanabilir bir hizmet modeline dönüştürmek üzere BT Masası'nı kurmaktadır. Amaç; teknik konuları gereksiz jargonla büyütmeden, sorumlulukları açık ve sonuçları takip edilebilir bir BT hizmeti sunmaktır.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Temel Değerlerimiz -->
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-6">
+        Çalışma İlkelerimiz ve Değerlerimiz
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-5 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-bold text-navy-900 text-base mb-1">1. Açık ve Net Kapsam</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Nelerin dahil, nelerin hariç olduğunu işe başlamadan önce yazılı olarak belirtmek; sürpriz masraflar oluşturmamak.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-bold text-navy-900 text-base mb-1">2. Güvenli Yönetici Erişimi</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Şirket parolalarını ve yönetici erişimlerini kişiye özel, şifreli kasalarda ve çok faktörlü doğrulamayla (MFA) korumak.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-bold text-navy-900 text-base mb-1">3. Eksiksiz Dokümantasyon</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Kritik sistem, ağ ve şifre bilgilerini kişilerin zihnine veya mesajlaşma uygulamalarına değil, güncel belgelere bağlamak.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-200 bg-white">
+          <h3 class="font-bold text-navy-900 text-base mb-1">4. Ölçülebilir ve Raporlu Hizmet</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Talepleri, yapılan müdahaleleri, sistem sağlığını ve açık riskleri periyodik olarak işletme yönetimine raporlamak.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-slate-200 bg-white sm:col-span-2">
+          <h3 class="font-bold text-navy-900 text-base mb-1">5. Gerçekçi Taahhüt</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Sağlanamayacak veya abartılı yanıt sürelerini, %100 mutlak güvenlik gibi gerçekçi olmayan vaatleri vermemek.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alt CTA -->
+    <div class="text-center pt-8 border-t border-slate-200">
+      <h2 class="text-2xl font-bold text-navy-900 mb-3">
+        İşletmenizin Teknolojisini Birlikte Yönetelim
+      </h2>
+      <p class="text-slate-600 text-sm mb-6 max-w-xl mx-auto">
+        Sorularınızı doğrudan iletmek veya ön değerlendirme yapmak için bizimle iletişime geçin.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <Button href="/ucretsiz-bt-kontrolu" size="lg" variant="primary">
+          Ön Değerlendirme İsteyin
+        </Button>
+        <Button href="/iletisim" size="lg" variant="outline">
+          İletişim Sayfası →
+        </Button>
+      </div>
+    </div>
+
+  </div>
+</BaseLayout>

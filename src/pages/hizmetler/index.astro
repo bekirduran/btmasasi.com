@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import Card from '../../components/ui/Card.astro';
+import Button from '../../components/ui/Button.astro';
+
+const pageTitle = "İşletmeniz İçin Yönetilen BT Hizmetleri";
+const pageDescription = "Günlük kullanıcı desteğinden ağ, sunucu, bulut, yedekleme ve güvenlik süreçlerine kadar ihtiyaç duyduğunuz BT hizmetlerini tek bir operasyon planında birleştiriyoruz.";
+
+const services = [
+  {
+    title: "Yönetilen BT Hizmetleri",
+    href: "/hizmetler/yonetilen-bt-hizmetleri",
+    desc: "Cihaz, kullanıcı, güncelleme, yedekleme ve destek süreçlerinin düzenli takibi, belgelenmesi ve periyodik raporlanması.",
+    items: ["Kullanıcı ve cihaz envanteri", "Yama ve güncelleme takibi", "Uzak destek ve bilet yönetimi", "Aylık risk ve durum raporu"],
+  },
+  {
+    title: "Kurumsal IT Destek",
+    href: "/hizmetler/kurumsal-it-destek",
+    desc: "Çalışanların bilgisayar, e-posta, yazıcı, ağ ve uygulama sorunlarına kayıt altına alınan, öncelikli müdahale süreci.",
+    items: ["Windows ve masaüstü yazılımları", "E-posta ve hesap açılış/kapanışları", "Yazıcı ve çevre birimleri", "Uzaktan ve yerinde müdahale"],
+  },
+  {
+    title: "Network ve Sunucu Yönetimi",
+    href: "/hizmetler/network-sunucu",
+    desc: "Kablolu ve kablosuz ağınızı, modem, router, firewall, NAS ve sunucu bileşenlerinizi belgeli ve yönetilebilir hale getirin.",
+    items: ["Ağ şeması ve IP planı", "Kurumsal Wi-Fi & Misafir ağı ayrımı", "Firewall kural takibi", "NAS ve dosya paylaşım desteği"],
+  },
+  {
+    title: "Siber Güvenlik ve Yedekleme",
+    href: "/hizmetler/siber-guvenlik-yedekleme",
+    desc: "Tek bir ürüne güvenmek yerine hesap, cihaz, ağ ve yedekleme katmanlarında uygulanabilir güvenlik kontrolleri oluşturun.",
+    items: ["Çok faktörlü doğrulama (MFA)", "Uç nokta koruması takibi", "Yedekleme durum denetimi", "Planlı geri yükleme testleri"],
+  },
+  {
+    title: "Microsoft 365 ve Bulut",
+    href: "/hizmetler/microsoft-365-bulut",
+    desc: "Kullanıcı, lisans, kurumsal e-posta, dosya paylaşımı ve temel güvenlik ayarlarını işletmenizin çalışma düzenine göre yönetin.",
+    items: ["Kullanıcı ve lisans yönetimi", "OneDrive & SharePoint yapılandırması", "SPF, DKIM, DMARC e-posta güvenliği", "İşe giriş/çıkış süreçleri"],
+  },
+  {
+    title: "Aksaray Yerel BT Hizmeti",
+    href: "/aksaray-kurumsal-it-destek",
+    desc: "Aksaray Merkez ve Aksaray OSB'deki KOBİ'ler için yerinde ve uzaktan planlı kurumsal bilgi işlem desteği.",
+    items: ["OSB yerinde müdahale planı", "Yerel tedarikçi koordinasyonu", "Sözleşmeli SLA önceliği", "Düzenli saha ziyaretleri"],
+  },
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={[{ label: "Hizmetler" }]} />
+      <div class="max-w-3xl mt-4">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight">
+          {pageTitle}
+        </h1>
+        <p class="text-lg text-slate-600 mt-4 leading-relaxed">
+          {pageDescription}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hizmet Kartları Listesi -->
+  <section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          services.map((s) => (
+            <Card class="flex flex-col justify-between">
+              <div>
+                <h2 class="text-xl font-bold text-navy-900 mb-3">
+                  <a href={s.href} class="hover:text-brandBlue-600 transition-colors">
+                    {s.title}
+                  </a>
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                  {s.desc}
+                </p>
+                <ul class="space-y-2 mb-6 border-t border-slate-100 pt-4 text-xs text-slate-700">
+                  {s.items.map((item) => (
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brandBlue-600"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <a
+                  href={s.href}
+                  class="inline-flex items-center text-sm font-semibold text-brandBlue-600 hover:text-brandBlue-700"
+                >
+                  Detaylı İncele →
+                </a>
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Kapsam Belirleme Üçlü Alanı -->
+  <section class="py-16 sm:py-20 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <h2 class="text-3xl font-extrabold text-navy-900 tracking-tight">
+          Her şeyi pakete eklemek yerine doğru kapsamı belirliyoruz.
+        </h2>
+        <p class="mt-4 text-slate-600 text-base leading-relaxed">
+          Beş kullanıcılı bir ofis ile üretim yapan çok lokasyonlu bir işletmenin destek ihtiyacı aynı değildir. Teklif öncesinde kullanıcı, cihaz, sunucu, lokasyon, kritik uygulama ve beklenen müdahale seviyesini değerlendirir; kapsamı ve hariç tutulan işleri açıkça yazarız.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Hizmete Dahil Olabilecekler -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6">
+          <div class="w-8 h-8 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center font-bold mb-4">
+            ✓
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-3">Genel Olarak Hizmete Dahil</h3>
+          <ul class="space-y-2.5 text-sm text-slate-600">
+            <li>• Uzaktan kullanıcı desteği</li>
+            <li>• Cihaz ve lisans envanteri</li>
+            <li>• Güncelleme ve temel sağlık kontrolü</li>
+            <li>• Kullanıcı hesabı açma/kapatma süreçleri</li>
+            <li>• Yedekleme işlerinin izlenmesi</li>
+            <li>• Dokümantasyon ve periyodik raporlama</li>
+          </ul>
+        </div>
+
+        <!-- İhtiyaca Göre Eklenebilecekler -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 text-brandBlue-700 flex items-center justify-center font-bold mb-4">
+            +
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-3">İhtiyaca Göre Eklenebilir</h3>
+          <ul class="space-y-2.5 text-sm text-slate-600">
+            <li>• Planlı yerinde ziyaret (Aksaray)</li>
+            <li>• Sunucu ve firewall yönetimi</li>
+            <li>• Microsoft 365 yönetimi</li>
+            <li>• Uç nokta güvenliği lisansları</li>
+            <li>• Çok lokasyon ve şube desteği</li>
+            <li>• Mesai dışı kritik olay desteği</li>
+          </ul>
+        </div>
+
+        <!-- Ayrı Proje Olarak Fiyatlandırılacaklar -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6">
+          <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center font-bold mb-4">
+            §
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-3">Ayrı Proje Olarak Fiyatlandırılır</h3>
+          <ul class="space-y-2.5 text-sm text-slate-600">
+            <li>• Yeni ofis veya sistem odası kurulumu</li>
+            <li>• Büyük network ve kablolama yenilemesi</li>
+            <li>• Donanım ve lisans satın alımları</li>
+            <li>• Fiziksel veri kurtarma çalışmaları</li>
+            <li>• Özel yazılım geliştirme</li>
+            <li>• Yapısal kablolama ve kamera projeleri</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <Button href="/ucretsiz-bt-kontrolu" size="lg" variant="primary">
+          İşletmeniz İçin Kapsamı Belirleyelim
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

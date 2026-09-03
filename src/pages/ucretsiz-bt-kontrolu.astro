@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import RiskAssessmentForm from '../components/forms/RiskAssessmentForm.astro';
+import Badge from '../components/ui/Badge.astro';
+
+const pageTitle = "Ücretsiz BT Ön Değerlendirmesi";
+const pageDescription = "İşletmenizin kullanıcı ve cihaz yapısını, yedekleme durumunu ve öncelikli teknik risklerini birlikte inceleyelim.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <Breadcrumbs items={[{ label: pageTitle }]} />
+      <div class="mt-4">
+        <Badge variant="blue" class="mb-3">Ön Bilgi ve Değerlendirme</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight leading-tight">
+          İşletmenizin BT risklerini birlikte inceleyelim.
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed max-w-2xl mx-auto font-normal">
+          Bu ön değerlendirme; mevcut altyapınızı ve iş ihtiyaçlarınızı anlamaya yönelik karşılıklı kısa bir görüşmedir. İzinsiz sistem taraması, sızma testi veya kapsamı aşan bir güvenlik denetimi değildir.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Sol Taraf: Görüşmede Ele Alınacak Konular -->
+      <div class="lg:col-span-5 space-y-6">
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8">
+          <h2 class="text-lg font-bold text-navy-900 mb-4">
+            Ön Görüşmede Ele Alınacak Konular
+          </h2>
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
+            <li class="flex items-start gap-2.5">
+              <span class="text-brandBlue-600 font-bold">•</span>
+              <span>Kullanıcı ve aktif bilgisayar sayınız</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-brandBlue-600 font-bold">•</span>
+              <span>Şube, depo veya farklı lokasyon yapınız</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-brandBlue-600 font-bold">•</span>
+              <span>Kullanılan kurumsal e-posta ve bulut hizmetleri</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-brandBlue-600 font-bold">•</span>
+              <span>Mevcut sunucu, NAS ve yerel ağ bileşenleri</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-brandBlue-600 font-bold">•</span>
+              <span>Yedekleme yöntemi ve geri yükleme tecrübeniz</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-brandBlue-600 font-bold">•</span>
+              <span>En sık yaşanan teknik sorunlar ve aksamalar</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-brandBlue-600 font-bold">•</span>
+              <span>Kritik muhasebe/ERP yazılımları ve kesinti toleransı</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-brandBlue-600 font-bold">•</span>
+              <span>Mevcut destek ve teknik servis düzeniniz</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-teal-50 border border-teal-200 text-teal-900 text-xs sm:text-sm leading-relaxed">
+          <h3 class="font-bold text-teal-950 mb-1">Görüşme Sonrası Çıktı</h3>
+          <p>
+            Görüşme sonucunda işletmeniz için hangi hizmet modelinin uygun olduğunu, varsa acil kapatılması gereken riskleri ve şeffaf teklif kapsamını sizinle açıkça paylaşırız.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sağ Taraf: Form -->
+      <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <h2 class="text-xl font-bold text-navy-900 mb-6">
+          Ön Değerlendirme Bilgi Formu
+        </h2>
+        <RiskAssessmentForm />
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

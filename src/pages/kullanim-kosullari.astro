@@ -1,0 +1,42 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { siteConfig } from '../config/site';
+
+const pageTitle = "Kullanım Koşulları";
+const pageDescription = "BT Masası web sitesinin kullanım şartları, sorumluluk sınırları ve fikri mülkiyet hakları.";
+const lastUpdated = "2025-02-24";
+---
+
+<LegalLayout title={pageTitle} description={pageDescription} lastUpdated={lastUpdated}>
+  <p>
+    Lütfen {siteConfig.domain} adresli web sitesini kullanmadan önce bu Kullanım Koşullarını dikkatlice okuyunuz. Sitemizi ziyaret ederek bu şartları kabul etmiş sayılırsınız.
+  </p>
+
+  <h2>1. Genel Bilgilendirme Amacı</h2>
+  <p>
+    Bu web sitesinde yer alan tüm metinler, rehberler, kontrol listeleri ve açıklamalar genel bilgilendirme amacıyla sunulmaktadır. Sitede yer alan bilgiler hukuki, mali veya mutlak bir teknik garanti teşkil etmez. Her işletmenin altyapısı ve ihtiyaçları kendine özgüdür.
+  </p>
+
+  <h2>2. Form Gönderimi ve Hizmet Sözleşmesi Sınırları</h2>
+  <p>
+    Web sitesi üzerindeki "İletişim" veya "Ücretsiz BT Ön Değerlendirmesi" formlarının doldurulup gönderilmesi, taraflar arasında herhangi bir <strong>hizmet sözleşmesi veya hukuki taahhüt oluşturmaz</strong>.
+  </p>
+  <p>
+    BT Masası tarafından sunulan yönetilen BT ve danışmanlık hizmetlerinin kesin kapsamı, sorumlulukları, hizmet seviyesi taahhütleri (SLA) ve ücretlendirmesi yalnızca taraflarca karşılıklı imzalanan yazılı hizmet sözleşmesiyle yürürlüğe girer.
+  </p>
+
+  <h2>3. Fikri Mülkiyet Hakları</h2>
+  <p>
+    Sitede yer alan logo, tasarım ögeleri, rehber makaleleri ve metinlerin tüm fikri mülkiyet hakları BT Masası'na aittir. Yazılı izin alınmaksızın kopyalanamaz, çoğaltılamaz veya başka sitelerde yayınlanamaz.
+  </p>
+
+  <h2>4. Dış Bağlantılar</h2>
+  <p>
+    Sitemiz zaman zaman üçüncü taraf web sitelerine (örneğin mevzuat sayfaları veya resmi Cloudflare/Microsoft belgeleri) bağlantı içerebilir. Bu sitelerin içeriklerinden veya gizlilik uygulamalarından BT Masası sorumlu tutulamaz.
+  </p>
+
+  <h2>5. Değişiklikler ve İletişim</h2>
+  <p>
+    BT Masası, bu koşulları dilediği zaman güncelleme hakkını saklı tutar. Koşullarla ilgili her türlü sorunuz için <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> adresinden bize ulaşabilirsiniz.
+  </p>
+</LegalLayout>
