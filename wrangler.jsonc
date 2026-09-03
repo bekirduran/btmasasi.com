@@ -22,6 +22,12 @@
 		"CONTACT_TO_EMAIL": "iletisim@btmasasi.com",
 		"CONTACT_FROM_EMAIL": "sistem@btmasasi.com"
 	},
+	"routes": [
+		{
+			"pattern": "btmasasi.com",
+			"custom_domain": true
+		}
+	],
 	"env": {
 		"dev": {
 			"name": "btmasasi-dev",
