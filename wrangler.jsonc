@@ -15,17 +15,28 @@
 			"binding": "LEADS_DB",
 			"database_name": "btmasasi-leads",
 			"database_id": "2a638c09-eaf2-472e-b5c2-b7c5f1b170aa"
-		},
-		{
-			"binding": "btmasasi_leads",
-			"database_name": "btmasasi-leads",
-			"database_id": "2a638c09-eaf2-472e-b5c2-b7c5f1b170aa",
-			"remote": true
 		}
 	],
 	"vars": {
 		"SITE_URL": "https://btmasasi.com",
 		"CONTACT_TO_EMAIL": "iletisim@btmasasi.com",
 		"CONTACT_FROM_EMAIL": "sistem@btmasasi.com"
+	},
+	"env": {
+		"dev": {
+			"name": "btmasasi-dev",
+			"d1_databases": [
+				{
+					"binding": "LEADS_DB",
+					"database_name": "btmasasi-leads",
+					"database_id": "2a638c09-eaf2-472e-b5c2-b7c5f1b170aa"
+				}
+			],
+			"vars": {
+				"SITE_URL": "https://btmasasi.com",
+				"CONTACT_TO_EMAIL": "iletisim@btmasasi.com",
+				"CONTACT_FROM_EMAIL": "sistem@btmasasi.com"
+			}
+		}
 	}
 }
