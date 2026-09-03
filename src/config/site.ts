@@ -44,6 +44,7 @@ export const siteConfig: SiteConfig = {
   address: null,      // Doğrulanmış müşteri kabul ofis adresi atanana kadar null
   primaryServiceArea: ["Aksaray Merkez", "Aksaray Organize Sanayi Bölgesi"],
   remoteServiceArea: "Türkiye geneli",
+  businessHours: "Hafta içi 09:00 - 18:00",
   socialLinks: {
     linkedin: "https://www.linkedin.com/in/bekir-duran/",
   },

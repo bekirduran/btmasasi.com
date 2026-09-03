@@ -17,6 +17,11 @@
 			"database_id": "2a638c09-eaf2-472e-b5c2-b7c5f1b170aa"
 		}
 	],
+	"send_email": [
+		{
+			"name": "EMAIL"
+		}
+	],
 	"vars": {
 		"SITE_URL": "https://btmasasi.com",
 		"CONTACT_TO_EMAIL": "info@btmasasi.com",
@@ -36,6 +41,11 @@
 					"binding": "LEADS_DB",
 					"database_name": "btmasasi-leads",
 					"database_id": "2a638c09-eaf2-472e-b5c2-b7c5f1b170aa"
+				}
+			],
+			"send_email": [
+				{
+					"name": "EMAIL"
 				}
 			],
 			"vars": {

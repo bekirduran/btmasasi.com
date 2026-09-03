@@ -1,7 +1,7 @@
 import type { Env } from '../env';
 import { leadSchema, sanitizeSource } from '../lib/validation';
 import { verifyTurnstileToken } from '../lib/turnstile';
-import { sendLeadNotification } from '../lib/notification';
+import { sendLeadNotification, sendCloudflareEmailNotification } from '../lib/notification';
 
 export async function handleLeadSubmission(request: Request, env: Env): Promise<Response> {
   // 1. HTTP Metot Kontrolü (Sadece POST kabul edilir)
@@ -111,10 +111,19 @@ export async function handleLeadSubmission(request: Request, env: Env): Promise<
     );
   }
 
-  // 7. İsteğe Bağlı E-posta Bildirimi (arka planda)
-  if (env.RESEND_API_KEY && env.CONTACT_TO_EMAIL) {
+  // 7. Anlık E-posta Bildirimi (arka planda)
+  const targetEmail = env.CONTACT_TO_EMAIL || 'info@btmasasi.com';
+  const senderEmail = env.CONTACT_FROM_EMAIL || 'bildirim@btmasasi.com';
+
+  if (env.EMAIL) {
     try {
-      await sendLeadNotification(data, env.RESEND_API_KEY, env.CONTACT_TO_EMAIL, env.CONTACT_FROM_EMAIL || 'sistem@btmasasi.com');
+      await sendCloudflareEmailNotification(env.EMAIL, data, targetEmail, senderEmail);
+    } catch (e) {
+      console.error('SendEmail notification error', e);
+    }
+  } else if (env.RESEND_API_KEY) {
+    try {
+      await sendLeadNotification(data, env.RESEND_API_KEY, targetEmail, senderEmail);
     } catch {
       // E-posta hatası kullanıcıya yansıtılmaz
     }
