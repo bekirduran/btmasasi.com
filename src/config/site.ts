@@ -36,16 +36,17 @@ export const siteConfig: SiteConfig = {
   founderTitle: "Bilgisayar Mühendisi",
   domain: "https://btmasasi.com",
   email: "iletisim@btmasasi.com", // E-posta kutusu veya yönlendirme aktif olduğunda yayına hazır
-  phoneDisplay: null, // Örn: "+90 (382) 000 00 00" - Doğrulanmış hat bağlanınca doldurulacak
-  phoneE164: null,    // Örn: "+903820000000"
-  whatsappE164: null, // Örn: "+905000000000"
+  phoneDisplay: "0 (530) 112 54 68",
+  phoneE164: "+905301125468",
+  whatsappE164: "+905301125468",
   city: "Aksaray",
   country: "Türkiye",
   address: null,      // Doğrulanmış müşteri kabul ofis adresi atanana kadar null
   primaryServiceArea: ["Aksaray Merkez", "Aksaray Organize Sanayi Bölgesi"],
   remoteServiceArea: "Türkiye geneli",
-  businessHours: "Hafta içi 09:00 - 18:00",
-  socialLinks: {},    // Doğrulanmış sosyal medya hesapları eklenebilir
+  socialLinks: {
+    linkedin: "https://www.linkedin.com/in/bekir-duran/",
+  },
   googleBusinessProfileUrl: null, // GBP onayı sonrası eklenebilir
   showPrices: false,  // Sabit fiyatlar belirlendiğinde true yapılabilir
 } as const;
