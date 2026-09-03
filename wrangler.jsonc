@@ -25,7 +25,7 @@
 	"vars": {
 		"SITE_URL": "https://btmasasi.com",
 		"CONTACT_TO_EMAIL": "bekirduran2@gmail.com",
-		"CONTACT_FROM_EMAIL": "sistem@btmasasi.com"
+		"CONTACT_FROM_EMAIL": "info@btmasasi.com"
 	},
 	"routes": [
 		{
@@ -51,7 +51,7 @@
 			"vars": {
 				"SITE_URL": "https://btmasasi.com",
 				"CONTACT_TO_EMAIL": "bekirduran2@gmail.com",
-				"CONTACT_FROM_EMAIL": "sistem@btmasasi.com"
+				"CONTACT_FROM_EMAIL": "info@btmasasi.com"
 			}
 		}
 	}

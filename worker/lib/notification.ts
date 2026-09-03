@@ -48,7 +48,7 @@ export async function sendCloudflareEmailNotification(
   sendEmailBinding: SendEmail,
   lead: LeadInput,
   toEmail: string = 'bekirduran2@gmail.com',
-  fromEmail: string = 'sistem@btmasasi.com'
+  fromEmail: string = 'info@btmasasi.com'
 ): Promise<boolean> {
   try {
     const { subject, text } = formatLeadEmailContent(lead);

@@ -112,8 +112,8 @@ export async function handleLeadSubmission(request: Request, env: Env): Promise<
   }
 
   // 7. Anlık E-posta Bildirimi (arka planda)
-  const targetEmail = env.CONTACT_TO_EMAIL || 'info@btmasasi.com';
-  const senderEmail = env.CONTACT_FROM_EMAIL || 'bildirim@btmasasi.com';
+  const targetEmail = env.CONTACT_TO_EMAIL || 'bekirduran2@gmail.com';
+  const senderEmail = env.CONTACT_FROM_EMAIL || 'info@btmasasi.com';
 
   if (env.EMAIL) {
     try {
