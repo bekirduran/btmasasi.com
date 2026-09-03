@@ -1,4 +1,5 @@
 import type { LeadInput } from './validation';
+import { createMimeMessage } from 'mimetext';
 import { EmailMessage } from 'cloudflare:email';
 
 /**
@@ -46,28 +47,27 @@ export function formatLeadEmailContent(lead: LeadInput): { subject: string; text
 export async function sendCloudflareEmailNotification(
   sendEmailBinding: SendEmail,
   lead: LeadInput,
-  toEmail: string,
-  fromEmail: string = 'bildirim@btmasasi.com'
+  toEmail: string = 'bekirduran2@gmail.com',
+  fromEmail: string = 'sistem@btmasasi.com'
 ): Promise<boolean> {
   try {
     const { subject, text } = formatLeadEmailContent(lead);
 
-    const rawEmail = [
-      `From: BT Masası Sistem <${fromEmail}>`,
-      `To: <${toEmail}>`,
-      lead.email ? `Reply-To: <${lead.email}>` : '',
-      `Subject: =?UTF-8?B?${Buffer.from(subject).toString('base64')}?=`,
-      `MIME-Version: 1.0`,
-      `Content-Type: text/plain; charset=UTF-8`,
-      `Content-Transfer-Encoding: base64`,
-      ``,
-      Buffer.from(text).toString('base64'),
-    ]
-      .filter(Boolean)
-      .join('\r\n');
+    const msg = createMimeMessage();
+    msg.setSender({ name: 'BT Masası Sistem', addr: fromEmail });
+    msg.setRecipient(toEmail);
+    msg.setSubject(subject);
+    if (lead.email) {
+      msg.setHeader('Reply-To', lead.email);
+    }
+    msg.addMessage({
+      contentType: 'text/plain',
+      data: text,
+    });
 
-    const msg = new EmailMessage(fromEmail, toEmail, rawEmail);
-    await sendEmailBinding.send(msg);
+    const emailMessage = new EmailMessage(fromEmail, toEmail, msg.asRaw());
+    await sendEmailBinding.send(emailMessage);
+    console.log(`Notification successfully sent to ${toEmail}`);
     return true;
   } catch (error) {
     console.error('Cloudflare email notification failed:', error);
