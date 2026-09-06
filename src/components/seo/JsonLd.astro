@@ -27,7 +27,7 @@ if (customSchema) {
       jobTitle: siteConfig.founderTitle,
       sameAs: siteConfig.socialLinks.linkedin ? [siteConfig.socialLinks.linkedin] : undefined,
     },
-    sameAs: siteConfig.socialLinks.linkedin ? [siteConfig.socialLinks.linkedin] : undefined,
+    sameAs: Object.values(siteConfig.socialLinks).filter(Boolean),
     areaServed: [
       {
         '@type': 'AdministrativeArea',

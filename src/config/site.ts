@@ -47,6 +47,7 @@ export const siteConfig: SiteConfig = {
   businessHours: "Hafta içi 09:00 - 18:00",
   socialLinks: {
     linkedin: "https://www.linkedin.com/in/bekir-duran/",
+    instagram: "https://www.instagram.com/btmasasi",
   },
   googleBusinessProfileUrl: null, // GBP onayı sonrası eklenebilir
   showPrices: false,  // Sabit fiyatlar belirlendiğinde true yapılabilir
