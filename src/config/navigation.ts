@@ -36,6 +36,11 @@ export const mainNavigation: NavItem[] = [
         description: "Bulut e-posta, lisans, dosya paylaşımı ve hesap güvenliği",
       },
       {
+        label: "KVKK Teknik Uyum",
+        href: "/hizmetler/kvkk-teknik-uyum",
+        description: "Kişisel veri sistem haritası, erişim yetkileri ve teknik güvenlik kontrolleri",
+      },
+      {
         label: "Aksaray Yerel BT Hizmeti",
         href: "/aksaray-kurumsal-it-destek",
         description: "Aksaray Merkez ve OSB işletmelerine yerinde ve uzaktan BT desteği",
@@ -71,6 +76,7 @@ export const footerNavigation = {
     { label: "Network ve Sunucu", href: "/hizmetler/network-sunucu" },
     { label: "Siber Güvenlik ve Yedekleme", href: "/hizmetler/siber-guvenlik-yedekleme" },
     { label: "Microsoft 365 ve Bulut", href: "/hizmetler/microsoft-365-bulut" },
+    { label: "KVKK Teknik Uyum", href: "/hizmetler/kvkk-teknik-uyum" },
     { label: "Aksaray Kurumsal IT Destek", href: "/aksaray-kurumsal-it-destek" },
   ],
   company: [
