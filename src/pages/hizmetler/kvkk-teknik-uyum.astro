@@ -1,0 +1,1156 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import Card from '../../components/ui/Card.astro';
+import KvkkRiskForm from '../../components/forms/KvkkRiskForm.astro';
+import { siteConfig } from '../../config/site';
+
+const pageTitle = "KVKK Teknik Uyum ve Veri Güvenliği Hizmeti | BT Masası";
+const pageDescription = "İşletmenizin kişisel veri işleyen BT sistemlerini analiz ediyor, erişim, yedekleme ve güvenlik kontrollerini yöneterek KVKK teknik uyumunu destekliyoruz.";
+const canonicalUrl = `${siteConfig.domain}/hizmetler/kvkk-teknik-uyum`;
+
+// 1. Service Schema
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'KVKK Teknik Uyum ve Veri Güvenliği',
+  serviceType: 'Data Protection and Technical Compliance Solutions',
+  provider: {
+    '@type': 'Organization',
+    name: 'BT Masası Bilgi Teknolojileri ve Danışmanlık',
+    url: siteConfig.domain,
+  },
+  description: pageDescription,
+  areaServed: [
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Aksaray',
+    },
+    {
+      '@type': 'Country',
+      name: 'Türkiye',
+    },
+  ],
+  url: canonicalUrl,
+};
+
+// 2. BreadcrumbList Schema
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Ana Sayfa',
+      item: siteConfig.domain,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Hizmetler',
+      item: `${siteConfig.domain}/hizmetler`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'KVKK Teknik Uyum',
+      item: canonicalUrl,
+    },
+  ],
+};
+
+// 3. FAQPage Schema (Sayfa içeriğiyle birebir uyumlu)
+const faqList = [
+  {
+    q: "KVKK Guard nedir?",
+    a: "KVKK Guard, işletmelerin kişisel veri içeren BT sistemlerini teknik açıdan analiz eden, erişim yetkilerini düzenleyen ve veri güvenliği süreçlerini periyodik olarak yöneten BT Masası hizmetidir."
+  },
+  {
+    q: "VERBİS kaydını siz mi yapıyorsunuz?",
+    a: "BT Masası teknik envanter, sistem haritalama ve veri güvenliği tarafında destek sağlar. VERBİS kayıt yükümlülüğüne ilişkin hukuki değerlendirme gerektiğinde uzman hukuk danışmanıyla çalışılması önerilir."
+  },
+  {
+    q: "Küçük işletmelerin KVKK çalışması yapması gerekir mi?",
+    a: "VERBİS kayıt yükümlülüğü ile KVKK kapsamındaki veri güvenliği yükümlülükleri aynı şey değildir. İşletmenin büyüklüğüne veya çalışan sayısına bakılmaksızın teknik veri güvenliği ve erişim kontrolleri gereklidir."
+  },
+  {
+    q: "KVKK teknik risk analizi neleri kapsar?",
+    a: "Bilgisayarlar, kullanıcı hesapları, erişim yetkileri, yedekleme, MFA, endpoint güvenliği, NAS/server erişimleri, cloud servisleri ve diğer kişisel veri içeren sistemler değerlendirilir."
+  },
+  {
+    q: "Hizmet tek seferlik mi?",
+    a: "İlk kurulum ve risk analizi sonrasında sürekli izleme ve yönetim hizmeti alınabilir. Yeni personel girişleri, ayrılışları ve yazılım değişiklikleri düzenli teknik takip gerektirir."
+  },
+  {
+    q: "Hukuki danışmanlık veriyor musunuz?",
+    a: "BT Masası'nın hizmeti teknik KVKK uyumu ve kişisel veri güvenliğine odaklanır. Aydınlatma metinleri, sözleşmeler ve hukuki işleme şartları gibi hukuki danışmanlık gereken konular bağımsız hukuk danışmanları tarafından yürütülmelidir."
+  }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqList.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+
+const combinedSchemas = [serviceSchema, breadcrumbSchema, faqSchema];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={canonicalUrl}
+  customSchema={combinedSchemas}
+>
+  <!-- 1. BREADCRUMBS & HERO SECTION -->
+  <section class="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200 pt-8 pb-16 sm:pb-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb Navigasyonu -->
+      <Breadcrumbs
+        items={[
+          { label: "Hizmetler", href: "/hizmetler" },
+          { label: "KVKK Teknik Uyum" },
+        ]}
+      />
+
+      <div class="max-w-4xl mt-8">
+        <!-- Eyebrow -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brandBlue-50 border border-brandBlue-200 text-brandBlue-800 text-xs font-bold uppercase tracking-wider mb-6">
+          <svg class="w-3.5 h-3.5 text-brandBlue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <span>KVKK GUARD</span>
+        </div>
+
+        <!-- Tek ve Net H1 -->
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-navy-900 tracking-tight leading-[1.15]">
+          KVKK Teknik Uyum ve Veri Güvenliği
+        </h1>
+
+        <!-- Ana Açıklama (AI ve Kullanıcı Odaklı) -->
+        <p class="text-lg sm:text-xl text-slate-600 mt-6 leading-relaxed font-normal">
+          Kişisel veriler yalnızca dosyalarda değil; bilgisayarlarda, sunucularda, bulut sistemlerinde, e-postalarda, kamera kayıtlarında ve kurumsal yazılımlarda bulunur. BT Masası, bu sistemleri teknik açıdan analiz ederek veri güvenliği risklerini görünür ve yönetilebilir hale getirir.
+        </p>
+
+        <!-- CTA Butonları -->
+        <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <a
+            href="#on-analiz-formu"
+            id="hero-primary-cta"
+            class="inline-flex items-center justify-center px-6 py-3.5 text-base font-bold text-white bg-brandBlue-600 hover:bg-brandBlue-700 active:bg-brandBlue-800 rounded-xl shadow-sm transition-all focus-visible:outline-brandBlue-600"
+          >
+            Ücretsiz KVKK Teknik Risk Analizi →
+          </a>
+          <a
+            href="#hizmet-kapsami"
+            class="inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-slate-700 hover:text-navy-900 bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-colors"
+          >
+            Hizmet Kapsamını İncele
+          </a>
+        </div>
+
+        <!-- Değer Vurgusu Rozetleri -->
+        <div class="mt-12 pt-8 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs sm:text-sm text-slate-600 font-medium">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-brandTeal-500"></span>
+            <span>Veri Haritalama</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-brandTeal-500"></span>
+            <span>Erişim & RBAC Kontrolü</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-brandTeal-500"></span>
+            <span>Yedek & Log Doğrulama</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-brandTeal-500"></span>
+            <span>Sürekli Teknik İzleme</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PROBLEM BÖLÜMÜ -->
+  <section class="py-16 sm:py-24 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          KVKK yalnızca evrak hazırlamak değildir
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+          Bir işletmenin kişisel veri güvenliği yalnızca aydınlatma metinleri veya VERBİS bildirimlerinden oluşmaz. Verinin hangi bilgisayarda bulunduğu, kimlerin erişebildiği, nasıl yedeklendiği, eski çalışanların hesaplarının kapatılıp kapatılmadığı ve bulut sistemlerinin nasıl korunduğu da sürecin önemli parçalarıdır.
+        </p>
+      </div>
+
+      <!-- 6 Problem Kartı -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-2">Kontrolsüz Erişim</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Eski çalışanlar veya yetkisiz kullanıcılar dosya sunucularına, ortak klasörlere veya muhasebe veritabanlarına hala erişebiliyor olabilir.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-2">Dağınık Veri</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Kişisel veriler personelin masaüstü bilgisayarlarında, e-postalarda, yerel NAS cihazlarında, bulut sürücülerinde ve USB belleklerde kontrolsüz biçimde dağılmıştır.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-2">Yetersiz Yedekleme</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Kritik kişisel verilerin yedeği düzenli alınmıyor, şifrelenmemiş ortamda tutuluyor veya fidye yazılımı (ransomware) karşısında geri dönüp dönmeyeceği test edilmemiş olabilir.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-2">Zayıf Hesap Güvenliği</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Kurumsal e-posta ve bulut hesaplarında çok faktörlü doğrulama (MFA) açık değildir; basit veya ortak parolalar kullanılıyor olabilir.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center font-bold mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-2">Belirsiz Veri Saklama</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Hangi müşteri, personel veya aday verisinin ne kadar süre saklanacağı ve süresi dolduğunda teknik olarak nasıl güvenle silineceği belirsizdir.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center font-bold mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-navy-900 mb-2">Eksik Kayıt ve İzleme</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Kim, hangi sisteme, ne zaman erişti ve hangi dosyaları kopyaladı sorusunun cevabı güvenlik logları tutulmadığı için bilinemez.
+          </p>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. “BİZ NE YAPIYORUZ?” (HİZMET KAPSAMI 10 MODÜL) -->
+  <section id="hizmet-kapsami" class="py-16 sm:py-24 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-16">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          KVKK Guard kapsamında neleri yönetiyoruz?
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+          Kişisel verinin nerede tutulduğunu, kimin eriştiğini ve nasıl korunduğunu teknik kontrollerle görünür, ölçülebilir ve denetlenebilir hale getiriyoruz.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Modül 1 -->
+        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+              01
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Kişisel Veri Sistem Haritası</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              İşletmedeki kişisel verilerin bulunabileceği tüm teknik ortamları tespit ediyoruz: Bilgisayarlar, sunucular, NAS, kurumsal e-posta, Microsoft 365, Google Workspace, CRM, ERP, muhasebe yazılımları, kamera sistemleri, bulut depolama ve mobil cihazlar.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 text-xs text-brandBlue-700 font-semibold">
+            “Kişisel verinin nerede tutulduğunu anlamadan veri güvenliği sağlanamaz.”
+          </div>
+        </div>
+
+        <!-- Modül 2 -->
+        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+              02
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">BT Varlık Envanteri</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Kişisel veri işleyen veya bu verilere köprü oluşturan tüm donanım ve yazılım varlıklarını kayıt altına alıyoruz: PC, laptop, sunucu, firewall, NAS, şirket telefonları, tabletler, kamera kayıt cihazları, ağ anahtarları ve SaaS servisleri.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+            Donanım, işletim sistemi, lisans ve zimmet eşleştirmesi.
+          </div>
+        </div>
+
+        <!-- Modül 3 -->
+        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+              03
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Veri Erişim ve Yetki Analizi (RBAC)</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Hangi kullanıcı, hangi sisteme, hangi seviyede ve hangi iş amacıyla erişiyor? Rol tabanlı erişim kontrolü (Role-Based Access Control) yaklaşımıyla İK, Muhasebe, Satış ve Yönetim klasörlerindeki gereksiz yetkileri tespit edip sınırlandırıyoruz.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+            Örnek: İK → Personel Özlük | Muhasebe → Finans | Satış → CRM.
+          </div>
+        </div>
+
+        <!-- Modül 4 -->
+        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+              04
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Kullanıcı Yaşam Döngüsü Yönetimi</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Çalışan işe başladığında, departman değiştirdiğinde ve özellikle **işten ayrıldığında** hesap ve erişim haklarının eksiksiz yönetilmesi. Eski çalışanların e-posta ve dosya erişimlerinin açık kalması riskini tamamen ortadan kaldırıyoruz.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 text-xs text-rose-700 font-semibold">
+            Kritik Güvenlik: İşten ayrılan personelin erişimlerinin derhal kapatılması.
+          </div>
+        </div>
+
+        <!-- Modül 5 -->
+        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+              05
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Uç Nokta Güvenliği (Endpoint Security)</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Kişisel veri barındıran veya erişen istemci bilgisayarlarda: İşletim sistemi güncellemeleri, merkezi antivirüs/EDR durumu, disk şifreleme (BitLocker), yerel yönetici (local admin) yetkilerinin kısıtlanması, parola politikaları, ekran kilit süreleri ve USB kısıtlamaları.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+            Dizüstü bilgisayar çalınsa dahi şifrelenmiş disk sayesinde veri korunur.
+          </div>
+        </div>
+
+        <!-- Modül 6 -->
+        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+              06
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">MFA ve Kimlik Güvenliği</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Kişisel veri sızıntılarının en yaygın kaynağı ele geçirilen e-posta şifreleridir. Microsoft 365, Google Workspace, kurumsal VPN, bulut portalları ve yönetici hesaplarında çok faktörlü doğrulamayı (MFA) zorunlu hale getiriyoruz.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+            Şifre ele geçirilse bile onay kodu olmadan hesap açılamaz.
+          </div>
+        </div>
+
+        <!-- Modül 7 -->
+        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+              07
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Yedekleme ve Felaket Kurtarma</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Hangi kişisel veriler yedekleniyor? Ne sıklıkla ve nereye alınıyor? Yedek dosyaları şifreleniyor mu? En önemlisi: Olası bir fidye yazılımı durumunda sistemlerin gerçekten geri yüklenebildiği planlı restore testleriyle doğrulanıyor mu?
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+            3-2-1 kuralına uygun ayrıştırılmış ve şifreli veri kopyaları.
+          </div>
+        </div>
+
+        <!-- Modül 8 -->
+        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+              08
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Loglama ve İzlenebilirlik</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Uygun sistem altyapılarında kullanıcı oturum açmaları, yönetici müdahaleleri, başarısız parola denemeleri, kritik dosya silme veya taşıma işlemleri ile güvenlik duvarı (firewall) kayıtlarının saklanmasını değerlendiriyor ve yapılandırıyoruz.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+            Olası bir olayda geriye dönük teknik inceleme kabiliyeti.
+          </div>
+        </div>
+
+        <!-- Modül 9 -->
+        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+              09
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Veri Saklama ve Silme Teknik Süreçleri</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Hukuki saklama sürelerini belirlemiyoruz; ancak firmanız veya hukuk danışmanınızca belirlenmiş saklama politikalarının teknik sistemlerde uygulanmasını sağlıyoruz: Belirli tarihten eski logların arşivi, erişim kısıtlama, hesap kapatma ve güvenli silme.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+            Hukuki politikaların teknik sunucu ve depolama katmanında icrası.
+          </div>
+        </div>
+
+        <!-- Modül 10 -->
+        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+              10
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-2">Güvenlik Olayı Yönetimi ve Müdahale</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Şüpheli veri erişimi, e-posta hesabı ele geçirilmesi, virüs/ransomware uyarısı, cihaz kaybı veya olası veri sızıntısı durumunda izlenecek teknik aksiyon planını belirliyor ve acil müdahale sürecini yönetiyoruz.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 text-xs text-brandBlue-700 font-semibold">
+            Kriz anında panik yerine kayıtlı teknik adımlar.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. KVKK TEKNİK RİSK ANALİZİ DASHBOARD DEMO -->
+  <section class="py-16 sm:py-24 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5">
+          <span class="text-xs font-bold uppercase tracking-wider text-brandBlue-600 block mb-2">
+            Teknik Görünürlük
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight leading-tight">
+            İşletmenizin KVKK Teknik Risk Skorunu Öğrenin
+          </h2>
+          <p class="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed">
+            Mevcut BT altyapınızı teknik açıdan değerlendiriyor, kişisel veri güvenliğini etkileyebilecek eksikleri önem derecesine göre sınıflandırılmış bir rapor halinde sunuyoruz.
+          </p>
+          <div class="mt-8 space-y-3 text-sm text-slate-700">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-teal-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Tüm sunucu, NAS ve bulut hesaplarının kontrolü</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-teal-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Eski çalışan hesapları ve yetki matrisi denetimi</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-teal-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>Yedekleme ve şifreleme açıklıklarının tespiti</span>
+            </div>
+          </div>
+          <div class="mt-8">
+            <a
+              href="#on-analiz-formu"
+              class="inline-flex items-center gap-2 text-sm font-bold text-brandBlue-600 hover:text-brandBlue-800"
+            >
+              <span>Raporlama için analiz talep edin</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Örnek Dashboard UI (Görsel Kart) -->
+        <div class="lg:col-span-7 bg-navy-950 text-slate-200 p-6 sm:p-8 rounded-3xl shadow-xl border border-navy-800 relative overflow-hidden">
+          
+          <!-- Demo Etiketi -->
+          <div class="flex items-center justify-between border-b border-navy-800 pb-4 mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="text-xs font-mono font-bold tracking-wider uppercase text-slate-400">BT MASASI / KVKK GUARD RAPORU</span>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-navy-800 text-amber-400 text-xs font-semibold">
+              Örnek Demo Çıktısı
+            </span>
+          </div>
+
+          <!-- Skor Kartı -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            <div class="p-4 rounded-2xl bg-navy-900 border border-navy-800 text-center">
+              <span class="text-xs text-slate-400 block mb-1">Teknik Risk Skoru</span>
+              <span class="text-3xl sm:text-4xl font-extrabold text-amber-400 font-mono">76 / 100</span>
+              <span class="text-[11px] text-amber-300 block mt-1">Orta Seviye Risk</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-navy-900 border border-navy-800 text-center">
+              <span class="text-xs text-slate-400 block mb-1">Kritik Bulgular</span>
+              <span class="text-3xl sm:text-4xl font-extrabold text-rose-500 font-mono">3 Adet</span>
+              <span class="text-[11px] text-rose-300 block mt-1">Acil Müdahale</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-navy-900 border border-navy-800 text-center">
+              <span class="text-xs text-slate-400 block mb-1">Orta Riskler</span>
+              <span class="text-3xl sm:text-4xl font-extrabold text-amber-500 font-mono">3 Adet</span>
+              <span class="text-[11px] text-amber-300 block mt-1">İyileştirme Gerekli</span>
+            </div>
+          </div>
+
+          <!-- Örnek Kritik Bulgular Listesi -->
+          <div class="space-y-2.5 text-xs sm:text-sm">
+            <div class="flex items-start gap-2.5 p-3 rounded-xl bg-navy-900/80 border border-rose-900/40 text-rose-200">
+              <span class="flex-shrink-0 text-base">🔴</span>
+              <div>
+                <span class="font-bold text-white block">İşten ayrılan 2 personelin kurumsal e-posta ve bulut hesabı hala aktif.</span>
+                <span class="text-slate-400 text-xs mt-0.5 block">Risk: Eski çalışanların kişisel veri ve ticari kayıtlara uzaktan erişebilmesi.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-3 rounded-xl bg-navy-900/80 border border-rose-900/40 text-rose-200">
+              <span class="flex-shrink-0 text-base">🔴</span>
+              <div>
+                <span class="font-bold text-white block">Muhasebe ve bordro klasörünün yedeği 21 gündür başarılı tamamlanmıyor.</span>
+                <span class="text-slate-400 text-xs mt-0.5 block">Risk: Olası disk arızası veya fidye yazılımında çalışan/müşteri verilerinin kaybı.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-3 rounded-xl bg-navy-900/80 border border-rose-900/40 text-rose-200">
+              <span class="flex-shrink-0 text-base">🔴</span>
+              <div>
+                <span class="font-bold text-white block">Finans ve müşteri klasörüne tüm ofis çalışanları "Yazma" yetkisiyle erişebiliyor.</span>
+                <span class="text-slate-400 text-xs mt-0.5 block">Risk: Rol tabanlı yetkilendirme (RBAC) eksikliği, yetkisiz veri aktarımı.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-3 rounded-xl bg-navy-900/60 border border-amber-900/40 text-amber-200">
+              <span class="flex-shrink-0 text-base">🟠</span>
+              <div>
+                <span class="font-bold text-slate-100 block">Dışarıya taşınan 6 dizüstü bilgisayarda disk şifreleme (BitLocker) kapalı.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-3 rounded-xl bg-navy-900/60 border border-amber-900/40 text-amber-200">
+              <span class="flex-shrink-0 text-base">🟠</span>
+              <div>
+                <span class="font-bold text-slate-100 block">Yönetici yetkisine sahip 4 kullanıcıda çok faktörlü doğrulama (MFA) aktif değil.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5 p-3 rounded-xl bg-navy-900/60 border border-amber-900/40 text-amber-200">
+              <span class="flex-shrink-0 text-base">🟠</span>
+              <div>
+                <span class="font-bold text-slate-100 block">Sunucu işletim sistemi ve kritik yazılımlarda güvenlik güncellemeleri 5 aydır gecikmiş.</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-[11px] text-slate-500 text-center mt-5">
+            * Yukarıdaki tablo, işletmelere yapılan teknik denetim sonucunda sunulan bulgu çıktısının temsilî bir örneğidir.
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ÜCRETSİZ ÖN ANALİZ FORMU SECTION -->
+  <section id="on-analiz-formu" class="py-16 sm:py-24 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-brandBlue-600 block mb-2">
+          İlk Adım
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          Ücretsiz KVKK Teknik Risk Ön Analizi
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600">
+          İşletmenizin mevcut veri güvenliği ve BT risklerini kısa bir ön değerlendirmeyle inceleyelim.
+        </p>
+      </div>
+
+      <div class="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-sm">
+        <KvkkRiskForm />
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. HİZMET SÜRECİ (5 AŞAMALI TİMELİNE) -->
+  <section class="py-16 sm:py-24 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          KVKK Guard Nasıl Çalışır?
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600">
+          Teknik uyum sürecini karmaşıklaştırmadan, 5 adımlı ölçülebilir bir operasyon planıyla hayata geçiriyoruz.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+        
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold font-mono text-brandBlue-600 uppercase mb-2">Aşama 01</div>
+            <h3 class="text-lg font-bold text-navy-900 mb-2">Ön Analiz</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Mevcut BT altyapısı, kullanılan yazılımlar ve veri güvenliği süreçleri ön denetimle değerlendirilir.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold font-mono text-brandBlue-600 uppercase mb-2">Aşama 02</div>
+            <h3 class="text-lg font-bold text-navy-900 mb-2">Sistem Haritalama</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Kişisel veri içeren tüm donanım, sunucu, bulut hesapları ve erişim noktaları eksiksiz haritalandırılır.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold font-mono text-brandBlue-600 uppercase mb-2">Aşama 03</div>
+            <h3 class="text-lg font-bold text-navy-900 mb-2">Risk Analizi</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Tespit edilen teknik açıklar, yetki fazlalıkları ve yedekleme riskleri önem seviyesine göre puanlanır.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold font-mono text-brandBlue-600 uppercase mb-2">Aşama 04</div>
+            <h3 class="text-lg font-bold text-navy-900 mb-2">Teknik İyileştirme</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Rol tabanlı yetkiler, MFA, BitLocker, yedek şifreleme ve uç nokta güvenlik politikaları sisteme uygulanır.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold font-mono text-brandBlue-600 uppercase mb-2">Aşama 05</div>
+            <h3 class="text-lg font-bold text-navy-900 mb-2">Sürekli İzleme</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Personel değişiklikleri, yeni yazılımlar ve teknik riskler periyodik olarak kontrol edilir ve raporlanır.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. SÜREKLİ HİZMET VURGUSU (OLAY SENARYOLARI) -->
+  <section class="py-16 sm:py-24 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          KVKK teknik uyum tek seferlik bir çalışma değildir
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+          Yeni çalışanlar, yeni yazılımlar, bulut servisleri, cihazlar ve erişim yetkileri şirketinizin veri güvenliği profilini sürekli değiştirir. KVKK Guard, bu değişikliklerin teknik güvenlik açısından kontrol altında tutulmasını sağlar.
+        </p>
+      </div>
+
+      <!-- 5 Olay Senaryosu Akışı -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        
+        <div class="p-5 rounded-2xl bg-white border border-slate-200 flex flex-col justify-between">
+          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Senaryo 1</div>
+          <div class="text-sm font-bold text-navy-900 mb-2">Yeni çalışan işe başladı</div>
+          <div class="text-xs text-brandBlue-600 font-bold mb-2">↓</div>
+          <p class="text-xs text-slate-600">
+            Departmanına uygun rol yetkileri, güvenli e-posta ve MFA tanımlanır; gereksiz klasör erişimleri engellenir.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white border border-slate-200 flex flex-col justify-between">
+          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Senaryo 2</div>
+          <div class="text-sm font-bold text-navy-900 mb-2">Çalışan işten ayrıldı</div>
+          <div class="text-xs text-rose-600 font-bold mb-2">↓</div>
+          <p class="text-xs text-slate-600">
+            E-posta, bulut, VPN ve yerel sunucu hesapları derhal kapatılır, yetkileri iptal edilir ve cihaz teslim alınır.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white border border-slate-200 flex flex-col justify-between">
+          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Senaryo 3</div>
+          <div class="text-sm font-bold text-navy-900 mb-2">Yeni CRM/ERP alındı</div>
+          <div class="text-xs text-brandBlue-600 font-bold mb-2">↓</div>
+          <p class="text-xs text-slate-600">
+            Veritabanı güvenliği, kullanıcı erişim rolleri ve otomatik yedekleme planı envantere işlenir.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white border border-slate-200 flex flex-col justify-between">
+          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Senaryo 4</div>
+          <div class="text-sm font-bold text-navy-900 mb-2">Yeni NAS / Depolama kuruldu</div>
+          <div class="text-xs text-brandBlue-600 font-bold mb-2">↓</div>
+          <p class="text-xs text-slate-600">
+            Ortak klasör yetkileri sınırlandırılır, dış erişim portları kapatılır ve şifreli yedekleme yapılandırılır.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white border border-slate-200 flex flex-col justify-between">
+          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Senaryo 5</div>
+          <div class="text-sm font-bold text-navy-900 mb-2">Microsoft 365'e geçildi</div>
+          <div class="text-xs text-brandBlue-600 font-bold mb-2">↓</div>
+          <p class="text-xs text-slate-600">
+            Tüm kullanıcılara MFA zorunluluğu, güvenli dosya paylaşım sınırları ve yönetici güvenliği uygulanır.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. KVKK GUARD + YÖNETİLEN BT (CROSS-SELL) -->
+  <section class="py-16 sm:py-24 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <div class="lg:col-span-6">
+          <span class="text-xs font-bold uppercase tracking-wider text-brandBlue-600 block mb-2">
+            Bütünleşik Hizmet Modeli
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+            Dış Kaynak BT Hizmetinizle Birlikte Çalışır
+          </h2>
+          <p class="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed">
+            KVKK Guard ayrı ve kopuk bir danışmanlık katmanı olmak yerine, BT Masası'nın yönetilen BT altyapısıyla entegre biçimde çalışır. Tek bir hizmet sağlayıcı üzerinden hem günlük BT operasyonlarınızı hem de kişisel veri güvenliğini etkileyen teknik süreçlerinizi yönetebilirsiniz.
+          </p>
+          <div class="mt-8">
+            <a
+              href="/hizmetler/yonetilen-bt-hizmetleri"
+              id="managed-it-cross-link"
+              class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-bold text-brandBlue-600 hover:text-white bg-brandBlue-50 hover:bg-brandBlue-600 border border-brandBlue-200 rounded-xl transition-all"
+            >
+              Dış Kaynak BT Hizmetlerini İncele →
+            </a>
+          </div>
+        </div>
+
+        <!-- Görsel Akış Şeması -->
+        <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200">
+          <div class="text-center font-bold text-navy-900 text-sm mb-6 flex items-center justify-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-brandBlue-600"></span>
+            <span>BT Masası Entegre Operasyon Mimarisi</span>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-3 bg-white rounded-xl border border-slate-200 flex items-center justify-between text-xs sm:text-sm">
+              <span class="font-semibold text-navy-900">1. Kullanıcı Desteği & Help Desk</span>
+              <span class="text-slate-500 font-mono text-xs">Sorun Çözümü</span>
+            </div>
+            <div class="p-3 bg-white rounded-xl border border-slate-200 flex items-center justify-between text-xs sm:text-sm">
+              <span class="font-semibold text-navy-900">2. Endpoint & Cihaz Yönetimi</span>
+              <span class="text-slate-500 font-mono text-xs">Güncelleme & Koruma</span>
+            </div>
+            <div class="p-3 bg-white rounded-xl border border-slate-200 flex items-center justify-between text-xs sm:text-sm">
+              <span class="font-semibold text-navy-900">3. Network & Sunucu Altyapısı</span>
+              <span class="text-slate-500 font-mono text-xs">Firewall & NAS</span>
+            </div>
+            <div class="p-3 bg-white rounded-xl border border-slate-200 flex items-center justify-between text-xs sm:text-sm">
+              <span class="font-semibold text-navy-900">4. Yedekleme & Felaket Kurtarma</span>
+              <span class="text-slate-500 font-mono text-xs">Test Edilen Kopyalar</span>
+            </div>
+            <div class="p-3 bg-white rounded-xl border border-slate-200 flex items-center justify-between text-xs sm:text-sm">
+              <span class="font-semibold text-navy-900">5. Siber Güvenlik & Hesap Yönetimi</span>
+              <span class="text-slate-500 font-mono text-xs">MFA & Parola</span>
+            </div>
+            <div class="p-4 bg-brandBlue-600 text-white rounded-xl shadow-sm flex items-center justify-between text-xs sm:text-sm font-bold">
+              <span>6. KVKK GUARD</span>
+              <span class="bg-brandBlue-700 px-2 py-0.5 rounded text-[11px]">Teknik Veri Güvenliği</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. HUKUKİ VE TEKNİK SORUMLULUK AYRIMI -->
+  <section class="py-16 sm:py-24 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          Teknik Uyum ve Hukuki Uyum Birlikte Çalışır
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600">
+          Kişisel verilerin korunması hem hukuki mevzuata hem de teknik bilişim güvenliğine dayanır. Sorumluluk alanlarını net olarak ayrıştırıyoruz.
+        </p>
+      </div>
+
+      <!-- İki Kolonlu Karşılaştırma -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Kolon 1: BT Masası (Teknik Kapsam) -->
+        <div class="p-6 sm:p-8 bg-white rounded-3xl border-2 border-brandBlue-200 shadow-sm">
+          <div class="inline-block px-3 py-1 bg-brandBlue-50 text-brandBlue-800 rounded-lg text-xs font-bold uppercase mb-4">
+            BT Masası Sorumluluk Alanı
+          </div>
+          <h3 class="text-2xl font-bold text-navy-900 mb-4">Teknik Tedbirler ve BT Operasyonu</h3>
+          <ul class="space-y-3 text-sm text-slate-700">
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-brandBlue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>BT varlık envanteri (PC, sunucu, firewall, NAS, bulut)</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-brandBlue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Teknik veri haritası ve sistem tespitleri</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-brandBlue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Erişim ve yetki matrisi (Rol tabanlı kısıtlamalar)</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-brandBlue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Uç nokta güvenliği (Antivirüs, EDR, BitLocker disk şifreleme)</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-brandBlue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Çok faktörlü doğrulama (MFA) ve parola politikaları</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-brandBlue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Yedekleme planı ve planlı geri yükleme (restore) testleri</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-brandBlue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Ağ güvenliği ve loglama altyapısı</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-brandBlue-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Kullanıcı hesap yaşam döngüsü ve teknik risk analizi</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Kolon 2: Hukuki Danışmanlık (Hukuk Kapsamı) -->
+        <div class="p-6 sm:p-8 bg-white rounded-3xl border border-slate-200 shadow-sm">
+          <div class="inline-block px-3 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-bold uppercase mb-4">
+            Hukuk Danışmanı Sorumluluk Alanı
+          </div>
+          <h3 class="text-2xl font-bold text-navy-900 mb-4">Hukuki Süreçler ve Mevzuat Uyum</h3>
+          <ul class="space-y-3 text-sm text-slate-700">
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Hukuki işleme şartlarının tespiti ve analizi</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Aydınlatma metinlerinin hukuki yazımı ve onaylanması</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Açık rıza formları ve çalışan sözleşme maddeleri</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Tedarikçi ve gizlilik sözleşmelerinin hazırlanması</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Mevzuata uygun hukuki saklama sürelerinin belirlenmesi</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Yurt dışına veri aktarımının hukuki değerlendirmesi</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>VERBİS kayıt yükümlülüğünün hukuki açıdan değerlendirilmesi</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bilgilendirici Ayrım Açıklaması -->
+      <div class="mt-8 p-6 rounded-2xl bg-amber-50 border border-amber-200 text-amber-950 text-xs sm:text-sm leading-relaxed">
+        <strong>Önemli Bilgilendirme:</strong> BT Masası KVKK Guard, hukuki danışmanlığın yerine geçmez. Hizmetimiz kişisel veri güvenliği ve KVKK kapsamındaki teknik süreçlere, bilişim altyapısına ve teknik tedbirlere odaklanır. Gerekli durumlarda hukuki süreçlerin KVKK konusunda uzman hukuk danışmanlarıyla birlikte yürütülmesi önerilir.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 10. KİMLER İÇİN UYGUN? (8 SEKTÖR KARTI) -->
+  <section class="py-16 sm:py-24 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          Kimler İçin Uygun?
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600">
+          Kişisel veri barındıran farklı sektörlerin operasyonel ihtiyaçlarına özel teknik kontroller uyguluyoruz.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+            📊
+          </div>
+          <h3 class="text-base font-bold text-navy-900 mb-1">Muhasebe & Mali Müşavirlik</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Çok sayıda mükellefe ait bilanço, bordro, TC kimlik ve finansal verilerin ortak ağda güvenle korunması.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+            🩺
+          </div>
+          <h3 class="text-base font-bold text-navy-900 mb-1">Sağlık & Klinik İşletmeleri</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Hasta geçmişi ve özel nitelikli kişisel veriler nedeniyle yüksek düzeyli şifreleme ve erişim kısıtlaması.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+            🏭
+          </div>
+          <h3 class="text-base font-bold text-navy-900 mb-1">Üretim & Sanayi İşletmeleri</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Fabrika, ofis ve depo arasında çalışan, tedarikçi ve müşteri verilerinin dağınık sistemlerde toplanması.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+            🎓
+          </div>
+          <h3 class="text-base font-bold text-navy-900 mb-1">Eğitim Kurumları</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Öğrenci, veli ve personel kayıtları ile kamera kayıtlarının güvenli arşivlenmesi ve erişim denetimi.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+            🛒
+          </div>
+          <h3 class="text-base font-bold text-navy-900 mb-1">E-Ticaret & Perakende</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Yoğun müşteri siparişi, adres ve ödeme bilgisi akışında hesap güvenliği ve veritabanı koruması.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+            🚚
+          </div>
+          <h3 class="text-base font-bold text-navy-900 mb-1">Lojistik & Taşımacılık</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Müşteri teslimat adresleri, şoför/çalışan kimlikleri ve saha operasyon verilerinin izlenmesi.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+            ⚖️
+          </div>
+          <h3 class="text-base font-bold text-navy-900 mb-1">Hukuk Büroları</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Müvekkil gizliliği ve adli dava dosyalarının yüksek gizlilik gereksinimine uygun şifreli yedeklenmesi.
+          </p>
+        </Card>
+
+        <Card>
+          <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center font-bold mb-4">
+            🏢
+          </div>
+          <h3 class="text-base font-bold text-navy-900 mb-1">KOBİ'ler & Aile Şirketleri</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            VERBİS kayıt zorunluluğu olmasa dahi veri güvenliği yükümlülükleri için pratik teknik kontroller.
+          </p>
+        </Card>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. SIKÇA SORULAN SORULAR (FAQ) -->
+  <section class="py-16 sm:py-24 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          Sıkça Sorulan Sorular
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-600">
+          KVKK teknik uyum ve veri güvenliği hizmetimiz hakkında merak edilenler.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {faqList.map((item) => (
+          <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
+            <h3 class="text-lg font-bold text-navy-900 mb-2">
+              {item.q}
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              {item.a}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. SON ÇAĞRI (SON CTA) -->
+  <section class="py-16 sm:py-24 bg-navy-950 text-white relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <span class="text-xs font-bold uppercase tracking-wider text-brandTeal-400 block mb-3">
+        Teknik Güvenlik & Süreklilik
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6">
+        Kişisel Verileriniz Nerede ve Kimlerin Erişiminde?
+      </h2>
+      <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+        İşletmenizin teknik veri güvenliği durumunu görmek, riskleri sınıflandırmak ve uygulanabilir kontroller geliştirmek için KVKK teknik risk ön analizi talep edin.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="#on-analiz-formu"
+          class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-brandBlue-600 hover:bg-brandBlue-700 active:bg-brandBlue-800 rounded-xl shadow-lg transition-all"
+        >
+          Ücretsiz Risk Analizi Talep Et →
+        </a>
+
+        {siteConfig.phoneDisplay && (
+          <a
+            href={`tel:${siteConfig.phoneE164}`}
+            id="kvkk-phone-cta"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold text-slate-200 hover:text-white bg-navy-900 hover:bg-navy-800 border border-navy-800 rounded-xl transition-colors"
+          >
+            <svg class="w-5 h-5 text-brandTeal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <span>BT Uzmanıyla Görüş</span>
+          </a>
+        )}
+      </div>
+
+      <!-- Doğal Bağlantılar -->
+      <div class="mt-12 pt-8 border-t border-navy-900 text-xs text-slate-400 flex flex-wrap items-center justify-center gap-6">
+        <a href="/hizmetler/kurumsal-it-destek" class="hover:text-slate-200 underline">Kurumsal IT Destek</a>
+        <span>·</span>
+        <a href="/hizmetler/siber-guvenlik-yedekleme" class="hover:text-slate-200 underline">Siber Güvenlik & Yedekleme</a>
+        <span>·</span>
+        <a href="/hizmetler/microsoft-365-bulut" class="hover:text-slate-200 underline">Microsoft 365 & Bulut</a>
+        <span>·</span>
+        <a href="/aksaray-kurumsal-it-destek" class="hover:text-slate-200 underline">Aksaray Kurumsal BT</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Analytics Event Listener Script -->
+  <script>
+    function trackEvent(eventName: string, params: Record<string, any> = {}) {
+      try {
+        const dataLayer = (window as any).dataLayer;
+        if (Array.isArray(dataLayer)) {
+          dataLayer.push({ event: eventName, ...params });
+        }
+        window.dispatchEvent(new CustomEvent(eventName, { detail: params }));
+      } catch {
+        // sessizce geç
+      }
+    }
+
+    // Sayfa görüntüleme
+    trackEvent('kvkk_page_view', { page: window.location.pathname });
+
+    // Hero CTA tıklaması
+    const heroBtn = document.getElementById('hero-primary-cta');
+    if (heroBtn) {
+      heroBtn.addEventListener('click', () => {
+        trackEvent('kvkk_risk_analysis_click');
+      });
+    }
+
+    // Telefon tıklaması
+    const phoneBtn = document.getElementById('kvkk-phone-cta');
+    if (phoneBtn) {
+      phoneBtn.addEventListener('click', () => {
+        trackEvent('kvkk_phone_click');
+      });
+    }
+
+    // Yönetilen BT çapraz satış tıklaması
+    const managedItBtn = document.getElementById('managed-it-cross-link');
+    if (managedItBtn) {
+      managedItBtn.addEventListener('click', () => {
+        trackEvent('kvkk_managed_it_click');
+      });
+    }
+  </script>
+</BaseLayout>
