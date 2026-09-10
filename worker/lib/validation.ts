@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const phoneRegex = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,20}$/;
 
 export const leadSchema = z.object({
-  formType: z.enum(['contact', 'risk_assessment']),
+  formType: z.enum(['contact', 'risk_assessment', 'kvkk_audit']),
   name: z.string().trim().min(2, 'İsim en az 2 karakter olmalıdır.').max(80, 'İsim en fazla 80 karakter olabilir.'),
   company: z.string().trim().min(2, 'Firma adı en az 2 karakter olmalıdır.').max(120, 'Firma adı en fazla 120 karakter olabilir.'),
   email: z
@@ -24,9 +24,9 @@ export const leadSchema = z.object({
   employeeRange: z.string().max(40).optional().or(z.literal('')),
   deviceRange: z.string().max(40).optional().or(z.literal('')),
   locationCount: z.string().max(40).optional().or(z.literal('')),
-  services: z.array(z.string().max(60)).max(8).optional(),
+  services: z.array(z.string().max(60)).max(15).optional(),
   preferredContact: z.enum(['phone', 'email', 'whatsapp']).optional(),
-  message: z.string().trim().min(10, 'Mesajınız en az 10 karakter olmalıdır.').max(1500, 'Mesajınız en fazla 1500 karakter olabilir.'),
+  message: z.string().trim().min(5, 'Açıklama veya notunuz en az 5 karakter olmalıdır.').max(1500, 'Mesajınız en fazla 1500 karakter olabilir.'),
   consent: z.literal(true, {
     message: 'KVKK aydınlatma metnini onaylamanız gerekmektedir.',
   }),

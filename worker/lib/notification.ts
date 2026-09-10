@@ -12,7 +12,9 @@ export function formatLeadEmailContent(lead: LeadInput): { subject: string; text
     ? 'WhatsApp Mesajı'
     : 'Kurumsal E-posta';
 
-  const formName = lead.formType === 'risk_assessment'
+  const formName = lead.formType === 'kvkk_audit'
+    ? 'KVKK Teknik Risk Ön Analizi'
+    : lead.formType === 'risk_assessment'
     ? 'Ücretsiz BT Ön Değerlendirmesi'
     : 'İletişim Formu';
 
