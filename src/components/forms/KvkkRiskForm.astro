@@ -1,0 +1,378 @@
+---
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAAEmRPzbpA11QT4FI';
+---
+
+<form id="kvkk-form" class="space-y-6 max-w-2xl mx-auto" novalidate>
+  <!-- Anti-Bot Honeypot -->
+  <div style="display:none !important;" aria-hidden="true">
+    <label for="kvkk-hp">Lütfen bu alanı boş bırakın</label>
+    <input type="text" id="kvkk-hp" name="website_url_hp" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <input type="hidden" name="formType" value="kvkk_audit" />
+  <input type="hidden" id="kvkk-source" name="source" value="" />
+
+  <!-- Ad Soyad & Firma Adı -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label for="kvkk-name" class="block text-sm font-semibold text-navy-900 mb-1">
+        Ad Soyad <span class="text-rose-600">*</span>
+      </label>
+      <input
+        type="text"
+        id="kvkk-name"
+        name="name"
+        required
+        minlength="2"
+        maxlength="80"
+        placeholder="Adınız Soyadınız"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+      />
+    </div>
+
+    <div>
+      <label for="kvkk-company" class="block text-sm font-semibold text-navy-900 mb-1">
+        Firma Adı <span class="text-rose-600">*</span>
+      </label>
+      <input
+        type="text"
+        id="kvkk-company"
+        name="company"
+        required
+        minlength="2"
+        maxlength="120"
+        placeholder="İşletmenizin Unvanı"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+      />
+    </div>
+  </div>
+
+  <!-- Telefon & E-posta -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label for="kvkk-phone" class="block text-sm font-semibold text-navy-900 mb-1">
+        Telefon Numarası <span class="text-rose-600">*</span>
+      </label>
+      <input
+        type="tel"
+        id="kvkk-phone"
+        name="phone"
+        required
+        placeholder="05XX XXX XX XX"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+      />
+    </div>
+
+    <div>
+      <label for="kvkk-email" class="block text-sm font-semibold text-navy-900 mb-1">
+        Kurumsal E-posta
+      </label>
+      <input
+        type="email"
+        id="kvkk-email"
+        name="email"
+        placeholder="ad@sirketiniz.com"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+      />
+    </div>
+  </div>
+
+  <!-- Çalışan & Bilgisayar Sayısı & VERBİS Durumu -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div>
+      <label for="kvkk-employee" class="block text-sm font-semibold text-navy-900 mb-1">
+        Çalışan Sayısı
+      </label>
+      <select
+        id="kvkk-employee"
+        name="employeeRange"
+        class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 bg-white"
+      >
+        <option value="">Seçiniz</option>
+        <option value="1-9">1 – 9 Çalışan</option>
+        <option value="10-24">10 – 24 Çalışan</option>
+        <option value="25-49">25 – 49 Çalışan</option>
+        <option value="50-99">50 – 99 Çalışan</option>
+        <option value="100+">100+ Çalışan</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="kvkk-device" class="block text-sm font-semibold text-navy-900 mb-1">
+        Bilgisayar Sayısı
+      </label>
+      <select
+        id="kvkk-device"
+        name="deviceRange"
+        class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 bg-white"
+      >
+        <option value="">Seçiniz</option>
+        <option value="1-5">1 – 5 Bilgisayar</option>
+        <option value="6-15">6 – 15 Bilgisayar</option>
+        <option value="16-30">16 – 30 Bilgisayar</option>
+        <option value="31-50">31 – 50 Bilgisayar</option>
+        <option value="50+">50+ Bilgisayar</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="kvkk-verbis" class="block text-sm font-semibold text-navy-900 mb-1">
+        VERBİS Kaydı
+      </label>
+      <select
+        id="kvkk-verbis"
+        name="verbisStatus"
+        class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 bg-white"
+      >
+        <option value="Bilmiyorum">Bilmiyorum</option>
+        <option value="Var">Var</option>
+        <option value="Yok">Yok</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Kullanılan Sistemler (Checkbox Grubu) -->
+  <div>
+    <span class="block text-sm font-semibold text-navy-900 mb-2">
+      İşletmenizde Kullanılan Sistemler (Birden fazla seçebilirsiniz)
+    </span>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs sm:text-sm text-slate-700">
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="systems" value="Microsoft 365" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <span>Microsoft 365</span>
+      </label>
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="systems" value="Google Workspace" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <span>Google Workspace</span>
+      </label>
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="systems" value="NAS / Dosya Sunucusu" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <span>NAS / Dosya Sunucusu</span>
+      </label>
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="systems" value="ERP" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <span>ERP Sistemi</span>
+      </label>
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="systems" value="CRM" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <span>CRM Programı</span>
+      </label>
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="systems" value="Muhasebe Programı" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <span>Muhasebe Programı</span>
+      </label>
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="systems" value="Kamera Sistemi" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <span>Kamera / Güvenlik Sistemi</span>
+      </label>
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="systems" value="Bulut Depolama" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <span>Bulut Depolama</span>
+      </label>
+      <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+        <input type="checkbox" name="systems" value="Diğer" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <span>Diğer Sistemler</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Öncelikli Sorun veya Not -->
+  <div>
+    <label for="kvkk-message" class="block text-sm font-semibold text-navy-900 mb-1">
+      Öncelikli Riskler veya Belirtmek İstediğiniz Notlar
+    </label>
+    <textarea
+      id="kvkk-message"
+      name="notes"
+      rows="3"
+      maxlength="1500"
+      placeholder="Örn: Eski çalışan hesaplarının kapatıldığından emin değiliz, muhasebe dosyalarına kimlerin eriştiğini kontrol etmek istiyoruz..."
+      class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
+    ></textarea>
+  </div>
+
+  <!-- Tercih Edilen İletişim Yolu -->
+  <div>
+    <label for="kvkk-contact-pref" class="block text-sm font-semibold text-navy-900 mb-1">
+      Görüşme İçin Tercih Ettiğiniz İletişim Kanalı
+    </label>
+    <select
+      id="kvkk-contact-pref"
+      name="preferredContact"
+      class="w-full sm:w-64 px-3 py-2 rounded-xl border border-slate-300 focus:border-brandBlue-600 text-sm bg-white"
+    >
+      <option value="phone">Telefon Görüşmesi</option>
+      <option value="email">Kurumsal E-posta</option>
+      <option value="whatsapp">WhatsApp Mesajı</option>
+    </select>
+  </div>
+
+  <!-- KVKK Onayı -->
+  <div class="flex items-start gap-3">
+    <input
+      type="checkbox"
+      id="kvkk-consent"
+      name="consent"
+      required
+      class="mt-1 h-4 w-4 rounded border-slate-300 text-brandBlue-600 focus:ring-brandBlue-500"
+    />
+    <label for="kvkk-consent" class="text-xs text-slate-600 leading-relaxed">
+      <a href="/kvkk-aydinlatma-metni" target="_blank" class="text-brandBlue-600 underline hover:text-brandBlue-800">
+        KVKK Aydınlatma Metni
+      </a>'ni okudum. Ön analiz ve teknik değerlendirme kapsamında paylaştığım bilgilerin işlenmesini onaylıyorum. <span class="text-rose-600">*</span>
+    </label>
+  </div>
+
+  <!-- Cloudflare Turnstile -->
+  <div class="pt-2">
+    <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light"></div>
+  </div>
+
+  <!-- Canlı Durum Mesajı Bölgesi -->
+  <div id="kvkk-status-region" class="p-4 rounded-xl text-sm hidden" aria-live="polite"></div>
+
+  <!-- Gönder Butonu -->
+  <button
+    type="submit"
+    id="kvkk-submit-btn"
+    class="w-full py-4 px-6 rounded-xl font-bold text-white bg-brandBlue-600 hover:bg-brandBlue-700 active:bg-brandBlue-800 shadow transition-all focus-visible:outline-brandBlue-600 disabled:opacity-50 text-base"
+  >
+    Ücretsiz Ön Analiz Talep Et
+  </button>
+</form>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+  // Kartvizit QR ve UTM parametre yakalama
+  const urlParams = new URLSearchParams(window.location.search);
+  const utmSource = urlParams.get('utm_source');
+  const utmMedium = urlParams.get('utm_medium');
+  const utmCampaign = urlParams.get('utm_campaign');
+
+  const sourceInput = document.getElementById('kvkk-source') as HTMLInputElement | null;
+  if (sourceInput && (utmSource || utmMedium || utmCampaign)) {
+    const rawSource = [
+      utmSource ? `source=${utmSource}` : '',
+      utmMedium ? `medium=${utmMedium}` : '',
+      utmCampaign ? `campaign=${utmCampaign}` : '',
+    ].filter(Boolean).join('&');
+    sourceInput.value = rawSource.slice(0, 120);
+  }
+
+  const form = document.getElementById('kvkk-form') as HTMLFormElement | null;
+  const statusRegion = document.getElementById('kvkk-status-region');
+  const submitBtn = document.getElementById('kvkk-submit-btn') as HTMLButtonElement | null;
+
+  // Analytics event dispatch yardımcısı
+  function trackEvent(eventName: string, params: Record<string, any> = {}) {
+    try {
+      const dataLayer = (window as any).dataLayer;
+      if (Array.isArray(dataLayer)) {
+        dataLayer.push({ event: eventName, ...params });
+      }
+      window.dispatchEvent(new CustomEvent(eventName, { detail: params }));
+    } catch {
+      // sessizce geç
+    }
+  }
+
+  let formStarted = false;
+  if (form) {
+    form.addEventListener('focusin', () => {
+      if (!formStarted) {
+        formStarted = true;
+        trackEvent('kvkk_form_start');
+      }
+    }, { once: true });
+  }
+
+  if (form && statusRegion && submitBtn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusRegion.className = 'p-4 rounded-xl text-sm hidden';
+      statusRegion.textContent = '';
+
+      const formData = new FormData(form);
+      const consent = form.querySelector<HTMLInputElement>('#kvkk-consent')?.checked;
+      const turnstileToken = formData.get('cf-turnstile-response') || formData.get('token');
+
+      if (!consent) {
+        statusRegion.className = 'p-4 rounded-xl text-sm bg-rose-50 text-rose-800 border border-rose-200 block';
+        statusRegion.textContent = 'Lütfen KVKK aydınlatma metnini onaylayın.';
+        return;
+      }
+
+      if (!turnstileToken) {
+        statusRegion.className = 'p-4 rounded-xl text-sm bg-rose-50 text-rose-800 border border-rose-200 block';
+        statusRegion.textContent = 'Lütfen güvenlik doğrulamasını tamamlayın.';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'İletiliyor...';
+
+      const selectedSystems: string[] = [];
+      form.querySelectorAll<HTMLInputElement>('input[name="systems"]:checked').forEach((cb) => {
+        selectedSystems.push(cb.value);
+      });
+
+      const verbisStatus = String(formData.get('verbisStatus') || 'Bilmiyorum');
+      const customNotes = String(formData.get('notes') || '').trim();
+
+      const combinedMessage = [
+        `VERBİS Durumu: ${verbisStatus}`,
+        selectedSystems.length > 0 ? `Kullanılan Sistemler: ${selectedSystems.join(', ')}` : '',
+        customNotes ? `Notlar: ${customNotes}` : '',
+      ]
+        .filter(Boolean)
+        .join('\n');
+
+      const payload = {
+        formType: 'kvkk_audit',
+        name: String(formData.get('name') || '').trim(),
+        company: String(formData.get('company') || '').trim(),
+        email: String(formData.get('email') || '').trim() || undefined,
+        phone: String(formData.get('phone') || '').trim(),
+        employeeRange: String(formData.get('employeeRange') || '') || undefined,
+        deviceRange: String(formData.get('deviceRange') || '') || undefined,
+        locationCount: `VERBİS: ${verbisStatus}`,
+        services: selectedSystems.length > 0 ? selectedSystems : undefined,
+        preferredContact: formData.get('preferredContact') || undefined,
+        message: combinedMessage.length >= 5 ? combinedMessage : 'KVKK Teknik Risk Ön Analizi Talebi',
+        consent: true,
+        website_url_hp: String(formData.get('website_url_hp') || ''),
+        token: String(turnstileToken),
+        source: sourceInput?.value || undefined,
+      };
+
+      try {
+        const response = await fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          form.reset();
+          trackEvent('kvkk_form_submit', { formType: 'kvkk_audit' });
+          statusRegion.className = 'p-4 rounded-xl text-sm bg-teal-50 text-teal-800 border border-teal-200 block';
+          statusRegion.textContent = result.message || 'Ön analiz talebiniz alındı. Sistem uzmanımız en kısa sürede sizinle iletişime geçecektir.';
+          submitBtn.textContent = 'Talebiniz Alındı';
+        } else {
+          statusRegion.className = 'p-4 rounded-xl text-sm bg-rose-50 text-rose-800 border border-rose-200 block';
+          statusRegion.textContent = result.message || 'Gönderim sırasında bir hata oluştu. Lütfen bilgilerinizi kontrol ediniz.';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Tekrar Deneyin';
+        }
+      } catch {
+        statusRegion.className = 'p-4 rounded-xl text-sm bg-rose-50 text-rose-800 border border-rose-200 block';
+        statusRegion.textContent = 'Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Ücretsiz Ön Analiz Talep Et';
+      }
+    });
+  }
+</script>
