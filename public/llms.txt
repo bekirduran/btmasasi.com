@@ -15,11 +15,22 @@
 - Türkiye genelinde uzaktan destek
 
 ## Important pages
-- https://btmasasi.com/hizmetler
-- https://btmasasi.com/aksaray-kurumsal-it-destek
-- https://btmasasi.com/nasil-calisir
-- https://btmasasi.com/ucretsiz-bt-kontrolu
-- https://btmasasi.com/iletisim
+- [Hizmetler](https://btmasasi.com/hizmetler)
+- [Aksaray Kurumsal IT Destek](https://btmasasi.com/aksaray-kurumsal-it-destek)
+- [Nasıl Çalışır](https://btmasasi.com/nasil-calisir)
+- [Ücretsiz BT Kontrolü](https://btmasasi.com/ucretsiz-bt-kontrolu)
+- [İletişim](https://btmasasi.com/iletisim)
 
 ## Contact
-- https://btmasasi.com/iletisim
+- [İletişim](https://btmasasi.com/iletisim)
+
+## Türkiye geneli hizmet kapsamı
+
+BT Masası Aksaray merkezlidir. 81 il ve 973 ilçede uzaktan destek başvuruları değerlendirilir. Aksaray, Niğde, Nevşehir, Kayseri, Konya ve Ankara için planlı yerinde hizmet uygunluğu açık adres ve iş kapsamına göre teyit edilir. Yerel hizmet sayfaları şube veya sabit ulaşım süresi anlamına gelmez. Mesai: hafta içi 09:00–18:00.
+
+- [Uzaktan destek süreci](https://btmasasi.com/uzaktan-bt-destek)
+- [İl ve ilçe hizmet dizini](https://btmasasi.com/hizmet-bolgeleri)
+- [Sektörel çözümler](https://btmasasi.com/sektorler)
+- [Makine tarafından okunabilir hizmet rehberi](https://btmasasi.com/hizmet-rehberi.json)
+
+Sektör sayfalarındaki çözüm senaryoları örnektir; gerçek müşteri vakası veya ölçülmüş başarı sonucu değildir. Formlardaki WebMCP açıklamaları alanları tanımlar; gönderim kullanıcı incelemesi, onayı ve güvenlik doğrulaması gerektirir.

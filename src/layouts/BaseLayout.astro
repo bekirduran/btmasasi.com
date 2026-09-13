@@ -7,6 +7,7 @@ import Footer from '../components/layout/Footer.astro';
 
 export interface Props {
   title?: string;
+  noindex?: boolean;
   description?: string;
   canonical?: string;
   ogImage?: string;
@@ -19,6 +20,7 @@ export interface Props {
 
 const {
   title,
+  noindex = false,
   description,
   canonical,
   ogImage,
@@ -34,6 +36,7 @@ const {
 <html lang="tr" class="h-full scroll-smooth">
   <SeoHead
     title={title}
+    noindex={noindex}
     description={description}
     canonical={canonical}
     ogImage={ogImage}
@@ -41,7 +44,7 @@ const {
     publishedTime={publishedTime}
     modifiedTime={modifiedTime}
   >
-    <JsonLd schemaType={schemaType} customSchema={customSchema} />
+    <JsonLd title={title} canonical={canonical} schemaType={schemaType} customSchema={customSchema} />
   </SeoHead>
   <body class="flex flex-col min-h-screen antialiased bg-white text-slate-700">
     <!-- Erişilebilirlik: İçeriğe Atla -->

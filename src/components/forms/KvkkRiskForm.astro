@@ -2,11 +2,15 @@
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAAEmRPzbpA11QT4FI';
 ---
 
-<form id="kvkk-form" class="space-y-6 max-w-2xl mx-auto" novalidate>
+<form id="kvkk-form" class="space-y-6 max-w-2xl mx-auto"
+  toolname="prepare_kvkk_technical_review_request"
+  tooldescription="İşletmenin kişisel veri içeren sistemleri için KVKK teknik ön analiz talebi formunu doldurur. İletişim bilgileri, kullanılan sistemler, VERBİS kayıt durumu ve risk notları alınır. Kullanıcı bilgileri gözden geçirir, KVKK onayını ve güvenlik doğrulamasını tamamlayarak talebi gönderir."
+  novalidate
+>
   <!-- Anti-Bot Honeypot -->
   <div style="display:none !important;" aria-hidden="true">
     <label for="kvkk-hp">Lütfen bu alanı boş bırakın</label>
-    <input type="text" id="kvkk-hp" name="website_url_hp" tabindex="-1" autocomplete="off" />
+    <input type="text" id="kvkk-hp" name="website_url_hp" toolparamdescription="Spam kontrolü için ayrılmış alan; boş bırakılır." tabindex="-1" autocomplete="off" />
   </div>
 
   <input type="hidden" name="formType" value="kvkk_audit" />
@@ -22,6 +26,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
         type="text"
         id="kvkk-name"
         name="name"
+        toolparamdescription="Talep sahibi kişinin adı ve soyadı; 2–80 karakter."
         required
         minlength="2"
         maxlength="80"
@@ -38,6 +43,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
         type="text"
         id="kvkk-company"
         name="company"
+        toolparamdescription="Talebin ilgili olduğu işletmenin adı veya unvanı; 2–120 karakter."
         required
         minlength="2"
         maxlength="120"
@@ -57,6 +63,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
         type="tel"
         id="kvkk-phone"
         name="phone"
+        toolparamdescription="Talep sahibine ulaşılabilecek telefon numarası; örnek: 0530 123 45 67."
         required
         placeholder="05XX XXX XX XX"
         class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
@@ -71,6 +78,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
         type="email"
         id="kvkk-email"
         name="email"
+        toolparamdescription="Talep sahibinin kurumsal e-posta adresi; isteğe bağlı."
         placeholder="ad@sirketiniz.com"
         class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
       />
@@ -86,6 +94,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
       <select
         id="kvkk-employee"
         name="employeeRange"
+        toolparamdescription="İşletmedeki çalışan sayısına uygun aralık; isteğe bağlı."
         class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 bg-white"
       >
         <option value="">Seçiniz</option>
@@ -104,6 +113,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
       <select
         id="kvkk-device"
         name="deviceRange"
+        toolparamdescription="İşletmedeki aktif bilgisayar sayısına uygun aralık; isteğe bağlı."
         class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 bg-white"
       >
         <option value="">Seçiniz</option>
@@ -122,6 +132,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
       <select
         id="kvkk-verbis"
         name="verbisStatus"
+        toolparamdescription="İşletmenin bilinen VERBİS kayıt durumu; bilinmiyorsa Bilmiyorum seçilir."
         class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 bg-white"
       >
         <option value="Bilmiyorum">Bilmiyorum</option>
@@ -138,39 +149,39 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
     </span>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs sm:text-sm text-slate-700">
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="systems" value="Microsoft 365" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <input type="checkbox" name="systems" toolparamdescription="İşletmede kullanılan sistem: Microsoft 365. Birden fazla sistem seçilebilir." value="Microsoft 365" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
         <span>Microsoft 365</span>
       </label>
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="systems" value="Google Workspace" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <input type="checkbox" name="systems" toolparamdescription="İşletmede kullanılan sistem: Google Workspace. Birden fazla sistem seçilebilir." value="Google Workspace" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
         <span>Google Workspace</span>
       </label>
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="systems" value="NAS / Dosya Sunucusu" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <input type="checkbox" name="systems" toolparamdescription="İşletmede kullanılan sistem: NAS / Dosya Sunucusu. Birden fazla sistem seçilebilir." value="NAS / Dosya Sunucusu" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
         <span>NAS / Dosya Sunucusu</span>
       </label>
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="systems" value="ERP" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <input type="checkbox" name="systems" toolparamdescription="İşletmede kullanılan sistem: ERP. Birden fazla sistem seçilebilir." value="ERP" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
         <span>ERP Sistemi</span>
       </label>
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="systems" value="CRM" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <input type="checkbox" name="systems" toolparamdescription="İşletmede kullanılan sistem: CRM. Birden fazla sistem seçilebilir." value="CRM" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
         <span>CRM Programı</span>
       </label>
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="systems" value="Muhasebe Programı" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <input type="checkbox" name="systems" toolparamdescription="İşletmede kullanılan sistem: Muhasebe Programı. Birden fazla sistem seçilebilir." value="Muhasebe Programı" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
         <span>Muhasebe Programı</span>
       </label>
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="systems" value="Kamera Sistemi" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <input type="checkbox" name="systems" toolparamdescription="İşletmede kullanılan sistem: Kamera Sistemi. Birden fazla sistem seçilebilir." value="Kamera Sistemi" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
         <span>Kamera / Güvenlik Sistemi</span>
       </label>
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="systems" value="Bulut Depolama" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <input type="checkbox" name="systems" toolparamdescription="İşletmede kullanılan sistem: Bulut Depolama. Birden fazla sistem seçilebilir." value="Bulut Depolama" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
         <span>Bulut Depolama</span>
       </label>
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="systems" value="Diğer" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
+        <input type="checkbox" name="systems" toolparamdescription="İşletmede kullanılan sistem: Diğer. Birden fazla sistem seçilebilir." value="Diğer" class="rounded text-brandBlue-600 focus:ring-brandBlue-500" />
         <span>Diğer Sistemler</span>
       </label>
     </div>
@@ -184,6 +195,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
     <textarea
       id="kvkk-message"
       name="notes"
+      toolparamdescription="İşletmenin öncelikli teknik riskleri ve ön analiz notları; isteğe bağlı, en fazla 1500 karakter."
       rows="3"
       maxlength="1500"
       placeholder="Örn: Eski çalışan hesaplarının kapatıldığından emin değiliz, muhasebe dosyalarına kimlerin eriştiğini kontrol etmek istiyoruz..."
@@ -199,6 +211,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
     <select
       id="kvkk-contact-pref"
       name="preferredContact"
+      toolparamdescription="Geri dönüş için tercih edilen iletişim kanalı: telefon, e-posta veya WhatsApp."
       class="w-full sm:w-64 px-3 py-2 rounded-xl border border-slate-300 focus:border-brandBlue-600 text-sm bg-white"
     >
       <option value="phone">Telefon Görüşmesi</option>
@@ -213,6 +226,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
       type="checkbox"
       id="kvkk-consent"
       name="consent"
+      toolparamdescription="Kullanıcının KVKK Aydınlatma Metnini okuyup talebin yanıtlanması amacıyla veri işlenmesine verdiği onay; yalnızca kullanıcı onayladıysa işaretlenir."
       required
       class="mt-1 h-4 w-4 rounded border-slate-300 text-brandBlue-600 focus:ring-brandBlue-500"
     />

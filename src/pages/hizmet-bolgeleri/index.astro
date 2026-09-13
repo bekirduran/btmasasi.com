@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import { provinces, districtCount, serviceMode, locationPath, onsiteNames } from '../../lib/locations';
+const title = '81 İlde Uzaktan BT Desteği ve Hizmet Bölgeleri';
+const description = 'Türkiye genelinde kurumsal uzaktan BT desteği. Aksaray, Niğde, Nevşehir, Kayseri, Konya ve Ankara için planlı yerinde hizmet uygunluğunu değerlendirelim.';
+---
+<BaseLayout title={title} description={description}>
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <Breadcrumbs items={[{label:'Hizmet Bölgeleri'}]} />
+    <p class="mt-6 text-sm font-semibold text-brandBlue-700">Aksaray merkezli · Türkiye geneli</p>
+    <h1 class="mt-3 max-w-4xl text-3xl font-extrabold text-navy-900 sm:text-5xl">İşletmenizin konumu değişir.<br />BT desteğinizin düzeni değişmez.</h1>
+    <p class="mt-6 max-w-3xl text-lg text-slate-600">{provinces.length} il ve {districtCount} ilçe için uzaktan destek kapsamını inceleyin. Bilgisayar, kullanıcı, e-posta, bulut ve yedekleme ihtiyaçlarınıza sektörünüze uygun bir çalışma planı hazırlayalım.</p>
+    <div class="mt-8 grid gap-5 md:grid-cols-2">
+      <section class="rounded-2xl bg-slate-50 p-6"><h2 class="text-xl font-bold">Türkiye geneli uzaktan destek</h2><p class="mt-3 text-slate-600">İnternet ve yetkili uzak erişim sağlanan işletmelerle mesai saatlerinde çalışabiliriz. Fiziksel cihaz/kablo işleri ve yerel tedarikçi koordinasyonu kapsamda ayrıca tanımlanır.</p><a class="mt-4 inline-block font-semibold text-brandBlue-700" href="/uzaktan-bt-destek">Uzaktan çalışma modelini inceleyin →</a></section>
+      <section class="rounded-2xl border border-brandBlue-200 p-6"><h2 class="text-xl font-bold">Planlı yerinde hizmet</h2><p class="mt-3 text-slate-600">{onsiteNames.join(', ')} için ziyaret uygunluğu; ilçe, tam adres, iş kapsamı ve ekip takvimine göre değerlendirilir. Tüm bu iller için sabit 1–2 saat ulaşım veya müdahale garantisi verilmez.</p><a class="mt-4 inline-block font-semibold text-brandBlue-700" href="/ucretsiz-bt-kontrolu">Lokasyonunuzu birlikte değerlendirelim →</a></section>
+    </div>
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold">İlinizi seçin</h2>
+      <label for="province-search" class="mt-5 block text-sm font-semibold">İl adıyla filtreleyin</label>
+      <input id="province-search" type="search" placeholder="Örnek: Niğde, İstanbul, Ankara" class="mt-2 w-full max-w-lg rounded-xl border border-slate-300 px-4 py-3" autocomplete="off" />
+      <p id="province-count" class="mt-3 text-sm text-slate-600" aria-live="polite">{provinces.length} il listeleniyor.</p>
+      <ul id="province-list" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{provinces.map(p => <li data-province={p.name}><a href={locationPath(p)} class="block h-full rounded-xl border border-slate-200 p-5 hover:border-brandBlue-500"><span class="text-xs font-semibold text-slate-500">{String(p.id).padStart(2,'0')}</span><h3 class="mt-1 text-lg font-bold">{p.name}</h3><p class="mt-2 text-sm text-slate-600">{p.districts.length} ilçe · {serviceMode(p) === 'remote' ? 'Uzaktan destek' : 'Uzaktan + planlı yerinde'}</p></a></li>)}</ul>
+    </section>
+    <p class="mt-10 text-sm text-slate-500">İl ve ilçe adları açık kaynak idari veri setinden alınmıştır. Hizmet modeli BT Masası tarafından belirlenir; listelenen konumlar şube adresi değildir.</p>
+  </div>
+</BaseLayout>
+<script>
+  const input = document.querySelector<HTMLInputElement>('#province-search');
+  const items = Array.from(document.querySelectorAll<HTMLElement>('#province-list li'));
+  const count = document.querySelector('#province-count');
+  const normalize = (value: string) => value.toLocaleLowerCase('tr-TR').replace(/ı/g,'i').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  input?.addEventListener('input', () => {
+    const search = normalize(input.value.trim());
+    for (const item of items) item.hidden = !normalize(item.dataset.province || '').includes(search);
+    if (count) count.textContent = `${items.filter(item => !item.hidden).length} il listeleniyor.`;
+  });
+</script>

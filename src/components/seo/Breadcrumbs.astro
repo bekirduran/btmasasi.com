@@ -1,4 +1,5 @@
 ---
+import { canonicalUrl } from '../../lib/seo/urls';
 export interface BreadcrumbItem {
   label: string;
   href?: string;
@@ -13,11 +14,11 @@ const { items } = Astro.props;
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  itemListElement: items.map((item, index) => ({
+  itemListElement: [{ label: 'Ana Sayfa', href: '/' }, ...items].map((item, index) => ({
     '@type': 'ListItem',
     position: index + 1,
     name: item.label,
-    ...(item.href ? { item: new URL(item.href, 'https://btmasasi.com').href } : {}),
+    item: canonicalUrl(item.href || Astro.url.pathname),
   })),
 };
 ---

@@ -1,0 +1,37 @@
+---
+import { provinces } from '../../lib/locations';
+import { services } from '../../data/services';
+import { sectors } from '../../data/sectors';
+const options = { provinces, services: services.map(({slug,name}) => ({slug,name})), sectors: sectors.map(({slug,name}) => ({slug,name})) };
+---
+<fieldset class="rounded-xl border border-slate-200 p-4">
+  <legend class="px-2 text-sm font-semibold">Hizmet konumu ve kapsamı</legend>
+  <p class="mb-4 text-sm text-slate-600">Geldiğiniz sayfanın seçimleri burada gösterilir; değiştirebilirsiniz.</p>
+  <div class="grid gap-4 sm:grid-cols-2">
+    <label class="text-sm">İl<select id="lead-province" name="province" toolparamdescription="Hizmet istenen il; kullanıcı değiştirebilir." class="mt-1 block w-full rounded-lg border border-slate-300 p-2"><option value="">Seçiniz</option>{provinces.map(p => <option value={p.slug}>{p.name}</option>)}</select></label>
+    <label class="text-sm">İlçe<select id="lead-district" name="district" toolparamdescription="Seçilen ile bağlı hizmet ilçesi." class="mt-1 block w-full rounded-lg border border-slate-300 p-2"><option value="">Önce il seçiniz</option></select></label>
+    <label class="text-sm">Hizmet<select id="lead-service" name="serviceContext" toolparamdescription="Talebin ilgili olduğu ana hizmet." class="mt-1 block w-full rounded-lg border border-slate-300 p-2"><option value="">Seçiniz</option>{services.map(p => <option value={p.slug}>{p.name}</option>)}</select></label>
+    <label class="text-sm">Sektör<select id="lead-sector" name="sector" toolparamdescription="İşletmenin faaliyet sektörü; isteğe bağlı." class="mt-1 block w-full rounded-lg border border-slate-300 p-2"><option value="">Seçiniz</option>{sectors.map(p => <option value={p.slug}>{p.name}</option>)}</select></label>
+  </div>
+</fieldset>
+<script id="lead-options" type="application/json" set:html={JSON.stringify(options).replace(/</g,'\\u003c')} />
+<script>
+  const options = JSON.parse(document.getElementById('lead-options')!.textContent!) as {provinces: {slug:string;name:string;districts:{slug:string;name:string}[]}[]};
+  const province = document.getElementById('lead-province') as HTMLSelectElement;
+  const district = document.getElementById('lead-district') as HTMLSelectElement;
+  const query = new URLSearchParams(location.search);
+  function updateDistricts() {
+    const selected = options.provinces.find(p => p.slug === province.value);
+    district.replaceChildren(new Option(selected ? 'Seçiniz' : 'Önce il seçiniz',''));
+    selected?.districts.forEach(d => district.add(new Option(d.name,d.slug)));
+    district.disabled = !selected;
+  }
+  function selectValid(select: HTMLSelectElement, value: string | null) {
+    if (value && Array.from(select.options).some(o => o.value === value)) select.value = value;
+  }
+  selectValid(province,query.get('il')); updateDistricts(); selectValid(district,query.get('ilce'));
+  selectValid(document.getElementById('lead-service') as HTMLSelectElement,query.get('hizmet'));
+  selectValid(document.getElementById('lead-sector') as HTMLSelectElement,query.get('sektor'));
+  province.addEventListener('change',updateDistricts);
+  province.form?.addEventListener('reset', () => setTimeout(updateDistricts,0));
+</script>

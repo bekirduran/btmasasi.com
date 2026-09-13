@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../../assets/logo.png';
 import { siteConfig } from '../../config/site';
 import { mainNavigation } from '../../config/navigation';
 ---
@@ -9,13 +11,18 @@ import { mainNavigation } from '../../config/navigation';
       
       <!-- Marka Logosu -->
       <a href="/" class="flex items-center gap-3 focus-visible:outline-brandBlue-600 rounded-lg p-1" aria-label="BT Masası Ana Sayfa">
-        <img
-          src="/brand/logo.png"
+        <Image
+          src={logo}
           alt="BT Masası — Bilgi Teknolojileri ve Danışmanlık"
           class="h-10 sm:h-12 w-auto object-contain"
-          width="240"
-          height="48"
+          width={250}
+          widths={[250, 500, 750]}
+          sizes="(min-width: 640px) 250px, 209px"
+          format="webp"
+          quality={85}
+          height={48}
           loading="eager"
+          fetchpriority="high"
         />
       </a>
 

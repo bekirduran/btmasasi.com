@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import { sectors } from '../../data/sectors';
+---
+<BaseLayout title="Sektörlere Göre Kurumsal BT Çözümleri" description="Üretim, muhasebe, lojistik, çok şubeli işletmeler, konaklama ve profesyonel ofisler için kapsamı belirli BT desteği.">
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <Breadcrumbs items={[{label:'Sektörler'}]} />
+    <h1 class="mt-6 text-3xl font-extrabold sm:text-5xl">İş akışınıza uygun BT desteği</h1>
+    <p class="mt-5 max-w-3xl text-lg text-slate-600">Her işletmenin kritik sistemi farklıdır. Sektörünüze göre ele aldığımız ihtiyaçları, çalışma sınırlarını ve takip edilecek çıktıları inceleyin.</p>
+    <div class="mt-9 grid gap-5 md:grid-cols-2">{sectors.map(s => <a class="rounded-2xl border border-slate-200 p-7 hover:border-brandBlue-500" href={`/sektorler/${s.slug}`}><h2 class="text-xl font-bold">{s.name}</h2><p class="mt-3 text-slate-600">{s.summary}</p><span class="mt-4 block font-semibold text-brandBlue-700">Kapsamı ve örnek senaryoyu inceleyin →</span></a>)}</div>
+    <a class="mt-9 inline-block font-semibold text-brandBlue-700 underline" href="/hizmet-bolgeleri">İl ve ilçenize göre hizmet kapsamını bulun</a>
+  </div>
+</BaseLayout>

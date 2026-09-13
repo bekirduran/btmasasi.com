@@ -1,4 +1,8 @@
 ---
+import ServiceContent from '../../components/marketing/ServiceContent.astro';
+import { services } from '../../data/services';
+import { provinces, serviceLocationPath } from '../../lib/locations';
+const serviceDetail = services.find(s => s.slug === 'network-sunucu')!;
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
 import Button from '../../components/ui/Button.astro';
@@ -108,5 +112,9 @@ const serviceSchema = {
       </Button>
     </div>
 
+  </div>
+  <div class="mx-auto max-w-6xl space-y-10 px-4 py-12 sm:px-6">
+    <ServiceContent service={serviceDetail} />
+    <section><h2 class="text-2xl font-bold">İlinize göre hizmet kapsamı</h2><ul class="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">{provinces.map(p => <li><a class="block rounded-lg border border-slate-200 p-3 text-sm text-brandBlue-700" href={serviceLocationPath(p,undefined,serviceDetail)}>{p.name} →</a></li>)}</ul></section>
   </div>
 </BaseLayout>

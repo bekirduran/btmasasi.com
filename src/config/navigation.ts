@@ -10,6 +10,8 @@ export const mainNavigation: NavItem[] = [
     label: "Hizmetler",
     href: "/hizmetler",
     children: [
+      { label: "Türkiye Geneli Uzaktan Destek", href: "/uzaktan-bt-destek" },
+      { label: "81 İl ve İlçe Hizmetleri", href: "/hizmet-bolgeleri" },
       {
         label: "Yönetilen BT Hizmetleri",
         href: "/hizmetler/yonetilen-bt-hizmetleri",
@@ -80,6 +82,8 @@ export const footerNavigation = {
     { label: "Aksaray Kurumsal IT Destek", href: "/aksaray-kurumsal-it-destek" },
   ],
   company: [
+    { label: "Hizmet Bölgeleri", href: "/hizmet-bolgeleri" },
+    { label: "Sektörel Çözümler", href: "/sektorler" },
     { label: "Hakkımızda", href: "/hakkimizda" },
     { label: "Kimler İçin?", href: "/kimler-icin" },
     { label: "Nasıl Çalışır?", href: "/nasil-calisir" },

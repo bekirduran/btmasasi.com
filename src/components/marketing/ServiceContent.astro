@@ -1,0 +1,21 @@
+---
+import type { Service } from '../../data/services';
+interface Props { service: Service }
+const { service } = Astro.props;
+---
+<section class="space-y-6">
+  <h2 class="text-2xl font-bold text-navy-900">{service.name}: kapsam ve teslimatlar</h2>
+  <div class="grid gap-5 md:grid-cols-2">
+    <div class="rounded-2xl bg-slate-50 p-6"><h3 class="text-lg font-bold">Uzaktan yürütülebilen işler</h3><ul class="mt-4 list-disc space-y-3 pl-5 text-sm text-slate-700">{service.remote.map(item=><li>{item}</li>)}</ul></div>
+    <div class="rounded-2xl border border-slate-200 p-6"><h3 class="text-lg font-bold">Yerinde çalışma gerektirebilen işler</h3><ul class="mt-4 list-disc space-y-3 pl-5 text-sm text-slate-700">{service.onsite.map(item=><li>{item}</li>)}</ul><p class="mt-4 text-sm text-slate-600">Fiziksel çalışma yöntemi tam lokasyona göre belirlenir. Aksaray ve uygun çevre lokasyonlarda planlı ziyaret ayrıca tekliflendirilir.</p></div>
+    <div class="rounded-2xl border border-slate-200 p-6"><h3 class="text-lg font-bold">Çalışma sonunda teslim edilenler</h3><ul class="mt-4 list-disc space-y-3 pl-5 text-sm text-slate-700">{service.deliverables.map(item=><li>{item}</li>)}</ul></div>
+    <div class="rounded-2xl bg-slate-50 p-6"><h3 class="text-lg font-bold">Hizmet sınırları</h3><ul class="mt-4 list-disc space-y-3 pl-5 text-sm text-slate-700">{service.exclusions.map(item=><li>{item}</li>)}</ul></div>
+  </div>
+</section>
+<section class="rounded-2xl border border-brandBlue-200 p-6">
+  <h2 class="text-xl font-bold">Hizmet bedelini neler belirler?</h2>
+  <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-700">{service.pricing.map(item=><li>{item}</li>)}</ul>
+  <p class="mt-4 text-sm text-slate-600">Ön değerlendirme → yazılı kapsam ve teklif → yetkili erişim/devralma → planlı çalışma → sonuç kontrolü. Yanıt süreleri ve destek saatleri sözleşmede tanımlanır.</p>
+  <a href="/paketler" class="mt-4 inline-block font-semibold text-brandBlue-700">Hizmet modellerini karşılaştırın →</a>
+</section>
+<section class="space-y-4"><h2 class="text-2xl font-bold">Hizmet hakkında sorular</h2>{service.faq.map(x=><details class="rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold text-navy-900">{x.q}</summary><p class="mt-3 text-sm leading-relaxed text-slate-600">{x.a}</p></details>)}</section>

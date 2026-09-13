@@ -1,8 +1,10 @@
 ---
+import { canonicalUrl as toCanonicalUrl } from '../../lib/seo/urls';
 import { siteConfig } from '../../config/site';
 
 export interface Props {
   title?: string;
+  noindex?: boolean;
   description?: string;
   canonical?: string;
   ogImage?: string;
@@ -13,7 +15,8 @@ export interface Props {
 
 const {
   title,
-  description = "BT Masası, Aksaray'daki işletmelere kurumsal IT destek, network, sunucu, Microsoft 365, yedekleme ve yönetilen BT hizmetleri sunar.",
+  noindex = false,
+  description = "Türkiye geneli uzaktan kurumsal IT desteği; Aksaray ve çevre illerde planlı yerinde hizmet. Network, sunucu, Microsoft 365 ve yedekleme çözümleri.",
   canonical,
   ogImage = "/og-default.png",
   ogType = "website",
@@ -25,7 +28,7 @@ const {
 const siteTitle = title ? `${title} | ${siteConfig.brandName}` : `${siteConfig.brandName} | Aksaray Kurumsal IT Destek ve Yönetilen BT Hizmetleri`;
 
 // Canonical URL (mutlak ve trailing slash'sız)
-const canonicalUrl = canonical || new URL(Astro.url.pathname.replace(/\/$/, ''), siteConfig.domain).href;
+const canonicalUrl = toCanonicalUrl(canonical || Astro.url.pathname);
 const fullOgImageUrl = new URL(ogImage, siteConfig.domain).href;
 ---
 
@@ -35,6 +38,7 @@ const fullOgImageUrl = new URL(ogImage, siteConfig.domain).href;
   
   <title>{siteTitle}</title>
   <meta name="description" content={description} />
+  {noindex && <meta name="robots" content="noindex, follow" />}
   <link rel="canonical" href={canonicalUrl} />
   
   <!-- Favicon ve App Simgeleri -->

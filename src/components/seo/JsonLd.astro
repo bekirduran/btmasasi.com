@@ -1,78 +1,13 @@
 ---
-import { siteConfig } from '../../config/site';
-
+import { createPageGraph } from '../../lib/seo/schema';
 export interface Props {
+  title?: string;
+  canonical?: string;
   schemaType?: 'Organization' | 'WebSite' | 'Service' | 'Article' | 'FAQPage' | 'BreadcrumbList';
   customSchema?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
-
-const { schemaType = 'Organization', customSchema } = Astro.props;
-
-let generatedSchema: Record<string, unknown> | Array<Record<string, unknown>>;
-
-if (customSchema) {
-  generatedSchema = customSchema;
-} else if (schemaType === 'Organization') {
-  const orgSchema: Record<string, unknown> = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: siteConfig.brandName,
-    alternateName: siteConfig.descriptor,
-    url: siteConfig.domain,
-    logo: `${siteConfig.domain}/brand/logo.png`,
-    description: 'İşletmeler için yönetilen BT hizmetleri, kullanıcı desteği, network, bulut, yedekleme ve güvenlik çözümleri.',
-    founder: {
-      '@type': 'Person',
-      name: siteConfig.founderName,
-      jobTitle: siteConfig.founderTitle,
-      sameAs: siteConfig.socialLinks.linkedin ? [siteConfig.socialLinks.linkedin] : undefined,
-    },
-    sameAs: Object.values(siteConfig.socialLinks).filter(Boolean),
-    areaServed: [
-      {
-        '@type': 'AdministrativeArea',
-        name: 'Aksaray',
-      },
-      {
-        '@type': 'Country',
-        name: 'Türkiye',
-      },
-    ],
-  };
-
-  if (siteConfig.email) {
-    orgSchema.email = siteConfig.email;
-  }
-  if (siteConfig.phoneE164) {
-    orgSchema.telephone = siteConfig.phoneE164;
-  }
-  if (siteConfig.address) {
-    orgSchema.address = {
-      '@type': 'PostalAddress',
-      addressLocality: siteConfig.city,
-      addressCountry: siteConfig.country,
-      streetAddress: siteConfig.address,
-    };
-  }
-
-  generatedSchema = orgSchema;
-} else if (schemaType === 'WebSite') {
-  generatedSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: siteConfig.brandName,
-    url: siteConfig.domain,
-    description: 'İşletmenizin BT departmanı. Yönetilen bilgi teknolojileri ve kurumsal IT destek.',
-    inLanguage: 'tr-TR',
-  };
-} else {
-  generatedSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: siteConfig.brandName,
-    url: siteConfig.domain,
-  };
-}
+const { title = 'BT Masası', canonical, customSchema } = Astro.props;
+const graph = createPageGraph(canonical || Astro.url.pathname, title, customSchema);
+const json = JSON.stringify(graph).replace(/</g, '\\u003c');
 ---
-
-<script type="application/ld+json" set:html={JSON.stringify(generatedSchema)} />
+<script type="application/ld+json" set:html={json} />

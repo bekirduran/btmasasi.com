@@ -119,3 +119,16 @@ Siteniz canlıya çıktıktan sonra:
 2.  Alan adı mülkü (Domain property) olarak `btmasasi.com` ekleyin ve DNS TXT kaydı ile doğrulayın.
 3.  **Sitemaps** sekmesinden `https://btmasasi.com/sitemap-index.xml` adresini gönderin.
 4.  Ana sayfa ve `/aksaray-kurumsal-it-destek` sayfaları için "URL Denetimi" (URL Inspection) çalıştırıp dizine ekleme isteğinde bulunun.
+
+## GitHub Actions ile otomatik yayın
+
+`.github/workflows/deploy.yml`, `main` dalına her push sonrası üretim derlemesi, URL doğrulaması, TypeScript ve birim testlerinden sonra mevcut Worker'ı yayımlar. Actions ekranından `Run workflow` ile de tetiklenebilir. Manuel tarayıcı testi içermez.
+
+Repository Settings → Secrets and variables → Actions altında şu repository secrets gereklidir:
+
+- `CLOUDFLARE_API_TOKEN`: BT Masası'nın bulunduğu Cloudflare hesabına ve alan adına yayın yetkisi olan API token.
+- `CLOUDFLARE_ACCOUNT_ID`: aynı Cloudflare hesabının kimliği.
+
+İsteğe bağlı repository variable: `PUBLIC_TURNSTILE_SITE_KEY`. Tanımlanmazsa formlardaki mevcut public site key kullanılır. Sunucu Turnstile secret'ı Worker'da kalır; repoya eklenmez. Kimlik bilgileri eksikse akış açık hata mesajıyla durur. Secrets eklendikten sonra başarısız akış `Re-run all jobs` ile tekrar çalıştırılabilir.
+
+Cloudflare Git entegrasyonu ayrıca etkinleştirildiyse çift yayın oluşmaması için tek yayın yöntemi seçilmelidir.

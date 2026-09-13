@@ -1,0 +1,9 @@
+{
+  "source": "https://github.com/mumeyyizbuyuk/turkiye-data",
+  "revision": "a0a453c75134e4a690d6c453cc7e8b514aa1d2c1",
+  "upstream": "https://github.com/ubeydeozdmr/turkiye-api",
+  "retrievedAt": "2026-09-13",
+  "dataYear": 2025,
+  "license": "MIT",
+  "fields": "Only province/district names, slugs and IDs; no population or distance claims."
+}

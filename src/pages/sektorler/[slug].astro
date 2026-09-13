@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import SectorContent from '../../components/marketing/SectorContent.astro';
+import { sectors, type Sector } from '../../data/sectors';
+import { provinces, locationPath, leadUrl } from '../../lib/locations';
+export function getStaticPaths() { return sectors.map(sector => ({params:{slug:sector.slug},props:{sector}})); }
+interface Props { sector: Sector }
+const { sector } = Astro.props;
+const schema = {'@context':'https://schema.org','@type':'Service',name:sector.title,description:sector.summary,areaServed:{'@type':'Country',name:'Türkiye'}};
+---
+<BaseLayout title={sector.title} description={sector.summary} customSchema={schema}>
+  <div class="mx-auto max-w-6xl space-y-12 px-4 py-12 sm:px-6">
+    <div><Breadcrumbs items={[{label:'Sektörler',href:'/sektorler'},{label:sector.name}]} /><h1 class="mt-6 text-3xl font-extrabold sm:text-5xl">{sector.title}</h1><p class="mt-5 max-w-3xl text-lg text-slate-600">{sector.summary}</p><a class="mt-6 inline-block rounded-xl bg-brandBlue-600 px-5 py-3 font-semibold text-white" href={leadUrl(undefined,undefined,sector)}>Sektörünüz için değerlendirme isteyin</a></div>
+    <SectorContent sector={sector} />
+    <section><h2 class="text-2xl font-bold">İlinize göre hizmet kapsamı</h2><p class="mt-3 text-slate-600">Türkiye genelinde uzaktan destek; Aksaray ve uygun çevre lokasyonlarda planlı yerinde çalışma.</p><ul class="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">{provinces.map(p => <li><a class="block rounded-lg border border-slate-200 p-3 text-sm text-brandBlue-700" href={locationPath(p,undefined,sector)}>{p.name} →</a></li>)}</ul></section>
+  </div>
+</BaseLayout>

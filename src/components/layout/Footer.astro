@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../../assets/logo.png';
 import { siteConfig } from '../../config/site';
 import { footerNavigation } from '../../config/navigation';
 
@@ -13,12 +15,16 @@ const currentYear = new Date().getFullYear();
       <!-- Bölüm 1: Marka ve Tanım -->
       <div class="space-y-4">
         <a href="/" class="inline-block focus-visible:outline-white" aria-label="BT Masası">
-          <img
-            src="/brand/logo.png"
+          <Image
+            src={logo}
             alt="BT Masası"
             class="h-10 sm:h-12 w-auto brightness-0 invert opacity-95"
-            width="240"
-            height="48"
+            width={250}
+            widths={[250, 500, 750]}
+            sizes="(min-width: 640px) 250px, 209px"
+            format="webp"
+            quality={85}
+            height={48}
             loading="lazy"
           />
         </a>
@@ -159,7 +165,7 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Alt Telif & Yasal Not -->
-    <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 gap-4">
       <p>
         © {currentYear} {siteConfig.legalCompanyName || siteConfig.brandName}. Tüm hakları saklıdır.
       </p>

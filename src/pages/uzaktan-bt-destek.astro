@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+const title = 'Türkiye Geneli Uzaktan Kurumsal BT Desteği';
+const description = '81 ilde işletmelere yetkili uzak erişimle bilgisayar, kullanıcı, Microsoft 365, ağ ve yedekleme desteği. Kayıtlı talepler ve kapsamı belirli hizmet.';
+const questions = [
+  {q:'Uzaktan destek için ne gerekiyor?',a:'Çalışan internet bağlantısı, desteklenen bir cihaz, işletmenin yetkili kişisinin onayı ve işlem için gerekli erişim gerekir. Kurulum ve erişim yöntemi ilk görüşmede belirlenir.'},
+  {q:'Hangi işler uzaktan çözülebilir?',a:'Uygun sistemlerde kullanıcı ve e-posta sorunları, bulut hesabı yönetimi, yazıcı yapılandırması, güncelleme kontrolü ve yedekleme durumu incelenebilir. Kesin kapsam mevcut altyapıya bağlıdır.'},
+  {q:'İnternet kesilmişse veya cihaz açılmıyorsa ne olur?',a:'Uzak bağlantı kurulamadığında telefonla ön inceleme yapılabilir. Fiziksel müdahale gerektiren işler işletme yetkilisi veya yerel tedarikçiyle koordine edilir. Uygun çevre lokasyonlarda planlı ziyaret ayrıca değerlendirilir.'},
+  {q:'Aynı gün veya 7/24 destek garantisi var mı?',a:'Standart çalışma saatleri hafta içi 09:00–18:00 arasıdır. Yanıt süreleri, mesai dışı çalışma ve kritik sistem desteği sözleşmede ayrıca tanımlanır.'},
+  {q:'Uzaktan destek fiyatı nasıl belirlenir?',a:'Kullanıcı ve cihaz sayısı, sunucu/bulut yapısı, lokasyon sayısı, destek kapsamı, bakım takvimi ve varsa ziyaret ihtiyacı değerlendirilir. Donanım ve lisans bedelleri ayrıca belirtilir.'},
+];
+---
+<BaseLayout title={title} description={description} customSchema={{'@context':'https://schema.org','@type':'Service',name:title,description,areaServed:{'@type':'Country',name:'Türkiye'}}}>
+  <div class="mx-auto max-w-5xl space-y-10 px-4 py-12 sm:px-6">
+    <div><Breadcrumbs items={[{label:'Uzaktan BT Desteği'}]} /><h1 class="mt-6 text-3xl font-extrabold sm:text-5xl">Türkiye genelinde işletmenizin BT desteği</h1><p class="mt-5 text-lg text-slate-600">Aksaray merkezinden, farklı şehirlerdeki işletmelerin bilgisayar, kullanıcı, bulut ve destek süreçlerini yönetiyoruz. İşi kayıt altına alıyor, erişim yetkilerini belirliyor ve sonuçları takip ediyoruz.</p></div>
+    <section><h2 class="text-2xl font-bold">Destek süreci nasıl ilerler?</h2><ol class="mt-5 grid gap-5 sm:grid-cols-2"><li class="rounded-xl bg-slate-50 p-6"><h3 class="font-bold">1. İhtiyaç ve uygunluk</h3><p class="mt-3 text-slate-600">Cihaz, kullanıcı, kullanılan uygulamalar ve mevcut teknik sorunlar üzerinden destek kapsamını belirleriz.</p></li><li class="rounded-xl bg-slate-50 p-6"><h3 class="font-bold">2. Yetkili erişim</h3><p class="mt-3 text-slate-600">İşletme yetkilisiyle erişim ve onay yöntemini kararlaştırırız. Parolalar genel başvuru formunda paylaşılmaz.</p></li><li class="rounded-xl bg-slate-50 p-6"><h3 class="font-bold">3. Kayıtlı müdahale</h3><p class="mt-3 text-slate-600">Talebi iş etkisine göre önceliklendirir, yapılan işlemi kaydeder ve gerektiğinde yazılım/internet sağlayıcısıyla koordine ederiz.</p></li><li class="rounded-xl bg-slate-50 p-6"><h3 class="font-bold">4. Kontrol ve raporlama</h3><p class="mt-3 text-slate-600">Çözümü kullanıcıyla doğrular, tekrar eden sorunları bakım planına alır ve hizmet kapsamına göre raporlarız.</p></li></ol></section>
+    <section class="space-y-4"><h2 class="text-2xl font-bold">Uzaktan destek hakkında sorular</h2>{questions.map(x=><details class="rounded-xl border border-slate-200 p-5"><summary class="cursor-pointer font-semibold">{x.q}</summary><p class="mt-3 text-slate-600">{x.a}</p></details>)}</section>
+    <div class="flex flex-wrap gap-4"><a href="/ucretsiz-bt-kontrolu" class="rounded-xl bg-brandBlue-600 px-5 py-3 font-semibold text-white">Ücretsiz ön değerlendirme isteyin</a><a href="/hizmet-bolgeleri" class="rounded-xl border border-slate-300 px-5 py-3 font-semibold">İl ve ilçe hizmet kapsamları</a><a href="/sektorler" class="rounded-xl border border-slate-300 px-5 py-3 font-semibold">Sektörünüzü inceleyin</a></div>
+  </div>
+</BaseLayout>

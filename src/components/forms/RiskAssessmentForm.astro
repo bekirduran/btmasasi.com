@@ -1,16 +1,23 @@
 ---
+import LocationFields from './LocationFields.astro';
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAAEmRPzbpA11QT4FI';
 ---
 
-<form id="risk-form" class="space-y-6 max-w-2xl mx-auto" novalidate>
+<form id="risk-form" class="space-y-6 max-w-2xl mx-auto"
+  toolname="prepare_bt_assessment_request"
+  tooldescription="İşletmenin BT altyapısı için ücretsiz ön değerlendirme talebi formunu doldurur. İletişim bilgileri, cihaz ve çalışan sayıları, hizmet ihtiyaçları ve teknik sorunlar alınır. Kullanıcı bilgileri gözden geçirir, KVKK onayını ve güvenlik doğrulamasını tamamlayarak talebi gönderir."
+  novalidate
+>
   <!-- Honeypot -->
   <div style="display:none !important;" aria-hidden="true">
     <label for="risk-hp">Lütfen bu alanı boş bırakın</label>
-    <input type="text" id="risk-hp" name="website_url_hp" tabindex="-1" autocomplete="off" />
+    <input type="text" id="risk-hp" name="website_url_hp" toolparamdescription="Spam kontrolü için ayrılmış alan; boş bırakılır." tabindex="-1" autocomplete="off" />
   </div>
 
   <input type="hidden" name="formType" value="risk_assessment" />
   <input type="hidden" id="risk-source" name="source" value="" />
+
+  <LocationFields />
 
   <!-- Ad Soyad & Firma -->
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -22,6 +29,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
         type="text"
         id="risk-name"
         name="name"
+        toolparamdescription="Talep sahibi kişinin adı ve soyadı; 2–80 karakter."
         required
         minlength="2"
         maxlength="80"
@@ -38,6 +46,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
         type="text"
         id="risk-company"
         name="company"
+        toolparamdescription="Talebin ilgili olduğu işletmenin adı veya unvanı; 2–120 karakter."
         required
         minlength="2"
         maxlength="120"
@@ -57,6 +66,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
         type="tel"
         id="risk-phone"
         name="phone"
+        toolparamdescription="Talep sahibine ulaşılabilecek telefon numarası; örnek: 0530 123 45 67."
         required
         placeholder="05XX XXX XX XX"
         class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
@@ -71,6 +81,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
         type="email"
         id="risk-email"
         name="email"
+        toolparamdescription="Talep sahibinin kurumsal e-posta adresi; isteğe bağlı."
         placeholder="ad@sirketiniz.com"
         class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
       />
@@ -86,6 +97,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
       <select
         id="risk-employee"
         name="employeeRange"
+        toolparamdescription="İşletmedeki çalışan sayısına uygun aralık; isteğe bağlı."
         class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 bg-white"
       >
         <option value="">Seçiniz</option>
@@ -104,6 +116,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
       <select
         id="risk-device"
         name="deviceRange"
+        toolparamdescription="İşletmedeki aktif bilgisayar sayısına uygun aralık; isteğe bağlı."
         class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 bg-white"
       >
         <option value="">Seçiniz</option>
@@ -122,6 +135,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
       <select
         id="risk-location"
         name="locationCount"
+        toolparamdescription="İşletmenin ofis, şube veya fabrika lokasyonu sayısına uygun seçenek."
         class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 bg-white"
       >
         <option value="Tek Lokasyon">Tek Lokasyon / Ofis</option>
@@ -138,19 +152,19 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
     </span>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-700">
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="services" value="Kurumsal IT Destek" class="rounded text-brandBlue-600" />
+        <input type="checkbox" name="services" toolparamdescription="İşletmenin ihtiyaç duyduğu hizmet: Kurumsal IT Destek. Birden fazla hizmet seçilebilir." value="Kurumsal IT Destek" class="rounded text-brandBlue-600" />
         <span>Kullanıcı & Bilgisayar Desteği</span>
       </label>
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="services" value="Network ve Sunucu" class="rounded text-brandBlue-600" />
+        <input type="checkbox" name="services" toolparamdescription="İşletmenin ihtiyaç duyduğu hizmet: Network ve Sunucu. Birden fazla hizmet seçilebilir." value="Network ve Sunucu" class="rounded text-brandBlue-600" />
         <span>Ağ, Wi-Fi & Sunucu Yönetimi</span>
       </label>
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="services" value="Yedekleme ve Güvenlik" class="rounded text-brandBlue-600" />
+        <input type="checkbox" name="services" toolparamdescription="İşletmenin ihtiyaç duyduğu hizmet: Yedekleme ve Güvenlik. Birden fazla hizmet seçilebilir." value="Yedekleme ve Güvenlik" class="rounded text-brandBlue-600" />
         <span>Yedekleme & Temel Siber Güvenlik</span>
       </label>
       <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
-        <input type="checkbox" name="services" value="Microsoft 365 ve Bulut" class="rounded text-brandBlue-600" />
+        <input type="checkbox" name="services" toolparamdescription="İşletmenin ihtiyaç duyduğu hizmet: Microsoft 365 ve Bulut. Birden fazla hizmet seçilebilir." value="Microsoft 365 ve Bulut" class="rounded text-brandBlue-600" />
         <span>Microsoft 365 & Bulut E-posta</span>
       </label>
     </div>
@@ -164,10 +178,11 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
     <textarea
       id="risk-message"
       name="message"
+      toolparamdescription="İşletmenin teknik sorunları veya hizmet talebi; 10–1200 karakter; konum bilgisi ayrıca eklenir."
       rows="4"
       required
       minlength="10"
-      maxlength="1500"
+      maxlength="1200"
       placeholder="Örn: Yedeklerimizin düzenli çalışıp çalışmadığından emin değiliz, internet kopmalarında işler aksıyor..."
       class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brandBlue-600 focus:ring-2 focus:ring-brandBlue-100 text-sm text-slate-800 transition-colors"
     ></textarea>
@@ -181,6 +196,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
     <select
       id="risk-contact-pref"
       name="preferredContact"
+      toolparamdescription="Geri dönüş için tercih edilen iletişim kanalı: telefon, e-posta veya WhatsApp."
       class="w-full sm:w-64 px-3 py-2 rounded-xl border border-slate-300 focus:border-brandBlue-600 text-sm bg-white"
     >
       <option value="phone">Telefon Görüşmesi</option>
@@ -195,6 +211,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
       type="checkbox"
       id="risk-consent"
       name="consent"
+      toolparamdescription="Kullanıcının KVKK Aydınlatma Metnini okuyup talebin yanıtlanması amacıyla veri işlenmesine verdiği onay; yalnızca kullanıcı onayladıysa işaretlenir."
       required
       class="mt-1 h-4 w-4 rounded border-slate-300 text-brandBlue-600 focus:ring-brandBlue-500"
     />
@@ -252,7 +269,13 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
       statusRegion.className = 'p-4 rounded-xl text-sm hidden';
       statusRegion.textContent = '';
 
+      if (!form.reportValidity()) return;
       const formData = new FormData(form);
+      const context = ['province','district','service','sector'].map((key) => {
+        const select = document.getElementById(`lead-${key}`) as HTMLSelectElement;
+        const label = { province: 'İl', district: 'İlçe', service: 'Hizmet', sector: 'Sektör' }[key];
+        return select?.value ? `${label}: ${select.selectedOptions[0].textContent}` : '';
+      }).filter(Boolean).join(' · ');
       const consent = form.querySelector<HTMLInputElement>('#risk-consent')?.checked;
       const turnstileToken = formData.get('cf-turnstile-response') || formData.get('token');
 
@@ -287,7 +310,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAA
         locationCount: String(formData.get('locationCount') || '') || undefined,
         services: selectedServices.length > 0 ? selectedServices : undefined,
         preferredContact: formData.get('preferredContact') || undefined,
-        message: String(formData.get('message') || '').trim(),
+        message: [context, String(formData.get('message') || '').trim()].filter(Boolean).join('\n\n'),
         consent: true,
         website_url_hp: String(formData.get('website_url_hp') || ''),
         token: String(turnstileToken),

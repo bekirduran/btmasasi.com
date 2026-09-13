@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/seo/Breadcrumbs.astro';
+import ServiceContent from '../../components/marketing/ServiceContent.astro';
+import { services } from '../../data/services';
+import SectorContent from '../../components/marketing/SectorContent.astro';
+import { sectors } from '../../data/sectors';
+import { locationPages, type LocationPage, serviceLocationPath, coverageText, serviceMode, localNote, locationPath, leadUrl, provinces } from '../../lib/locations';
+import { organizationId } from '../../lib/seo/schema';
+import { canonicalUrl } from '../../lib/seo/urls';
+export function getStaticPaths() {
+  return locationPages.map(page => ({ params: { path: page.path.replace('/hizmet-bolgeleri/', '') }, props: { page } }));
+}
+interface Props { page: LocationPage }
+const { page } = Astro.props;
+const { province, district, sector, service } = page;
+const place = district ? `${district.name}, ${province.name}` : province.name;
+const breadcrumbs = [
+  { label: 'Hizmet Bölgeleri', href: '/hizmet-bolgeleri' },
+  { label: province.name, ...(district || sector || service ? { href: locationPath(province) } : {}) },
+  ...(district ? [{ label: district.name, ...(sector || service ? { href: locationPath(province, district) } : {}) }] : []),
+  ...(sector ? [{ label: sector.name }] : []),
+  ...(service ? [{ label: service.name }] : []),
+];
+const schema = {
+  '@context': 'https://schema.org', '@type': 'Service', '@id': `${canonicalUrl(page.path)}#service`,
+  name: page.title, description: page.description, provider: { '@id': organizationId },
+  serviceType: service ? service.name : sector ? `${sector.name} için kurumsal IT desteği` : 'Uzaktan kurumsal IT desteği',
+  areaServed: { '@type': 'AdministrativeArea', name: place, containedInPlace: { '@type': 'Country', name: 'Türkiye' } },
+};
+const nearby = provinces.filter(p => ['aksaray','nigde','nevsehir','kayseri','konya','ankara'].includes(p.slug) && p.slug !== province.slug);
+---
+<BaseLayout title={page.title} description={page.description} noindex={!page.indexable} customSchema={schema}>
+  <div class="border-b border-slate-200 bg-slate-50">
+    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      <Breadcrumbs items={breadcrumbs} />
+      <p class="mt-5 text-sm font-semibold text-brandBlue-700">{serviceMode(province) === 'remote' ? 'Türkiye geneli uzaktan destek' : 'Uzaktan destek + planlı yerinde hizmet'}</p>
+      <h1 class="mt-3 max-w-4xl text-3xl font-extrabold tracking-tight text-navy-900 sm:text-5xl">{page.title}</h1>
+      <p class="mt-6 max-w-3xl text-lg leading-relaxed text-slate-700">{coverageText(province, district)}</p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a href={leadUrl(province,district,sector,service)} class="rounded-xl bg-brandBlue-600 px-5 py-3 font-semibold text-white hover:bg-brandBlue-700">{place} için değerlendirme isteyin</a>
+        <a href="/uzaktan-bt-destek" class="rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-navy-900">Uzaktan destek nasıl işler?</a>
+      </div>
+    </div>
+  </div>
+  <div class="mx-auto max-w-6xl space-y-12 px-4 py-12 sm:px-6">
+    <section class="grid gap-6 md:grid-cols-2">
+      <div>
+        <h2 class="text-2xl font-bold text-navy-900">{place} için hizmet modeli</h2>
+        <p class="mt-4 leading-relaxed text-slate-600">BT Masası Aksaray merkezlidir. {place} hizmet sayfası bir şube adresi değil, hizmet kapsamını ve başvuru seçeneklerini gösterir. Çalışmalar yetkili erişim, kayıtlı talep ve işletmenizle kararlaştırılan hizmet koşulları üzerinden yürütülür.</p>
+        {localNote(province) && <p class="mt-4 leading-relaxed text-slate-600">{localNote(province)}</p>}
+      </div>
+      <div class="rounded-2xl bg-slate-50 p-6">
+        <h2 class="text-xl font-bold text-navy-900">İlk görüşmede netleştireceğimiz bilgiler</h2>
+        <ul class="mt-4 list-disc space-y-3 pl-5 text-sm text-slate-700">
+          <li>{district ? `${district.name} lokasyonunuzdaki` : `${province.name} içindeki ilçe ve lokasyonlarınızda bulunan`} kullanıcı, bilgisayar ve sunucu sayısı</li>
+          <li>İnternet bağlantısı, uzaktan erişim yetkisi ve kurum içi teknik sorumlu</li>
+          <li>Kullanılan e-posta, bulut, ERP ve yedekleme sistemleri</li>
+          <li>{serviceMode(province) === 'remote' ? 'Fiziksel işlerde görev alabilecek işletme yetkilisi veya mevcut yerel tedarikçi' : 'Yerinde çalışma gerekiyorsa tam adres, bakım zamanı ve ziyaret kapsamı'}</li>
+        </ul>
+        <p class="mt-4 text-sm text-slate-600">Mesai dışı çalışma, yol/ziyaret, donanım ve lisans bedelleri teklif kapsamında ayrıca belirtilir.</p>
+      </div>
+    </section>
+    {page.editorial && <section class="space-y-4"><h2 class="text-2xl font-bold">{page.editorial.title}</h2>{page.editorial.paragraphs.map(p => <p class="leading-relaxed text-slate-600">{p}</p>)}</section>}
+    {service ? <ServiceContent service={service} /> : sector ? <SectorContent sector={sector} /> : <section>
+      <h2 class="text-2xl font-bold text-navy-900">{place} işletmeleri için sektör çözümleri</h2>
+      <p class="mt-3 text-slate-600">İhtiyaçlarınızı sektörünüze göre inceleyin; kapsam, teslimatlar ve örnek çalışma adımlarını görün.</p>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{sectors.map(item => <a href={locationPath(province,district,item)} class="rounded-2xl border border-slate-200 p-6 hover:border-brandBlue-500"><h3 class="font-bold text-navy-900">{item.name}</h3><p class="mt-3 text-sm text-slate-600">{item.summary}</p><span class="mt-4 block text-sm font-semibold text-brandBlue-700">{item.name} desteğini inceleyin →</span></a>)}</div>
+    </section>}
+    {!sector && <section>
+      <h2 class="text-2xl font-bold">{place} için {service ? 'diğer hizmetler' : 'hizmetlerimiz'}</h2>
+      <ul class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{services.filter(item => item.slug !== service?.slug).map(item => <li><a class="block h-full rounded-xl border border-slate-200 p-5 hover:border-brandBlue-500" href={serviceLocationPath(province,district,item)}><h3 class="font-bold">{item.name}</h3><p class="mt-3 text-sm text-slate-600">{item.summary}</p></a></li>)}</ul>
+    </section>}
+    {!district && <section>
+      <h2 class="text-2xl font-bold text-navy-900">{province.name} ilçelerinde {service ? service.name.toLocaleLowerCase('tr-TR') : sector ? sector.name.toLocaleLowerCase('tr-TR') + ' için destek' : 'hizmet kapsamı'}</h2>
+      <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{province.districts.map(item => <li><a class="block rounded-lg border border-slate-200 px-4 py-3 text-sm text-brandBlue-700 hover:bg-slate-50" href={service ? serviceLocationPath(province,item,service) : locationPath(province,item,sector)}>{item.name} →</a></li>)}</ul>
+    </section>}
+    {district && <section><h2 class="text-xl font-bold">İlgili kapsamlar</h2><div class="mt-4 flex flex-wrap gap-4"><a class="text-brandBlue-700 underline" href={service ? serviceLocationPath(province,undefined,service) : locationPath(province,undefined,sector)}>{province.name} genelindeki hizmet kapsamı</a>{(sector || service) && <a class="text-brandBlue-700 underline" href={locationPath(province,district)}>{district.name} tüm sektörler</a>}<a class="text-brandBlue-700 underline" href="/hizmet-bolgeleri">81 il hizmet dizini</a></div></section>}
+    {serviceMode(province) !== 'remote' && <section><h2 class="text-xl font-bold">Planlı yerinde hizmet değerlendirilen diğer iller</h2><ul class="mt-4 flex flex-wrap gap-4">{nearby.map(p => <li><a class="text-brandBlue-700 underline" href={locationPath(p)}>{p.name}</a></li>)}</ul></section>}
+    <section class="rounded-2xl bg-navy-900 p-8 text-white">
+      <h2 class="text-2xl font-bold text-white">{place} için hizmet kapsamını birlikte belirleyelim</h2>
+      <p class="mt-3 text-slate-200">Talebinizde il, ilçe ve sektör seçiminiz korunur. İlk değerlendirmede uzaktan destek uygunluğu ve varsa fiziksel müdahale ihtiyacı netleştirilir.</p>
+      <a class="mt-6 inline-block rounded-xl bg-white px-5 py-3 font-semibold text-navy-900" href={leadUrl(province,district,sector,service)}>Ön değerlendirme talebi oluştur</a>
+    </section>
+  </div>
+</BaseLayout>
