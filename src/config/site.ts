@@ -13,6 +13,7 @@ export interface SiteConfig {
   readonly founderName: string;
   readonly founderTitle: string;
   readonly domain: string;
+  readonly supportUrl: string;
   readonly email: string | null;
   readonly phoneDisplay: string | null;
   readonly phoneE164: string | null;
@@ -35,6 +36,7 @@ export const siteConfig: SiteConfig = {
   founderName: "Bekir Duran",
   founderTitle: "Bilgisayar Mühendisi",
   domain: "https://btmasasi.com",
+  supportUrl: "https://destek.btmasasi.com",
   email: "info@btmasasi.com",
   phoneDisplay: "0 (530) 112 54 68",
   phoneE164: "+905301125468",

@@ -82,6 +82,18 @@ const currentYear = new Date().getFullYear();
       <!-- Bölüm 4: İletişim ve Hizmet Bölgesi -->
       <div class="space-y-4 text-sm">
         <h3 class="text-sm font-semibold text-white tracking-wider uppercase">Hizmet Bölgesi & İletişim</h3>
+        <a
+          href={siteConfig.supportUrl}
+          class="group flex items-center justify-between gap-3 rounded-xl border border-brandTeal-400/30 bg-brandTeal-400/10 p-4 hover:bg-brandTeal-400/20 transition-colors focus-visible:outline-brandTeal-400"
+        >
+          <span>
+            <span class="block font-semibold text-brandTeal-100">Arıza Kaydı Oluştur</span>
+            <span class="block mt-1 text-xs text-slate-300">destek.btmasasi.com</span>
+          </span>
+          <svg class="w-5 h-5 shrink-0 text-brandTeal-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M7 7h10v10" />
+          </svg>
+        </a>
         
         <div>
           <span class="text-xs font-semibold text-slate-300 uppercase block">Yerinde Destek:</span>
