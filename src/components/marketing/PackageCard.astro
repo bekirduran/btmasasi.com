@@ -36,14 +36,7 @@ const tone = toneClasses[pkg.tone] || toneClasses.blue;
       {pkg.highlights.map(item => <li class="flex items-start gap-2"><span class="mt-0.5 font-bold text-brandTeal-600">✓</span><span>{item}</span></li>)}
     </ul>
   </div>
-  <div class="mt-6 space-y-3">
-    <details class="rounded-xl border border-white/80 bg-white/70 p-4">
-      <summary class="cursor-pointer text-sm font-bold text-navy-900">Detayları göster</summary>
-      <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-700">
-        {pkg.details.map(item => <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-brandBlue-600"></span><span>{item}</span></li>)}
-      </ul>
-    </details>
-    <a href="/iletisim" class="inline-flex w-full items-center justify-center rounded-xl bg-brandBlue-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-brandBlue-700">Fiyatlandırma için iletişime geçin</a>
-    <a href={packageHref} class="inline-flex w-full items-center justify-center rounded-xl border border-brandBlue-200 bg-white/70 px-4 py-3 text-sm font-bold text-brandBlue-700 transition hover:bg-white">Ayrıntılı paket sayfasını açın</a>
+  <div class="mt-6">
+    <a href={packageHref} class="inline-flex w-full items-center justify-center rounded-xl border border-brandBlue-200 bg-white/70 px-4 py-3 text-sm font-bold text-brandBlue-700 transition hover:bg-white">Paketi incele →</a>
   </div>
 </article>
