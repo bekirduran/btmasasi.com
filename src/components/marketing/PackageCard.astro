@@ -3,6 +3,18 @@ interface Props {
   pkg: { name: string; subtitle: string; description: string; highlights: string[]; details: string[]; tone: string };
 }
 const { pkg } = Astro.props;
+const packageSlugs: Record<string, string> = {
+  'Bakım Paketi': 'bakim',
+  'BT Paketi': 'bt',
+  'Güvenlik Paketi': 'guvenlik',
+  'Sunucu Paketi': 'sunucu',
+  'Web Paketi': 'web',
+  'Medya Paketi': 'medya',
+  'BT Yönetimi ve Güvenlik': 'bt-yonetimi-guvenlik',
+  'Kurumsal Paket': 'kurumsal',
+  'Kurumsal 360': 'kurumsal-360',
+};
+const packageHref = `/paketler/${packageSlugs[pkg.name] || 'bakim'}`;
 const toneClasses: Record<string, string> = {
   orange: 'border-orange-200 bg-orange-50/40',
   blue: 'border-blue-200 bg-blue-50/40',
@@ -17,7 +29,7 @@ const tone = toneClasses[pkg.tone] || toneClasses.blue;
 <article class={`flex h-full flex-col rounded-2xl border p-6 shadow-sm ${tone}`}>
   <div>
     <p class="text-xs font-bold uppercase tracking-wide text-slate-500">BT Masası hizmet paketi</p>
-    <h3 class="mt-2 text-2xl font-extrabold text-navy-900">{pkg.name}</h3>
+    <h3 class="mt-2 text-2xl font-extrabold text-navy-900"><a href={packageHref} class="hover:text-brandBlue-700">{pkg.name}</a></h3>
     <p class="mt-2 text-sm font-semibold text-brandBlue-700">{pkg.subtitle}</p>
     <p class="mt-4 text-sm leading-relaxed text-slate-600">{pkg.description}</p>
     <ul class="mt-5 space-y-2 text-sm text-slate-700">
@@ -32,5 +44,6 @@ const tone = toneClasses[pkg.tone] || toneClasses.blue;
       </ul>
     </details>
     <a href="/iletisim" class="inline-flex w-full items-center justify-center rounded-xl bg-brandBlue-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-brandBlue-700">Fiyatlandırma için iletişime geçin</a>
+    <a href={packageHref} class="inline-flex w-full items-center justify-center rounded-xl border border-brandBlue-200 bg-white/70 px-4 py-3 text-sm font-bold text-brandBlue-700 transition hover:bg-white">Ayrıntılı paket sayfasını açın</a>
   </div>
 </article>
