@@ -1,0 +1,36 @@
+---
+interface Props {
+  pkg: { name: string; subtitle: string; description: string; highlights: string[]; details: string[]; tone: string };
+}
+const { pkg } = Astro.props;
+const toneClasses: Record<string, string> = {
+  orange: 'border-orange-200 bg-orange-50/40',
+  blue: 'border-blue-200 bg-blue-50/40',
+  purple: 'border-purple-200 bg-purple-50/40',
+  green: 'border-emerald-200 bg-emerald-50/40',
+  pink: 'border-pink-200 bg-pink-50/40',
+  teal: 'border-teal-200 bg-teal-50/40',
+};
+const tone = toneClasses[pkg.tone] || toneClasses.blue;
+---
+
+<article class={`flex h-full flex-col rounded-2xl border p-6 shadow-sm ${tone}`}>
+  <div>
+    <p class="text-xs font-bold uppercase tracking-wide text-slate-500">BT Masası hizmet paketi</p>
+    <h3 class="mt-2 text-2xl font-extrabold text-navy-900">{pkg.name}</h3>
+    <p class="mt-2 text-sm font-semibold text-brandBlue-700">{pkg.subtitle}</p>
+    <p class="mt-4 text-sm leading-relaxed text-slate-600">{pkg.description}</p>
+    <ul class="mt-5 space-y-2 text-sm text-slate-700">
+      {pkg.highlights.map(item => <li class="flex items-start gap-2"><span class="mt-0.5 font-bold text-brandTeal-600">✓</span><span>{item}</span></li>)}
+    </ul>
+  </div>
+  <div class="mt-6 space-y-3">
+    <details class="rounded-xl border border-white/80 bg-white/70 p-4">
+      <summary class="cursor-pointer text-sm font-bold text-navy-900">Detayları göster</summary>
+      <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-700">
+        {pkg.details.map(item => <li class="flex items-start gap-2"><span class="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-brandBlue-600"></span><span>{item}</span></li>)}
+      </ul>
+    </details>
+    <a href="/iletisim" class="inline-flex w-full items-center justify-center rounded-xl bg-brandBlue-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-brandBlue-700">Fiyatlandırma için iletişime geçin</a>
+  </div>
+</article>

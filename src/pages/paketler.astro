@@ -2,196 +2,42 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import Button from '../components/ui/Button.astro';
-import Card from '../components/ui/Card.astro';
-import Badge from '../components/ui/Badge.astro';
+import PackageCard from '../components/marketing/PackageCard.astro';
 
-const pageTitle = "İhtiyacınıza Uygun BT Hizmet Modeli";
-const pageDescription = "Aylık hizmet bedeli yalnızca bilgisayar sayısına göre değil; kullanıcı, altyapı karmaşıklığı ve müdahale seviyesine göre şeffaf şekilde belirlenir.";
+const singlePackages = [
+  { name: 'Bakım Paketi', subtitle: 'Teknik Destek, Bakım ve Onarım', description: 'Günlük teknik sorunları çözmek ve çalışanların işlerine devam etmesini sağlamak için temel teknik destek.', highlights: ['Günlük teknik sorunların çözümü', 'Yazıcı, ağ ve kamera desteği', 'Uzaktan ve kararlaştırılan kapsamda yerinde müdahale'], details: ['Bilgisayarların donanım ve yazılım arızalarının tespiti, bakım ve kurulum işlemleri', 'Bilgisayar parça değişimi ve yükseltmeleri', 'Yazıcı kurulumu, bağlantı ve yazılım sorunlarının giderilmesi', 'Küçük ölçekli ağ kablolaması, uçlandırma ve bağlantı kablo/kanal düzenlemeleri', 'Kamera sistemlerinde basit bağlantı ve yapılandırma sorunlarına destek', 'Uzaktan ve kararlaştırılan kapsamda yerinde müdahale'], tone: 'orange' },
+  { name: 'BT Paketi', subtitle: 'Kurumsal E-posta, Hesap ve Cihaz Yönetimi', description: 'Kurumsal hesapları, cihazları ve erişim yetkilerini düzenli ve şirket kontrolünde tutan yönetim.', highlights: ['E-posta ve hesap yönetimi', 'Cihaz ve erişim yönetimi', 'Alan adı, DNS ve envanter takibi'], details: ['Kurumsal e-posta hesaplarının ve ortak posta kutularının yönetimi', 'E-posta güvenlik ayarları ve desteklenen sistemlerde çok faktörlü kimlik doğrulama', 'Erişimlerin görev ihtiyaçlarına göre incelenmesi ve işletme onayıyla gereksiz yetkilerin kaldırılması', 'İnternet alan adları, DNS kayıtları ve yenileme tarihlerinin takibi', 'İşe giriş, görev değişikliği ve işten ayrılışta hesap, erişim ve cihaz işlemleri', 'Yerel hesaplar, Active Directory ve bulut hizmetlerindeki kullanıcı hesaplarının yönetimi', 'Ortak klasörler ve kurumsal uygulama erişim yetkilerinin düzenlenmesi', 'Cihaz envanteri, zimmet kayıtları ve lisans bilgilerinin takibi', 'Devredilen veya kullanım dışı cihazlarda onaylı veri koruma ve silme işlemleri'], tone: 'blue' },
+  { name: 'Güvenlik Paketi', subtitle: 'Siber Güvenlik, Çalışan Eğitimi ve Uyum Hazırlığı', description: 'Güvenlik eksiklerini görünür kılmak, çalışan farkındalığını geliştirmek ve olaylara hazırlığı güçlendirmek.', highlights: ['Güvenlik değerlendirmesi', 'Çalışan farkındalık eğitimleri', 'KVKK / ISO 27001 hazırlık desteği'], details: ['Mevcut güvenlik durumunun değerlendirilmesi ve öncelikli iyileştirme planı', 'USB ve harici medya ihtiyaçlarının belirlenmesi; desteklenen kontrollerin onayla uygulanması', 'Antivirüs ve uç nokta koruma durumunun kontrolü', 'Oltalama, şüpheli e-posta, parola güvenliği ve güvenli veri kullanımı eğitimleri', 'Bilgi güvenliği kullanım kuralları ve çalışan kontrol listelerinin hazırlanmasına destek', 'Siber olaylar için bildirim, ilk müdahale ve uzman desteğine yönlendirme planı', 'Yetkilendirilmiş sistemlerde kapsam dahilinde ilk teknik müdahale', 'KVKK ve ISO 27001 hazırlığına teknik uygulama, kayıt ve dokümantasyon desteği'], tone: 'purple' },
+  { name: 'Sunucu Paketi', subtitle: 'Sunucu, Ağ ve Yedekleme Yönetimi', description: 'Teknik altyapının düzenli işletilmesi, bağlantıların kontrollü yönetilmesi ve veri kurtarma hazırlığı.', highlights: ['Sunucu ve ağ yönetimi', 'VPN ve güvenlik duvarı', 'Yedekleme ve veri kurtarma'], details: ['Kapsamdaki sunucuların bakım, güncelleme ve temel çalışma kontrolleri', 'Güvenlik duvarı kurallarının ve dış erişimlerin incelenmesi; onaylı bakım zamanlarında düzenleme', 'Ağ cihazları ve bağlantı yapılandırmalarının yönetimi', 'VPN ve yetkilendirilmiş uzaktan erişim bağlantılarının yönetimi', 'Altyapının desteklediği durumlarda kurumsal ve misafir ağlarının ayrılması', 'Kritik sistem ve veriler için yedekleme düzeninin oluşturulması veya iyileştirilmesi', 'Yedekleme sonuçlarının kararlaştırılan sıklıkta kontrol edilmesi', 'Kontrollü geri yükleme testleri ve kurtarma adımlarının belgelenmesi', 'Sunucu ve ağ yapılandırmalarının yedeklenmesi ve dokümantasyonu'], tone: 'green' },
+  { name: 'Web Paketi', subtitle: 'Web Sitesi Yönetimi ve Geliştirme', description: 'Web sitesini güncel, kullanılabilir ve işletmenin faaliyetlerini doğru yansıtır halde tutan bakım hizmeti.', highlights: ['Site bakım ve güncellemeleri', 'SEO / GEO iyileştirmeleri', 'Form ve performans kontrolleri'], details: ['Web sitesi bakım ve teknik kontrolleri', 'Kullanılan altyapıya uygun yazılım ve bileşen güncellemeleri', 'Site yedekleme ve geri dönüş hazırlığı', 'İçerik, görsel, hizmet ve referans bilgilerinin güncellenmesi', 'Performans, mobil kullanım ve temel erişilebilirlik iyileştirmeleri', 'Teknik SEO kontrolleri ve kararlaştırılan düzeltmeler', 'GEO optimizasyonu ve LLM sistemlerinin işletmeyi doğru anlamasını destekleyen düzenlemeler', 'Formların ve temel site işlevlerinin kontrolü', 'Barındırma ve ilgili teknik sağlayıcılarla koordinasyon'], tone: 'pink' },
+  { name: 'Medya Paketi', subtitle: 'Sosyal Medya ve Görsel İçerik Yönetimi', description: 'İşletmenin hizmetlerini, projelerini ve uzmanlığını düzenli, onaylı içeriklerle anlatan yönetim.', highlights: ['Sosyal medya yönetimi', 'Görsel ve video içerik üretimi', 'İçerik performans raporları'], details: ['Google İşletme Profili, Instagram, LinkedIn ve YouTube hesaplarının kararlaştırılan kapsamda yönetimi', 'İçerik takvimi, paylaşım metinleri ve görsel içeriklerin hazırlanması', 'İşletme onayının ardından içeriklerin yayımlanması', 'Planlanan fotoğraf ve uygun koşullarda drone çekimleri', 'Video kurgu ve platformlara uygun içerik düzenlemeleri', 'Profil ve işletme bilgilerinin güncellenmesi', 'İçerik performansının raporlanması'], tone: 'teal' },
+];
+
+const bundlePackages = [
+  { name: 'BT Yönetimi ve Güvenlik', subtitle: 'BT + Sunucu + Güvenlik', description: 'Kesintisiz operasyon, güçlü altyapı ve güvenli gelecek için üç temel paketi bir araya getirir.', highlights: ['E-posta, cihaz ve erişim yönetimi', 'Sunucu, ağ, VPN ve yedekleme', 'Güvenlik değerlendirmesi ve farkındalık'], details: ['BT Paketi: Kurumsal E-posta, Hesap ve Cihaz Yönetimi', 'Sunucu Paketi: Sunucu, Ağ ve Yedekleme Yönetimi', 'Güvenlik Paketi: Siber Güvenlik, Çalışan Eğitimi ve Uyum Hazırlığı', 'Tek sözleşme ve ortak hizmet koordinasyonu'], tone: 'blue' },
+  { name: 'Kurumsal Paket', subtitle: 'BT + Sunucu + Güvenlik + Bakım', description: 'Güçlü altyapı, güvenli sistemler ve kesintisiz iş süreçleri için dört paketi tek kapsamda birleştirir.', highlights: ['Operasyon, altyapı ve güvenlik tek kapsamda', 'Donanım ve günlük destek odağı', 'Dengeli kurumsal çözüm'], details: ['BT Paketi: Kurumsal E-posta, Hesap ve Cihaz Yönetimi', 'Sunucu Paketi: Sunucu, Ağ ve Yedekleme Yönetimi', 'Güvenlik Paketi: Siber Güvenlik, Çalışan Eğitimi ve Uyum Hazırlığı', 'Bakım Paketi: Teknik Destek, Bakım ve Onarım', 'Tek çatı altında koordineli hizmet akışı'], tone: 'green' },
+  { name: 'Kurumsal 360', subtitle: 'Altı hizmet paketi, tek kurumsal ekosistem', description: 'BT, güvenlik, altyapı, web ve medya yönetimini tek muhatap ve tek sözleşme yaklaşımıyla birleştirir.', highlights: ['Tek muhatap, tek sözleşme', 'Web ve medya dahil tam ekosistem', 'Kurumsal teknoloji yönetimi'], details: ['BT Paketi: Kurumsal E-posta, Hesap ve Cihaz Yönetimi', 'Sunucu Paketi: Sunucu, Ağ ve Yedekleme Yönetimi', 'Güvenlik Paketi: Siber Güvenlik, Çalışan Eğitimi ve Uyum Hazırlığı', 'Bakım Paketi: Teknik Destek, Bakım ve Onarım', 'Web Paketi: Web Sitesi Yönetimi ve Geliştirme', 'Medya Paketi: Sosyal Medya ve Görsel İçerik Yönetimi', 'Tüm teknoloji alanlarında tek koordinasyon noktası'], tone: 'purple' },
+];
+
+const commonBenefits = ['Destek portalına 7/24 erişim ve talep takibi', 'Kapsama göre planlanan yerinde çalışma', 'Aylık faaliyet analizi ve raporu', 'İlgili tedarikçilerle koordinasyon ve iş takibi'];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <Breadcrumbs items={[{ label: "Paketler" }]} />
-      <div class="mt-4">
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight">
-          {pageTitle}
-        </h1>
-        <p class="text-lg sm:text-xl text-slate-600 mt-4 leading-relaxed font-normal">
-          {pageDescription}
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-    
-    <!-- 3 Hizmet Paketi Kartları -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      
-      <!-- Paket 1: Temel BT -->
-      <Card class="flex flex-col justify-between border-slate-200">
-        <div>
-          <div class="mb-4">
-            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Küçük Ekipler İçin</span>
-            <h2 class="text-2xl font-bold text-navy-900 mt-1">Temel BT</h2>
-          </div>
-          <p class="text-sm text-slate-600 mb-6">
-            5-10 kullanıcılı, temel kullanıcı desteği ve düzenli cihaz takibi isteyen küçük ofisler için uygundur.
-          </p>
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 mb-6">
-            <span class="text-xs text-slate-500 block">Fiyatlandırma Yaklaşımı:</span>
-            <span class="text-lg font-bold text-navy-900">Kapsama Göre Teklif</span>
-          </div>
-          <ul class="space-y-2.5 text-xs text-slate-700 mb-8">
-            <li class="flex items-center gap-2">
-              <span class="text-teal-600 font-bold">✓</span>
-              <span>Mesai saatlerinde uzaktan destek</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-teal-600 font-bold">✓</span>
-              <span>Kullanıcı ve cihaz envanteri</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-teal-600 font-bold">✓</span>
-              <span>Temel güncelleme ve yama takibi</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-teal-600 font-bold">✓</span>
-              <span>Kayıtlı destek biletleri</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-teal-600 font-bold">✓</span>
-              <span>Periyodik sistem durum özeti</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-teal-600 font-bold">✓</span>
-              <span>İhtiyaca göre planlı yerinde ziyaret</span>
-            </li>
-          </ul>
-        </div>
-        <Button href="/ucretsiz-bt-kontrolu" variant="outline" class="w-full">
-          Temel BT İçin Teklif Alın
-        </Button>
-      </Card>
-
-      <!-- Paket 2: Yönetilen BT (Büyüyen İşletmeler) -->
-      <Card class="flex flex-col justify-between border-brandBlue-300 relative shadow-md">
-        <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-          <Badge variant="blue" class="px-3 py-0.5 text-xs font-bold">Büyüyen İşletmeler İçin</Badge>
-        </div>
-        <div>
-          <div class="mb-4 mt-2">
-            <span class="text-xs font-bold text-brandBlue-600 uppercase tracking-wider">Kapsamlı Yönetim</span>
-            <h2 class="text-2xl font-bold text-navy-900 mt-1">Yönetilen BT</h2>
-          </div>
-          <p class="text-sm text-slate-600 mb-6">
-            10-25 kullanıcılı, kullanıcı desteğinin yanında hesap, yedekleme, bulut ve tedarikçi süreçlerini tek noktadan yönetmek isteyen işletmeler.
-          </p>
-          <div class="p-4 rounded-xl bg-brandBlue-50/50 border border-brandBlue-100 mb-6">
-            <span class="text-xs text-slate-500 block">Fiyatlandırma Yaklaşımı:</span>
-            <span class="text-lg font-bold text-brandBlue-700">Kapsama Göre Teklif</span>
-          </div>
-          <ul class="space-y-2.5 text-xs text-slate-700 mb-8">
-            <li class="flex items-center gap-2">
-              <span class="text-brandBlue-600 font-bold">✓</span>
-              <span>Uzaktan ve kapsam dahilinde yerinde destek</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-brandBlue-600 font-bold">✓</span>
-              <span>Cihaz, kullanıcı ve lisans envanteri</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-brandBlue-600 font-bold">✓</span>
-              <span>Güncelleme ve uç nokta durumu takibi</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-brandBlue-600 font-bold">✓</span>
-              <span>Microsoft 365 temel yönetimi & MFA</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-brandBlue-600 font-bold">✓</span>
-              <span>Yedekleme işi izleme ve denetimi</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-brandBlue-600 font-bold">✓</span>
-              <span>Tedarikçi (ERP/ISP/Fotokopi) koordinasyonu</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-brandBlue-600 font-bold">✓</span>
-              <span>Aylık ayrıntılı raporlama</span>
-            </li>
-          </ul>
-        </div>
-        <Button href="/ucretsiz-bt-kontrolu" variant="primary" class="w-full shadow">
-          Yönetilen BT Kapsamını Görüşün
-        </Button>
-      </Card>
-
-      <!-- Paket 3: Kurumsal BT -->
-      <Card class="flex flex-col justify-between border-slate-200">
-        <div>
-          <div class="mb-4">
-            <span class="text-xs font-bold text-navy-800 uppercase tracking-wider">İleri Düzey Altyapı</span>
-            <h2 class="text-2xl font-bold text-navy-900 mt-1">Kurumsal BT</h2>
-          </div>
-          <p class="text-sm text-slate-600 mb-6">
-            25 ve üzeri kullanıcıya, fiziksel/sanal sunucuya, firewall'a veya birden fazla lokasyona sahip işletmeler için.
-          </p>
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 mb-6">
-            <span class="text-xs text-slate-500 block">Fiyatlandırma Yaklaşımı:</span>
-            <span class="text-lg font-bold text-navy-900">Kapsama Göre Teklif</span>
-          </div>
-          <ul class="space-y-2.5 text-xs text-slate-700 mb-8">
-            <li class="flex items-center gap-2">
-              <span class="text-navy-900 font-bold">✓</span>
-              <span>Önceliklendirilmiş destek ve hızlı SLA modeli</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-navy-900 font-bold">✓</span>
-              <span>Sunucu ve kurumsal network yönetimi</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-navy-900 font-bold">✓</span>
-              <span>Çok lokasyonlu varlık envanteri</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-navy-900 font-bold">✓</span>
-              <span>Gelişmiş yedekleme ve felaket kurtarma planı</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-navy-900 font-bold">✓</span>
-              <span>Periyodik yönetim değerlendirme toplantıları</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-navy-900 font-bold">✓</span>
-              <span>Yıllık teknoloji bütçesi ve yol haritası</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-navy-900 font-bold">✓</span>
-              <span>İhtiyaca göre mevcut iç ekiple ortak çalışma</span>
-            </li>
-          </ul>
-        </div>
-        <Button href="/ucretsiz-bt-kontrolu" variant="outline" class="w-full">
-          Kurumsal Kapsam Oluşturun
-        </Button>
-      </Card>
-
-    </div>
-
-    <!-- Fiyatlandırma Prensipleri ve Açıklama -->
-    <div class="bg-slate-50 rounded-2xl border border-slate-200 p-8 text-sm text-slate-600 leading-relaxed max-w-4xl mx-auto">
-      <h2 class="text-lg font-bold text-navy-900 mb-3">
-        Fiyatlandırma ve Hizmet Sınırları Hakkında Önemli Notlar
-      </h2>
-      <p class="mb-4">
-        Donanım, yedek parça, üçüncü taraf yazılım lisansları (Microsoft 365, antivirüs vb.), bulut depolama abonelikleri, fiziksel kablolama, yeni ofis taşınmaları ve fiziksel veri kurtarma çalışmaları aksi sözleşmede belirtilmedikçe aylık hizmet bedeline dahil değildir.
-      </p>
-      <p>
-        İlk başlangıçta mevcut dağınık altyapının toparlanması, şifrelerin kasaya alınması ve standartların oturtulması için tek seferlik bir <strong>onboarding (devralma/kurulum) bedeli</strong> uygulanabilir.
-      </p>
-    </div>
-
+<BaseLayout title="BT Hizmet Paketleri" description="Tekli ve sepet BT hizmet paketlerini inceleyin. Kapsam ve fiyatlandırma için BT Masası ile iletişime geçin.">
+  <div class="bg-slate-50 border-b border-slate-200 py-12 sm:py-16"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><Breadcrumbs items={[{ label: 'Paketler' }]} /><div class="max-w-3xl mt-4"><h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight">BT Hizmet Paketleri</h1><p class="text-lg sm:text-xl text-slate-600 mt-4 leading-relaxed">Tekli hizmetleri ayrı ayrı seçin veya birden fazla hizmeti tek bir sepet pakette birleştirin. Size uygun kapsam ve fiyatlandırma için iletişime geçin.</p></div></div></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <div class="flex flex-wrap gap-3 border-b border-slate-200" role="tablist" aria-label="Paket türü"><button type="button" id="tab-single" role="tab" aria-selected="true" aria-controls="panel-single" class="package-tab rounded-t-xl border-b-2 border-brandBlue-600 px-5 py-3 text-sm font-bold text-brandBlue-700">Tekli Paketler</button><button type="button" id="tab-bundle" role="tab" aria-selected="false" aria-controls="panel-bundle" class="package-tab rounded-t-xl border-b-2 border-transparent px-5 py-3 text-sm font-bold text-slate-500 hover:text-brandBlue-700">Sepet Paketler</button></div>
+    <section id="panel-single" role="tabpanel" aria-labelledby="tab-single" class="package-panel pt-10"><div class="mb-8"><h2 class="text-2xl sm:text-3xl font-bold text-navy-900">Tekli Paketler</h2><p class="mt-2 text-slate-600">Her paket tek bir hizmet alanına odaklanır. İhtiyacınız olan paketi seçin, ayrıntıları açın ve kapsamı birlikte netleştirelim.</p></div><div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{singlePackages.map(pkg => <PackageCard pkg={pkg} />)}</div></section>
+    <section id="panel-bundle" role="tabpanel" aria-labelledby="tab-bundle" class="package-panel hidden pt-10"><div class="mb-8"><h2 class="text-2xl sm:text-3xl font-bold text-navy-900">Sepet Paketler</h2><p class="mt-2 text-slate-600">Birden fazla tekli hizmeti ortak koordinasyonla birleştiren kurumsal paketler.</p></div><div class="grid gap-6 lg:grid-cols-3">{bundlePackages.map(pkg => <PackageCard pkg={pkg} />)}</div></section>
+    <section class="mt-16 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8"><h2 class="text-xl font-bold text-navy-900">Tüm paketlerde ortak hizmetler</h2><ul class="mt-5 grid gap-3 sm:grid-cols-2 text-sm text-slate-700">{commonBenefits.map(benefit => <li class="flex items-start gap-2"><span class="mt-0.5 text-brandTeal-600">✓</span><span>{benefit}</span></li>)}</ul><p class="mt-5 text-sm leading-relaxed text-slate-600">Portal erişimi sınırsız kayıt oluşturma olanağı sunar; sınırsız çalışma süresi veya 7/24 canlı müdahale anlamına gelmez. Yerinde çalışma, seçilen hizmetin kapsamı ve lokasyona göre planlanır.</p><Button href="/iletisim" variant="primary" class="mt-6">Paket kapsamı ve fiyatlandırma için iletişime geçin</Button></section>
   </div>
 </BaseLayout>
+
+<script is:inline>
+  const tabs = document.querySelectorAll('.package-tab');
+  const panels = document.querySelectorAll('.package-panel');
+  tabs.forEach((tab) => tab.addEventListener('click', () => {
+    const target = tab.getAttribute('aria-controls');
+    tabs.forEach((item) => { const selected = item === tab; item.setAttribute('aria-selected', String(selected)); item.classList.toggle('border-brandBlue-600', selected); item.classList.toggle('text-brandBlue-700', selected); item.classList.toggle('border-transparent', !selected); item.classList.toggle('text-slate-500', !selected); });
+    panels.forEach((panel) => panel.classList.toggle('hidden', panel.id !== target));
+  }));
+</script>
